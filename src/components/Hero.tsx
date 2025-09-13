@@ -68,7 +68,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-lg sm:text-xl lg:text-2xl text-gray-300 mb-4 max-w-4xl mx-auto"
           >
-            Laboratório de Pesquisa Integrada em Geoenergia11111111
+            Laboratório de Pesquisa Integrada em Geoenergia77777777777777
           </motion.p>
 
           <motion.p
