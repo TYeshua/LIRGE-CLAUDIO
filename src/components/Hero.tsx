@@ -44,7 +44,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             className="mb-8"
           >
             <img
-             src={`${import.meta.env.BASE_URL}images/logo2.png`}
+             src={`${import.meta.env.BASE_URL}images/logos2.png`}
              alt="Logo LIRGE"
              className="mx-auto h-24 lg:h-32 w-auto"
             />

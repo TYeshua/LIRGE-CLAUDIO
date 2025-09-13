@@ -53,7 +53,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
             onClick={() => handleNavClick('home')}
           >
             <img
-              src={`${import.meta.env.BASE_URL}images/logo2.png`}
+              src={`${import.meta.env.BASE_URL}images/logos2.png`}
               alt="Logo LIRGE"
               className="h-8 lg:h-10 w-auto"
             />
