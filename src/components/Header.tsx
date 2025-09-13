@@ -53,7 +53,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
             onClick={() => handleNavClick('home')}
           >
             <img
-              src="/Imagem do WhatsApp de 2025-09-12 à(s) 01.29.13_23cff331.jpg"
+              src={`${import.meta.env.BASE_URL}images/logo2.png`}
               alt="Logo LIRGE"
               className="h-8 lg:h-10 w-auto"
             />

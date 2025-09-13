@@ -44,9 +44,9 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             className="mb-8"
           >
             <img
-              src="/images/logo.jpg"
-              alt="Logo LIRGE"
-              className="mx-auto h-24 lg:h-32 w-auto"
+             src={`${import.meta.env.BASE_URL}images/logo2.png`}
+             alt="Logo LIRGE"
+             className="mx-auto h-24 lg:h-32 w-auto"
             />
           </motion.div>
 
@@ -68,7 +68,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-lg sm:text-xl lg:text-2xl text-gray-300 mb-4 max-w-4xl mx-auto"
           >
-            Laboratório de Pesquisa Integrada em Geoenergia77777777777777
+            Laboratório de Pesquisa Integrada em Geoenergia
           </motion.p>
 
           <motion.p
