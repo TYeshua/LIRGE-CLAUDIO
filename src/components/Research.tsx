@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Fuel, Waves, Mountain, Zap } from 'lucide-react';
 
 const Research: React.FC = () => {
@@ -13,33 +11,41 @@ const Research: React.FC = () => {
     {
       id: 1,
       title: 'Petróleo e Gás Natural',
-      description: 'Pesquisas avançadas em exploração, produção e refino de hidrocarbonetos, incluindo técnicas de recuperação avançada e análise de reservatórios.',
+      description:
+        'Pesquisas avançadas em exploração, produção e refino de hidrocarbonetos, incluindo técnicas de recuperação avançada e análise de reservatórios.',
       icon: Fuel,
-      image: 'https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image:
+        'https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=800',
       features: ['Análise de Reservatórios', 'Recuperação Avançada', 'Modelagem Geológica'],
     },
     {
       id: 2,
       title: 'Energia Renovável',
-      description: 'Desenvolvimento de tecnologias sustentáveis incluindo energia solar, eólica, hidrelétrica e biomassa, focando em eficiência e integração ao sistema energético.',
+      description:
+        'Desenvolvimento de tecnologias sustentáveis incluindo energia solar, eólica, hidrelétrica e biomassa, focando em eficiência e integração ao sistema energético.',
       icon: Zap,
-      image: 'https://images.pexels.com/photos/433308/pexels-photo-433308.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image:
+        'https://images.pexels.com/photos/433308/pexels-photo-433308.jpeg?auto=compress&cs=tinysrgb&w=800',
       features: ['Energia Solar', 'Energia Eólica', 'Biomassa'],
     },
     {
       id: 3,
       title: 'Geofísica Aplicada',
-      description: 'Aplicação de métodos geofísicos para exploração mineral e energética, incluindo sísmica, gravimetria, magnetometria e eletrorresistividade.',
+      description:
+        'Aplicação de métodos geofísicos para exploração mineral e energética, incluindo sísmica, gravimetria, magnetometria e eletrorresistividade.',
       icon: Waves,
-      image: 'https://images.pexels.com/photos/87009/earth-soil-creep-moon-lunar-surface-87009.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image:
+        'https://images.pexels.com/photos/87009/earth-soil-creep-moon-lunar-surface-87009.jpeg?auto=compress&cs=tinysrgb&w=800',
       features: ['Sísmica 3D', 'Gravimetria', 'Magnetometria'],
     },
     {
       id: 4,
       title: 'Mineração e Geologia',
-      description: 'Estudos em mineração sustentável, caracterização de depósitos minerais e análise de impactos ambientais associados à atividade extrativa.',
+      description:
+        'Estudos em mineração sustentável, caracterização de depósitos minerais e análise de impactos ambientais associados à atividade extrativa.',
       icon: Mountain,
-      image: 'https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image:
+        'https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg?auto=compress&cs=tinysrgb&w=800',
       features: ['Mineração Sustentável', 'Análise de Depósitos', 'Impacto Ambiental'],
     },
   ];
@@ -55,14 +61,14 @@ const Research: React.FC = () => {
   return (
     <section id="research" className="py-20 lg:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-lirge-darker via-lirge-teal/5 to-lirge-darker" />
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div ref={ref} className="max-w-6xl mx-auto">
           {/* Header */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
-            animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-            transition={{ duration: 0.8 }}
+            animate={isInView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
             <h2 className="text-3xl lg:text-5xl font-bold mb-6">
@@ -78,8 +84,8 @@ const Research: React.FC = () => {
           {/* Carousel */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
-            animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            animate={isInView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
             <div className="overflow-hidden rounded-2xl">
@@ -89,8 +95,8 @@ const Research: React.FC = () => {
                   initial={{ x: 300, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   exit={{ x: -300, opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className="bg-gradient-to-br from-lirge-teal/20 to-lirge-cyan/20 border border-lirge-cyan/20 backdrop-blur-sm"
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  className="bg-gradient-to-br from-lirge-teal/20 to-lirge-cyan/20 border border-lirge-cyan/20"
                 >
                   <div className="grid lg:grid-cols-2 gap-8">
                     {/* Image */}
@@ -98,17 +104,18 @@ const Research: React.FC = () => {
                       <img
                         src={researchAreas[currentSlide].image}
                         alt={researchAreas[currentSlide].title}
+                        loading="lazy"
                         className="w-full h-64 lg:h-80 object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-lirge-darker/80 to-transparent" />
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="absolute top-4 right-4 w-12 h-12 bg-lirge-cyan/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-lirge-cyan/40"
+                        className="absolute top-4 right-4 w-12 h-12 bg-lirge-cyan/20 rounded-full flex items-center justify-center border border-lirge-cyan/40"
                       >
-                        {React.createElement(researchAreas[currentSlide].icon, { 
-                          className: "text-lirge-cyan", 
-                          size: 24 
+                        {React.createElement(researchAreas[currentSlide].icon, {
+                          className: 'text-lirge-cyan',
+                          size: 24,
                         })}
                       </motion.div>
                     </div>
@@ -123,7 +130,7 @@ const Research: React.FC = () => {
                       >
                         {researchAreas[currentSlide].title}
                       </motion.h3>
-                      
+
                       <motion.p
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
@@ -165,7 +172,7 @@ const Research: React.FC = () => {
             <div className="flex items-center justify-between mt-8">
               <button
                 onClick={prevSlide}
-                className="p-3 bg-lirge-teal/20 hover:bg-lirge-teal/40 border border-lirge-cyan/20 hover:border-lirge-cyan/60 rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-110"
+                className="p-3 bg-lirge-teal/20 hover:bg-lirge-teal/40 border border-lirge-cyan/20 hover:border-lirge-cyan/60 rounded-full transition-all duration-300 hover:scale-110"
               >
                 <ChevronLeft className="text-lirge-cyan" size={24} />
               </button>
@@ -188,7 +195,7 @@ const Research: React.FC = () => {
 
               <button
                 onClick={nextSlide}
-                className="p-3 bg-lirge-teal/20 hover:bg-lirge-teal/40 border border-lirge-cyan/20 hover:border-lirge-cyan/60 rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-110"
+                className="p-3 bg-lirge-teal/20 hover:bg-lirge-teal/40 border border-lirge-cyan/20 hover:border-lirge-cyan/60 rounded-full transition-all duration-300 hover:scale-110"
               >
                 <ChevronRight className="text-lirge-cyan" size={24} />
               </button>

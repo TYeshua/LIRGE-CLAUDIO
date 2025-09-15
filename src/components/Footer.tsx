@@ -143,15 +143,15 @@ const Footer: React.FC = () => {
             </p>
             
             <div className="flex items-center space-x-1 text-xs text-gray-400">
-              <span>Desenvolvido com</span>
+              <span>Desenvolvido por</span>
               <motion.span
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
                 className="text-lirge-cyan"
               >
-                ♥
+                
               </motion.span>
-              <span>pela equipe LIRGE</span>
+              <span>Thiago Yeshua e Josué Dias</span>
             </div>
           </div>
         </motion.div>
