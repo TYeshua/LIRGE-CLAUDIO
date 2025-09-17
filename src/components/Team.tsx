@@ -9,83 +9,121 @@ const Team: React.FC = () => {
 
   const coordinators = [
     {
-      name: 'Prof. Dr. João Silva Santos',
+      name: 'Prof. Dr. Cláudio Regis S. Lucas',
       role: 'Coordenador Geral',
-      area: 'Geofísica e Exploração Energética',
-      email: 'joao.santos@ufpa.br',
-      image:
-        'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=400',
+      area: '-------------------------------------------------------',
+      email: 'claudiolucas@ufpa.br',
+      image: `${import.meta.env.BASE_URL}images/claudio.png`,
+      linkedin: 'https://www.linkedin.com/in/cl%C3%A1udio-lucas-a7186020?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
     },
     {
-      name: 'Profa. Dra. Maria Oliveira Costa',
-      role: 'Vice-Coordenadora',
-      area: 'Energia Renovável e Sustentabilidade',
-      email: 'maria.costa@ufpa.br',
-      image:
-        'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=400',
+      name: 'Prof. Dr. Daniel Nobre Nunes da Sila',
+      role: 'Vice-Coordenador',
+      area: '-------------------------------------------------------',
+      email: 'danielnobre@ufpa.br',
+      image: `${import.meta.env.BASE_URL}images/daniel.png`,
+      linkedin: 'https://www.linkedin.com/in/daniel-nobre-02856442/',
     },
   ];
 
   const students = [
     {
-      name: 'Ana Paula Ferreira',
-      role: 'Doutoranda',
-      area: 'Modelagem de Reservatórios',
-      email: 'ana.ferreira@ufpa.br',
-      image:
-        'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400',
+      name: 'Igor Alexandre Rocha Barreto',
+      role: 'Doutorando',
+      area: '-------------------------------------------------------',
+      email: 'Igorbarreto@ufpa.br',
+      image: `${import.meta.env.BASE_URL}images/ana.png`,
+      linkedin: 'https://www.linkedin.com/in/igor-barreto-phd-405485104?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
     },
     {
-      name: 'Carlos Eduardo Lima',
-      role: 'Mestrando',
-      area: 'Energia Solar Fotovoltaica',
-      email: 'carlos.lima@ufpa.br',
-      image:
-        'https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&w=400',
+      name: 'João Rafael Barroso Sampaio da Silveira',
+      role: 'Doutorando',
+      area: '-------------------------------------------------------',
+      email: 'joao.silveira@ig.ufpa.br',
+      image: `${import.meta.env.BASE_URL}images/carlos.png`,
+      linkedin: 'https://www.linkedin.com/in/joao-rafael-sampaio-da-silveira/',
     },
     {
-      name: 'Beatriz Santos Rocha',
+      name: 'Jessica Nascimento Pereira  ',
+      role: 'Mestranda',
+      area: '-------------------------------------------------------',
+      email: 'jessica.pereira@salinopolis.ufpa.br',
+      image: `${import.meta.env.BASE_URL}images/beatriz.png`,
+      linkedin: 'https://www.linkedin.com/in/jessica-pereira-engenhariadepetroleo',
+    },
+    {
+      name: 'Paloma Andrade Rebouças ',
       role: 'Bolsista IC',
-      area: 'Análise Sísmica',
-      email: 'beatriz.rocha@ufpa.br',
-      image:
-        'https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=400',
+      area: '-------------------------------------------------------',
+      email: 'paloma.reboucas@salinopolis.ufpa.br',
+      image: `${import.meta.env.BASE_URL}images/diego.png`,
+      linkedin: 'http://www.linkedin.com/in/paloma-rebou%C3%A7as-386a02289',
     },
     {
-      name: 'Diego Almeida Souza',
+      name: 'João Victor da Silva Fonseca',
       role: 'Bolsista IC',
-      area: 'Geoquímica do Petróleo',
-      email: 'diego.souza@ufpa.br',
-      image:
-        'https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=400',
+      area: '-------------------------------------------------------',
+      email: 'joao.fonseca@salinopolis.ufpa.br',
+      image: `${import.meta.env.BASE_URL}images/fernanda.png`,
+      linkedin: 'http://www.linkedin.com/in/jo%C3%A3o-victor58',
     },
     {
-      name: 'Fernanda Silva Mendes',
-      role: 'Doutoranda',
-      area: 'Biomassa e Biocombustíveis',
-      email: 'fernanda.mendes@ufpa.br',
-      image:
-        'https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=400',
+      name: 'Pedro Pantoja dos Santos',
+      role: 'Bolsista IC',
+      area: '-------------------------------------------------------',
+      email: 'natalino.souza@salinopolis.ufpa.br',
+      image: `${import.meta.env.BASE_URL}images/gabriel.png`,
+      linkedin: 'http://www.linkedin.com/in/natalino-souza-a592851ab',
     },
     {
-      name: 'Gabriel Pereira Nunes',
-      role: 'Mestrando',
-      area: 'Hidrogeologia',
-      email: 'gabriel.nunes@ufpa.br',
-      image:
-        'https://images.pexels.com/photos/1300402/pexels-photo-1300402.jpeg?auto=compress&cs=tinysrgb&w=400',
+      name: 'Natalino da Silva Souza',
+      role: 'Bolsista IC',
+      area: '-------------------------------------------------------',
+      email: 'pedro.santos@salinopolis.ufpa.br',
+      image: `${import.meta.env.BASE_URL}images/gabriel.png`,
+      linkedin: 'http://www.linkedin.com/in/natalino-souza-a592851ab',
+    },
+    {
+      name: 'Yasmin Yukari Ferreira Ishii',
+      role: 'Bolsista IC',
+      area: '-------------------------------------------------------',
+      email: 'yasmin.ishii@salinopolis.ufpa.br',
+      image: `${import.meta.env.BASE_URL}images/gabriel.png`,
+      linkedin: 'http://linkedin.com/in/yukari-ishii-999aa49369',
+    },
+    {
+      name: 'Nathália de Fátima de Lima do Vale',
+      role: 'Bolsista IC',
+      area: '-------------------------------------------------------',
+      email: 'nathalya.vale@salinopolis.ufpa.br',
+      image: `${import.meta.env.BASE_URL}images/gabriel.png`,
+      linkedin: 'http://www.linkedin.com/in/nathalya-vale-6bab02369',
+    },
+    {
+      name: 'Sophia Macedo Pereira',
+      role: 'Bolsista IC',
+      area: '-------------------------------------------------------',
+      email: 'sophia.pereira@salinopolis.ufpa.br',
+      image: `${import.meta.env.BASE_URL}images/gabriel.png`,
+      linkedin: 'https://www.linkedin.com/in/sophia-macedo-pereira-10643a1a5?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
+    },
+    {
+      name: 'Eliel Silva da Cruz',
+      role: 'Bolsista IC',
+      area: '-------------------------------------------------------',
+      email: 'eliel.cruz@salinopolis.ufpa.br',
+      image: `${import.meta.env.BASE_URL}images/gabriel.png`,
+      linkedin: 'https://www.linkedin.com/in/eliel-silva-8662b023b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
     },
   ];
 
   const copyEmail = (email: string) => {
     navigator.clipboard.writeText(email);
-    // You could add a toast notification here
   };
 
   return (
     <section id="team" className="py-20 lg:py-32 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-lirge-darker via-lirge-teal/10 to-lirge-darker" />
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div ref={ref} className="max-w-7xl mx-auto">
           {/* Header */}
@@ -100,8 +138,8 @@ const Team: React.FC = () => {
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-lirge-cyan to-lirge-teal mx-auto mb-8" />
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              Conheça os pesquisadores e bolsistas que fazem do LIRGE um centro de excelência
-              em pesquisa e inovação.
+              Conheça os pesquisadores e bolsistas que fazem do LIRGE um centro de
+              excelência em pesquisa e inovação.
             </p>
           </motion.div>
 
@@ -127,13 +165,20 @@ const Team: React.FC = () => {
                 >
                   <div className="bg-gradient-to-br from-lirge-teal/20 to-lirge-cyan/20 rounded-2xl p-6 border-2 border-lirge-cyan/30 hover:border-lirge-cyan/60 transition-all duration-300 hover:shadow-2xl hover:shadow-lirge-cyan/20">
                     <div className="relative mb-6">
-                      <motion.img
-                        whileHover={{ scale: 1.05 }}
-                        src={coord.image}
-                        alt={coord.name}
-                        loading="lazy"
-                        className="w-24 h-24 rounded-full mx-auto object-cover border-4 border-lirge-cyan/50"
-                      />
+                      <a
+                        href={coord.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-lirge-cyan/50"
+                      >
+                        <motion.img
+                          whileHover={{ scale: 1.05 }}
+                          src={coord.image}
+                          alt={coord.name}
+                          loading="lazy"
+                          className="w-full h-full object-cover"
+                        />
+                      </a>
                       <motion.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
@@ -188,18 +233,27 @@ const Team: React.FC = () => {
                 >
                   <div className="bg-gradient-to-br from-lirge-teal/10 to-lirge-cyan/10 rounded-xl p-6 border border-lirge-cyan/20 hover:border-lirge-cyan/40 transition-all duration-300 hover:shadow-xl hover:shadow-lirge-cyan/10">
                     <div className="flex items-center mb-4">
-                      <motion.img
-                        whileHover={{ scale: 1.1 }}
-                        src={student.image}
-                        alt={student.name}
-                        loading="lazy"
-                        className="w-16 h-16 rounded-full object-cover border-2 border-lirge-cyan/40"
-                      />
+                      <a
+                        href={student.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-16 h-16 rounded-full overflow-hidden border-2 border-lirge-cyan/40"
+                      >
+                        <motion.img
+                          whileHover={{ scale: 1.1 }}
+                          src={student.image}
+                          alt={student.name}
+                          loading="lazy"
+                          className="w-full h-full object-cover"
+                        />
+                      </a>
                       <div className="ml-4 flex-1">
                         <h4 className="text-lg font-semibold text-white group-hover:text-lirge-cyan transition-colors">
                           {student.name}
                         </h4>
-                        <p className="text-lirge-cyan text-sm font-medium">{student.role}</p>
+                        <p className="text-lirge-cyan text-sm font-medium">
+                          {student.role}
+                        </p>
                       </div>
                     </div>
 

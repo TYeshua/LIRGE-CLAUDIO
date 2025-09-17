@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Microscope, Zap, Globe, Users } from 'lucide-react';
+import { Target, Rocket, Eye, Zap } from 'lucide-react';
 
 const About: React.FC = () => {
   const ref = useRef(null);
@@ -9,24 +9,22 @@ const About: React.FC = () => {
 
   const features = [
     {
-      icon: Microscope,
-      title: 'Pesquisa de Excelência',
-      description: 'Centro de referência em pesquisas avançadas em geoenergia e geociências.',
+      icon: Target,
+      title: 'Objetivo',
+      description:
+        'Laboratório de PD&I dedicado à investigação, desenvolvimento e inovação de soluções em geoenergias, com atuação em áreas como: Exploração e Produção de Energia, Carbon Capture, Utilization and Storage (CCUS), Segurança e Integridade de Poços, além de Modelagem e Simulação Geológica.',
     },
     {
-      icon: Zap,
-      title: 'Tecnologia Inovadora',
-      description: 'Desenvolvimento de soluções tecnológicas para o setor energético.',
+      icon: Rocket,
+      title: 'Missão',
+      description:
+        'Impulsionar o avanço do conhecimento e o desenvolvimento de tecnologias inovadoras no campo das geoenergias, contribuindo para a transição energética sustentável, a segurança e eficiência na exploração de recursos geológicos e a mitigação de impactos ambientais.',
     },
     {
-      icon: Globe,
-      title: 'Impacto Global',
-      description: 'Contribuições científicas com relevância nacional e internacional.',
-    },
-    {
-      icon: Users,
-      title: 'Formação Acadêmica',
-      description: 'Capacitação de pesquisadores e profissionais especializados.',
+      icon: Eye,
+      title: 'Visão',
+      description:
+        'Consolidar-se como referência internacional em pesquisa, inovação e desenvolvimento tecnológico em geoenergia, promovendo a segurança energética, a sustentabilidade ambiental e a evolução das tecnologias de exploração e aproveitamento de recursos geológicos.',
     },
   ];
 
@@ -87,7 +85,7 @@ const About: React.FC = () => {
                 />
                 <motion.div
                   animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
                   className="absolute -top-4 -right-4 w-16 h-16 border-2 border-lirge-cyan rounded-full bg-lirge-darker/80 flex items-center justify-center will-change-transform"
                 >
                   <Zap className="text-lirge-cyan" size={24} />
@@ -97,26 +95,26 @@ const About: React.FC = () => {
           </div>
 
           {/* Features Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="flex flex-wrap justify-center gap-8">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                className="group will-change-transform"
+                className="group will-change-transform w-full sm:w-[300px] max-w-sm"
               >
-                <div className="bg-gradient-to-br from-lirge-teal/20 to-lirge-cyan/20 rounded-xl p-6 border border-lirge-cyan/20 hover:border-lirge-cyan/40 transition-all duration-300 hover:shadow-2xl hover:shadow-lirge-cyan/10 hover:scale-105">
+                <div className="h-full flex flex-col justify-between bg-gradient-to-br from-lirge-teal/20 to-lirge-cyan/20 rounded-xl p-6 border border-lirge-cyan/20 hover:border-lirge-cyan/40 transition-all duration-300 hover:shadow-2xl hover:shadow-lirge-cyan/10 hover:scale-105">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     className="w-12 h-12 bg-gradient-to-br from-lirge-cyan to-lirge-teal rounded-lg flex items-center justify-center mb-4"
                   >
                     <feature.icon className="text-white" size={24} />
                   </motion.div>
-                  <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-lirge-cyan transition-colors">
+                  <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-lirge-cyan transition-colors text-center">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
+                  <p className="text-gray-300 text-sm leading-relaxed text-justify">
                     {feature.description}
                   </p>
                 </div>

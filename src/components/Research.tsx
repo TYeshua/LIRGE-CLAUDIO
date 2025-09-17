@@ -7,49 +7,44 @@ const Research: React.FC = () => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const researchAreas = [
-    {
-      id: 1,
-      title: 'Petróleo e Gás Natural',
-      description:
-        'Pesquisas avançadas em exploração, produção e refino de hidrocarbonetos, incluindo técnicas de recuperação avançada e análise de reservatórios.',
-      icon: Fuel,
-      image:
-        'https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=800',
-      features: ['Análise de Reservatórios', 'Recuperação Avançada', 'Modelagem Geológica'],
-    },
-    {
-      id: 2,
-      title: 'Energia Renovável',
-      description:
-        'Desenvolvimento de tecnologias sustentáveis incluindo energia solar, eólica, hidrelétrica e biomassa, focando em eficiência e integração ao sistema energético.',
-      icon: Zap,
-      image:
-        'https://images.pexels.com/photos/433308/pexels-photo-433308.jpeg?auto=compress&cs=tinysrgb&w=800',
-      features: ['Energia Solar', 'Energia Eólica', 'Biomassa'],
-    },
-    {
-      id: 3,
-      title: 'Geofísica Aplicada',
-      description:
-        'Aplicação de métodos geofísicos para exploração mineral e energética, incluindo sísmica, gravimetria, magnetometria e eletrorresistividade.',
-      icon: Waves,
-      image:
-        'https://images.pexels.com/photos/87009/earth-soil-creep-moon-lunar-surface-87009.jpeg?auto=compress&cs=tinysrgb&w=800',
-      features: ['Sísmica 3D', 'Gravimetria', 'Magnetometria'],
-    },
-    {
-      id: 4,
-      title: 'Mineração e Geologia',
-      description:
-        'Estudos em mineração sustentável, caracterização de depósitos minerais e análise de impactos ambientais associados à atividade extrativa.',
-      icon: Mountain,
-      image:
-        'https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg?auto=compress&cs=tinysrgb&w=800',
-      features: ['Mineração Sustentável', 'Análise de Depósitos', 'Impacto Ambiental'],
-    },
-  ];
-
+ const researchAreas = [
+  {
+    id: 1,
+    title: 'Carbono Capture',
+    description:
+      'Investigação de tecnologias inovadoras para reduzir as emissões de CO2, promovendo soluções sustentáveis para a indústria energética. Nosso foco está em compreender os riscos, a segurança operacional e a eficiência dos processos.',
+    icon: Fuel,
+    image: `${import.meta.env.BASE_URL}images/carbonocapture.png`,
+    features: ['Armazenamento Geológico', 'Integridade de Poços', 'Avaliação de Riscos'],
+  },
+  {
+    id: 2,
+    title: 'Exploração e Produção de Energia',
+    description:
+      'Pesquisamos métodos para otimizar a descoberta, desenvolvimento e produção de recursos energéticos, com atenção à eficiência, sustentabilidade e segurança operacional.',
+    icon: Zap,
+    image: `${import.meta.env.BASE_URL}images/energia.webp`,
+    features: ['Caracterização de Reservatório', 'Recuperação Avançada de Petróleo e Gás', 'Sustentabilidade Operacional'],
+  },
+  {
+    id: 3,
+    title: 'Modelagem e Simulação Geológica',
+    description:
+      'Utilizamos ferramentas de modelagem para compreender e prever comportamentos do sistema geológico, apoiando decisões estratégicas na indústria energética.',
+    icon: Waves,
+    image: `${import.meta.env.BASE_URL}images/modelagem.png`,
+    features: ['Simulação de Fluxo', 'Previsão de Cenários Geológicos'],
+  },
+  {
+    id: 4,
+    title: 'Machine Learning',
+    description:
+      'Exploramos o uso da inteligência artificial para otimizar processos de análise de dados na área da geoenergia, acelerando descobertas e aumentando a precisão dos resultados.',
+    icon: Mountain,
+    image: `${import.meta.env.BASE_URL}images/ml.png`,
+    features: ['Análise de Dados', 'Predição de Propriedade', 'Automatização de Processos'],
+  },
+];
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % researchAreas.length);
   };
@@ -105,7 +100,7 @@ const Research: React.FC = () => {
                         src={researchAreas[currentSlide].image}
                         alt={researchAreas[currentSlide].title}
                         loading="lazy"
-                        className="w-full h-64 lg:h-80 object-cover"
+                        className="absolute inset-0 w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-lirge-darker/80 to-transparent" />
                       <motion.div

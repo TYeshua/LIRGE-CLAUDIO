@@ -1,25 +1,30 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, ExternalLink, Facebook, Instagram, Linkedin } from 'lucide-react';
+import {
+  Mail,
+  Phone,
+  MapPin,
+  ExternalLink,
+  Instagram,
+  Linkedin,
+} from 'lucide-react';
 
 const Footer: React.FC = () => {
   const socialLinks = [
-    { icon: Facebook, url: '#', label: 'Facebook' },
     { icon: Instagram, url: '#', label: 'Instagram' },
     { icon: Linkedin, url: '#', label: 'LinkedIn' },
   ];
 
   const quickLinks = [
-    { title: 'UFPA', url: 'https://portal.ufpa.br' },
+    { title: 'UFPA', url: 'https://campussalinopolis.ufpa.br/' },
     { title: 'Instituto de Geociências', url: 'https://www.ig.ufpa.br' },
-    { title: 'Portal CAPES', url: 'https://www.periodicos.capes.gov.br' },
     { title: 'CNPq', url: 'https://www.cnpq.br' },
   ];
 
   return (
     <footer className="relative bg-lirge-darker border-t border-lirge-cyan/20">
       <div className="absolute inset-0 bg-gradient-to-t from-lirge-darker via-lirge-teal/5 to-transparent" />
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="py-12">
           <div className="grid md:grid-cols-3 gap-8">
@@ -32,15 +37,14 @@ const Footer: React.FC = () => {
             >
               <div className="flex items-center space-x-3">
                 <img
-                  src="/Imagem do WhatsApp de 2025-09-12 à(s) 01.29.13_23cff331.jpg"
+                  src={`${import.meta.env.BASE_URL}images/logos2.png`}
                   alt="Logo LIRGE"
                   className="h-12 w-auto"
                 />
               </div>
-              
+
               <p className="text-gray-300 text-sm leading-relaxed max-w-sm">
-                Laboratório de Pesquisa Integrada em Geoenergia da UFPA. 
-                Centro de excelência em pesquisas sobre energia e geociências.
+                Laboratório de Pesquisa Integrada em Geoenergia da UFPA. Centro de excelência em pesquisas sobre energia e geociências.
               </p>
 
               <div className="space-y-3">
@@ -50,14 +54,14 @@ const Footer: React.FC = () => {
                 </div>
                 <div className="flex items-center space-x-3 text-sm text-gray-300">
                   <Phone size={16} className="text-lirge-cyan" />
-                  <span>+55 (91) 3201-7000</span>
+                  <span>+55 (84) 99898-8983</span>
                 </div>
                 <div className="flex items-start space-x-3 text-sm text-gray-300">
                   <MapPin size={16} className="text-lirge-cyan mt-0.5 flex-shrink-0" />
                   <span className="leading-relaxed">
-                    Campus Universitário do Guamá<br />
-                    Rua Augusto Corrêa, 01<br />
-                    Belém - PA, 66075-110
+                    Campus Universitário Salinópolis<br />
+                    Rua Raimundo Santana Cruz, s/n - Bairro São Tomé<br />
+                    Salinópolis - PA, 68721-000
                   </span>
                 </div>
               </div>
@@ -88,7 +92,7 @@ const Footer: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Social Media and Newsletter */}
+            {/* Social Media */}
             <motion.div
               initial={{ y: 30, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
@@ -96,7 +100,7 @@ const Footer: React.FC = () => {
               className="space-y-6"
             >
               <h3 className="text-lg font-semibold text-white">Redes Sociais</h3>
-              
+
               <div className="flex space-x-4">
                 {socialLinks.map((social) => (
                   <motion.a
@@ -112,20 +116,9 @@ const Footer: React.FC = () => {
                 ))}
               </div>
 
-              <div className="space-y-3">
-                <p className="text-sm text-gray-300">
-                  Acompanhe nossas pesquisas e descobertas mais recentes.
-                </p>
-                
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className="p-4 bg-gradient-to-br from-lirge-teal/10 to-lirge-cyan/10 rounded-lg border border-lirge-cyan/20"
-                >
-                  <p className="text-xs text-gray-400 text-center">
-                    Centro de excelência em geoenergia desde 2020
-                  </p>
-                </motion.div>
-              </div>
+              <p className="text-sm text-gray-300">
+                Acompanhe nossas pesquisas e descobertas mais recentes.
+              </p>
             </motion.div>
           </div>
         </div>
@@ -141,17 +134,30 @@ const Footer: React.FC = () => {
             <p className="text-sm text-gray-400 text-center sm:text-left">
               © 2025 LIRGE - Laboratório de Pesquisa Integrada em Geoenergia. Todos os direitos reservados.
             </p>
-            
-            <div className="flex items-center space-x-1 text-xs text-gray-400">
+
+            <div className="flex items-center space-x-2 text-xs text-gray-400">
               <span>Desenvolvido por</span>
-              <motion.span
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="text-lirge-cyan"
-              >
-                
-              </motion.span>
-              <span>Thiago Yeshua e Josué Dias</span>
+              <span className="flex items-center space-x-2 text-lirge-cyan">
+                <a
+                  href="https://www.linkedin.com/in/thiagoyeshua"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-1 hover:underline"
+                >
+                  <Linkedin size={12} className="text-lirge-cyan" />
+                  <span>Thiago Yeshua</span>
+                </a>
+                <span className="text-gray-400">e</span>
+                <a
+                  href="www.linkedin.com/in/thiagoyeshua"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-1 hover:underline"
+                >
+                  <Linkedin size={12} className="text-lirge-cyan" />
+                  <span>Josué Dias</span>
+                </a>
+              </span>
             </div>
           </div>
         </motion.div>

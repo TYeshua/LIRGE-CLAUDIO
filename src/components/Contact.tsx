@@ -17,27 +17,26 @@ const Contact: React.FC = () => {
     {
       icon: Phone,
       title: 'Telefone',
-      content: '+55 (91) 3201-7000',
+      content: '+55 (84) 99898-8983',
       action: () => window.open('tel:+559132017000'),
     },
     {
       icon: MapPin,
       title: 'Endereço',
-      content: 'Campus Universitário do Guamá\nRua Augusto Corrêa, 01\nBelém - PA, 66075-110',
+      content: 'Campus Universitário de Salinópolis\nRua Raimundo Santana Cruz, s/n- Bairro São Tomé \nSalinópolis - PA, 68721-000',
       action: () => window.open('https://maps.google.com/?q=UFPA+Belem'),
     },
     {
       icon: Clock,
       title: 'Horário',
-      content: 'Segunda a Sexta\n08:00 - 17:00',
+      content: 'Segunda a Sexta\n08:00 - 18:00',
       action: null,
     },
   ];
 
   const links = [
-    { title: 'UFPA - Universidade Federal do Pará', url: 'https://portal.ufpa.br' },
+    { title: 'UFPA - Campus Salinópolis', url: 'https://campussalinopolis.ufpa.br/' },
     { title: 'Instituto de Geociências', url: 'https://www.ig.ufpa.br' },
-    { title: 'Portal de Periódicos CAPES', url: 'https://www.periodicos.capes.gov.br' },
     { title: 'CNPq - Conselho Nacional de Desenvolvimento Científico', url: 'https://www.cnpq.br' },
   ];
 
@@ -150,19 +149,47 @@ const Contact: React.FC = () => {
                 className="mt-8"
               >
                 <div className="bg-gradient-to-br from-lirge-teal/10 to-lirge-cyan/10 rounded-xl border border-lirge-cyan/20 overflow-hidden">
-                  <div className="h-48 bg-gradient-to-br from-lirge-teal/20 to-lirge-cyan/20 flex items-center justify-center relative">
-                    <motion.div
-                      animate={{ scale: [1, 1.1, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="text-center"
-                    >
-                      <MapPin className="text-lirge-cyan mx-auto mb-2" size={32} />
-                      <p className="text-white font-semibold">Campus Universitário do Guamá</p>
-                      <p className="text-gray-300 text-sm">Universidade Federal do Pará</p>
-                    </motion.div>
+                  {/* Mapa incorporado */}
+                  <div className="h-64 relative">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.999682634279!2d-47.3418561!3d-0.6310413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a8991aa9bcb021%3A0x9d2277db2e684e09!2sUniversidade%20Federal%20do%20Par%C3%A1%20-%20Campus%20Salin%C3%B3polis!5e0!3m2!1spt-BR!2sbr!4v1713200000000!5m2!1spt-BR!2sbr"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      className="absolute inset-0 w-full h-full"
+                    ></iframe>
+                  </div>
+
+                  {/* Informações abaixo do mapa */}
+                  <div className="p-4 text-center">
+                    <MapPin className="text-lirge-cyan mx-auto mb-2" size={32} />
+                    <p className="text-white font-semibold">
+                      <a
+                        href="https://maps.app.goo.gl/juruUVibaRdvjP5K9"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline"
+                      >
+                        UFPA - Campus Salinópolis
+                      </a>
+                    </p>
+                    <p className="text-gray-300 text-sm">
+                      <a
+                        href="https://www.google.com/maps/place/Universidade+Federal+do+Par%C3%A1+-+Campus+Salin%C3%B3polis/@-0.6310413,-47.3418561,17z"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline"
+                      >
+                        Universidade Federal do Pará
+                      </a>
+                    </p>
                   </div>
                 </div>
               </motion.div>
+
             </motion.div>
           </div>
         </div>
