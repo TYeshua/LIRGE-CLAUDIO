@@ -1,11 +1,10 @@
-import React from 'react';
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { Mail, GraduationCap } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Mail, GraduationCap, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Team: React.FC = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const coordinators = [
     {
@@ -14,7 +13,7 @@ const Team: React.FC = () => {
       area: '-------------------------------------------------------',
       email: 'claudiolucas@ufpa.br',
       image: `${import.meta.env.BASE_URL}images/claudio.png`,
-      linkedin: 'https://www.linkedin.com/in/cl%C3%A1udio-lucas-a7186020?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
+      linkedin: 'https://www.linkedin.com/in/cl%C3%A1udio-lucas-a7186020',
     },
     {
       name: 'Prof. Dr. Daniel Nobre Nunes da Sila',
@@ -33,7 +32,7 @@ const Team: React.FC = () => {
       area: '-------------------------------------------------------',
       email: 'Igorbarreto@ufpa.br',
       image: `${import.meta.env.BASE_URL}images/ana.png`,
-      linkedin: 'https://www.linkedin.com/in/igor-barreto-phd-405485104?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
+      linkedin: 'https://www.linkedin.com/in/igor-barreto-phd-405485104',
     },
     {
       name: 'João Rafael Barroso Sampaio da Silveira',
@@ -44,7 +43,7 @@ const Team: React.FC = () => {
       linkedin: 'https://www.linkedin.com/in/joao-rafael-sampaio-da-silveira/',
     },
     {
-      name: 'Jessica Nascimento Pereira  ',
+      name: 'Jessica Nascimento Pereira',
       role: 'Mestranda',
       area: '-------------------------------------------------------',
       email: 'jessica.pereira@salinopolis.ufpa.br',
@@ -52,7 +51,7 @@ const Team: React.FC = () => {
       linkedin: 'https://www.linkedin.com/in/jessica-pereira-engenhariadepetroleo',
     },
     {
-      name: 'Paloma Andrade Rebouças ',
+      name: 'Paloma Andrade Rebouças',
       role: 'Bolsista IC',
       area: '-------------------------------------------------------',
       email: 'paloma.reboucas@salinopolis.ufpa.br',
@@ -79,7 +78,7 @@ const Team: React.FC = () => {
       name: 'Natalino da Silva Souza',
       role: 'Bolsista IC',
       area: '-------------------------------------------------------',
-      email: 'pedro.santos@salinopolis.ufpa.br',
+      email: 'natalino.souza@salinopolis.ufpa.br',
       image: `${import.meta.env.BASE_URL}images/gabriel.png`,
       linkedin: 'http://www.linkedin.com/in/natalino-souza-a592851ab',
     },
@@ -92,7 +91,7 @@ const Team: React.FC = () => {
       linkedin: 'http://linkedin.com/in/yukari-ishii-999aa49369',
     },
     {
-      name: 'Nathália de Fátima de Lima do Vale',
+      name: 'Nathalya de Fátima de Lima do Vale',
       role: 'Bolsista IC',
       area: '-------------------------------------------------------',
       email: 'nathalya.vale@salinopolis.ufpa.br',
@@ -105,7 +104,8 @@ const Team: React.FC = () => {
       area: '-------------------------------------------------------',
       email: 'sophia.pereira@salinopolis.ufpa.br',
       image: `${import.meta.env.BASE_URL}images/gabriel.png`,
-      linkedin: 'https://www.linkedin.com/in/sophia-macedo-pereira-10643a1a5?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
+      linkedin:
+        'https://www.linkedin.com/in/sophia-macedo-pereira-10643a1a5?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
     },
     {
       name: 'Eliel Silva da Cruz',
@@ -113,12 +113,21 @@ const Team: React.FC = () => {
       area: '-------------------------------------------------------',
       email: 'eliel.cruz@salinopolis.ufpa.br',
       image: `${import.meta.env.BASE_URL}images/gabriel.png`,
-      linkedin: 'https://www.linkedin.com/in/eliel-silva-8662b023b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+      linkedin:
+        'https://www.linkedin.com/in/eliel-silva-8662b023b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
     },
   ];
 
   const copyEmail = (email: string) => {
     navigator.clipboard.writeText(email);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % students.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + students.length) % students.length);
   };
 
   return (
@@ -127,12 +136,7 @@ const Team: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div ref={ref} className="max-w-7xl mx-auto">
           {/* Header */}
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={isInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-5xl font-bold mb-6">
               Nossa <span className="text-lirge-cyan">Equipe</span>
             </h2>
@@ -141,29 +145,17 @@ const Team: React.FC = () => {
               Conheça os pesquisadores e bolsistas que fazem do LIRGE um centro de
               excelência em pesquisa e inovação.
             </p>
-          </motion.div>
+          </div>
 
           {/* Coordinators */}
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={isInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-16"
-          >
+          <div className="mb-16">
             <h3 className="text-2xl font-bold text-center mb-8 text-lirge-cyan">
               Coordenação
             </h3>
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {coordinators.map((coord, index) => (
-                <motion.div
-                  key={coord.name}
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={isInView ? { scale: 1, opacity: 1 } : {}}
-                  transition={{ duration: 0.6, delay: 0.4 + index * 0.2 }}
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  className="group"
-                >
-                  <div className="bg-gradient-to-br from-lirge-teal/20 to-lirge-cyan/20 rounded-2xl p-6 border-2 border-lirge-cyan/30 hover:border-lirge-cyan/60 transition-all duration-300 hover:shadow-2xl hover:shadow-lirge-cyan/20">
+              {coordinators.map((coord) => (
+                <div key={coord.name} className="group">
+                  <div className="bg-gradient-to-br from-lirge-teal/20 to-lirge-cyan/20 rounded-2xl p-6 border-2 border-lirge-cyan/30">
                     <div className="relative mb-6">
                       <a
                         href={coord.linkedin}
@@ -171,108 +163,115 @@ const Team: React.FC = () => {
                         rel="noopener noreferrer"
                         className="block w-24 h-24 mx-auto rounded-full overflow-hidden border-4 border-lirge-cyan/50"
                       >
-                        <motion.img
-                          whileHover={{ scale: 1.05 }}
+                        <img
                           src={coord.image}
                           alt={coord.name}
                           loading="lazy"
                           className="w-full h-full object-cover"
                         />
                       </a>
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.6 + index * 0.2 }}
-                        className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-lirge-cyan to-lirge-teal rounded-full flex items-center justify-center"
-                      >
+                      <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-lirge-cyan to-lirge-teal rounded-full flex items-center justify-center">
                         <GraduationCap size={16} className="text-white" />
-                      </motion.div>
+                      </div>
                     </div>
-
                     <div className="text-center">
-                      <h4 className="text-xl font-bold text-white mb-2 group-hover:text-lirge-cyan transition-colors">
-                        {coord.name}
-                      </h4>
+                      <h4 className="text-xl font-bold text-white mb-2">{coord.name}</h4>
                       <p className="text-lirge-cyan font-semibold mb-2">{coord.role}</p>
                       <p className="text-gray-300 text-sm mb-4">{coord.area}</p>
-
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                      <button
                         onClick={() => copyEmail(coord.email)}
-                        className="inline-flex items-center space-x-2 px-4 py-2 bg-lirge-teal/30 hover:bg-lirge-teal/50 rounded-full text-sm text-white transition-all duration-200 border border-lirge-cyan/30 hover:border-lirge-cyan/60"
+                        className="inline-flex items-center space-x-2 px-4 py-2 bg-lirge-teal/30 rounded-full text-sm text-white"
                       >
                         <Mail size={16} />
                         <span>{coord.email}</span>
-                      </motion.button>
+                      </button>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-          {/* Students */}
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={isInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
+          {/* Students Carousel */}
+          <div>
             <h3 className="text-2xl font-bold text-center mb-8 text-lirge-cyan">
               Pesquisadores e Bolsistas
             </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {students.map((student, index) => (
-                <motion.div
-                  key={student.name}
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={isInView ? { y: 0, opacity: 1 } : {}}
-                  transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                  className="group"
-                >
-                  <div className="bg-gradient-to-br from-lirge-teal/10 to-lirge-cyan/10 rounded-xl p-6 border border-lirge-cyan/20 hover:border-lirge-cyan/40 transition-all duration-300 hover:shadow-xl hover:shadow-lirge-cyan/10">
-                    <div className="flex items-center mb-4">
+
+            <div className="relative max-w-3xl mx-auto">
+              <div className="overflow-hidden rounded-2xl">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSlide}
+                    initial={{ x: 300, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{ x: -300, opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="bg-gradient-to-br from-lirge-teal/10 to-lirge-cyan/10 border border-lirge-cyan/20 p-6"
+                  >
+                    <div className="flex flex-col items-center text-center">
                       <a
-                        href={student.linkedin}
+                        href={students[currentSlide].linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block w-16 h-16 rounded-full overflow-hidden border-2 border-lirge-cyan/40"
+                        className="block w-24 h-24 rounded-full overflow-hidden border-4 border-lirge-cyan/40 mb-4"
                       >
-                        <motion.img
-                          whileHover={{ scale: 1.1 }}
-                          src={student.image}
-                          alt={student.name}
+                        <img
+                          src={students[currentSlide].image}
+                          alt={students[currentSlide].name}
                           loading="lazy"
                           className="w-full h-full object-cover"
                         />
                       </a>
-                      <div className="ml-4 flex-1">
-                        <h4 className="text-lg font-semibold text-white group-hover:text-lirge-cyan transition-colors">
-                          {student.name}
-                        </h4>
-                        <p className="text-lirge-cyan text-sm font-medium">
-                          {student.role}
-                        </p>
-                      </div>
+                      <h4 className="text-lg font-semibold text-white mb-1">
+                        {students[currentSlide].name}
+                      </h4>
+                      <p className="text-lirge-cyan text-sm font-medium mb-2">
+                        {students[currentSlide].role}
+                      </p>
+                      <p className="text-gray-300 text-sm mb-4">{students[currentSlide].area}</p>
+                      <button
+                        onClick={() => copyEmail(students[currentSlide].email)}
+                        className="flex items-center space-x-2 px-4 py-2 bg-lirge-teal/30 rounded-full text-sm text-white border border-lirge-cyan/30"
+                      >
+                        <Mail size={16} />
+                        <span>{students[currentSlide].email}</span>
+                      </button>
                     </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
 
-                    <p className="text-gray-300 text-sm mb-3">{student.area}</p>
+              {/* Navigation */}
+              <div className="flex items-center justify-between mt-6">
+                <button
+                  onClick={prevSlide}
+                  className="p-3 bg-lirge-teal/20 border border-lirge-cyan/20 rounded-full"
+                >
+                  <ChevronLeft className="text-lirge-cyan" size={20} />
+                </button>
 
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => copyEmail(student.email)}
-                      className="w-full flex items-center justify-center space-x-2 px-3 py-2 bg-lirge-teal/20 hover:bg-lirge-teal/30 rounded-lg text-xs text-gray-300 hover:text-white transition-all duration-200 border border-lirge-cyan/20 hover:border-lirge-cyan/40"
-                    >
-                      <Mail size={14} />
-                      <span>{student.email}</span>
-                    </motion.button>
-                  </div>
-                </motion.div>
-              ))}
+                <div className="flex space-x-2">
+                  {students.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`w-3 h-3 rounded-full ${
+                        index === currentSlide ? 'bg-lirge-cyan' : 'bg-lirge-cyan/40'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={nextSlide}
+                  className="p-3 bg-lirge-teal/20 border border-lirge-cyan/20 rounded-full"
+                >
+                  <ChevronRight className="text-lirge-cyan" size={20} />
+                </button>
+              </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

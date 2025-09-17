@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
 import { MapPin, Phone, Mail, Clock, ExternalLink, Building } from 'lucide-react';
 
 const Contact: React.FC = () => {
@@ -23,7 +22,8 @@ const Contact: React.FC = () => {
     {
       icon: MapPin,
       title: 'Endereço',
-      content: 'Campus Universitário de Salinópolis\nRua Raimundo Santana Cruz, s/n- Bairro São Tomé \nSalinópolis - PA, 68721-000',
+      content:
+        'Campus Universitário de Salinópolis\nRua Raimundo Santana Cruz, s/n- Bairro São Tomé \nSalinópolis - PA, 68721-000',
       action: () => window.open('https://maps.google.com/?q=UFPA+Belem'),
     },
     {
@@ -37,7 +37,10 @@ const Contact: React.FC = () => {
   const links = [
     { title: 'UFPA - Campus Salinópolis', url: 'https://campussalinopolis.ufpa.br/' },
     { title: 'Instituto de Geociências', url: 'https://www.ig.ufpa.br' },
-    { title: 'CNPq - Conselho Nacional de Desenvolvimento Científico', url: 'https://www.cnpq.br' },
+    {
+      title: 'CNPq - Conselho Nacional de Desenvolvimento Científico',
+      url: 'https://www.cnpq.br',
+    },
   ];
 
   return (
@@ -47,12 +50,7 @@ const Contact: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div ref={ref} className="max-w-6xl mx-auto">
           {/* Header */}
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={isInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-5xl font-bold mb-6">
               <span className="text-lirge-cyan">Contato</span>
             </h2>
@@ -61,37 +59,25 @@ const Contact: React.FC = () => {
               Entre em contato conosco para saber mais sobre nossos projetos de pesquisa,
               colaborações ou oportunidades acadêmicas.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Information */}
-            <motion.div
-              initial={{ x: -50, opacity: 0 }}
-              animate={isInView ? { x: 0, opacity: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-8"
-            >
+            <div className="space-y-8">
               <h3 className="text-2xl font-bold text-white mb-8">Informações de Contato</h3>
 
-              {contactInfo.map((info, index) => (
-                <motion.div
+              {contactInfo.map((info) => (
+                <div
                   key={info.title}
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={isInView ? { y: 0, opacity: 1 } : {}}
-                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-                  whileHover={info.action ? { scale: 1.02 } : {}}
                   className={`group ${info.action ? 'cursor-pointer' : ''}`}
                   onClick={info.action || undefined}
                 >
                   <div className="flex items-start space-x-4 p-6 bg-gradient-to-br from-lirge-teal/10 to-lirge-cyan/10 rounded-xl border border-lirge-cyan/20 hover:border-lirge-cyan/40 transition-all duration-300">
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      className="w-12 h-12 bg-gradient-to-br from-lirge-cyan to-lirge-teal rounded-lg flex items-center justify-center flex-shrink-0"
-                    >
+                    <div className="w-12 h-12 bg-gradient-to-br from-lirge-cyan to-lirge-teal rounded-lg flex items-center justify-center flex-shrink-0">
                       <info.icon className="text-white" size={24} />
-                    </motion.div>
+                    </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-lirge-cyan transition-colors">
+                      <h4 className="text-lg font-semibold text-white mb-2">
                         {info.title}
                       </h4>
                       <p className="text-gray-300 whitespace-pre-line text-sm leading-relaxed">
@@ -99,53 +85,39 @@ const Contact: React.FC = () => {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
 
             {/* Links and Resources */}
-            <motion.div
-              initial={{ x: 50, opacity: 0 }}
-              animate={isInView ? { x: 0, opacity: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="space-y-8"
-            >
+            <div className="space-y-8">
               <h3 className="text-2xl font-bold text-white mb-8">Links Institucionais</h3>
 
               <div className="space-y-4">
-                {links.map((link, index) => (
-                  <motion.a
+                {links.map((link) => (
+                  <a
                     key={link.title}
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ y: 30, opacity: 0 }}
-                    animate={isInView ? { y: 0, opacity: 1 } : {}}
-                    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                    whileHover={{ x: 10 }}
                     className="group block"
                   >
                     <div className="flex items-center justify-between p-4 bg-gradient-to-br from-lirge-teal/10 to-lirge-cyan/10 rounded-xl border border-lirge-cyan/20 hover:border-lirge-cyan/40 transition-all duration-300">
                       <div className="flex items-center space-x-3">
                         <Building className="text-lirge-cyan" size={20} />
-                        <span className="text-white group-hover:text-lirge-cyan transition-colors">
-                          {link.title}
-                        </span>
+                        <span className="text-white">{link.title}</span>
                       </div>
-                      <ExternalLink
-                        className="text-gray-400 group-hover:text-lirge-cyan transition-colors"
-                        size={16}
-                      />
+                      <ExternalLink className="text-gray-400" size={16} />
                     </div>
-                  </motion.a>
+                  </a>
                 ))}
               </div>
 
-              {/* Map Placeholder */}
+              {/* Map Placeholder - única animação mantida */}
               <motion.div
-                initial={{ y: 30, opacity: 0 }}
-                animate={isInView ? { y: 0, opacity: 1 } : {}}
-                transition={{ duration: 0.6, delay: 0.8 }}
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ duration: 0.6 }}
                 className="mt-8"
               >
                 <div className="bg-gradient-to-br from-lirge-teal/10 to-lirge-cyan/10 rounded-xl border border-lirge-cyan/20 overflow-hidden">
@@ -189,8 +161,7 @@ const Contact: React.FC = () => {
                   </div>
                 </div>
               </motion.div>
-
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
