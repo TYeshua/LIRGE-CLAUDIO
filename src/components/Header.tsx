@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTheme } from '../hooks/useTheme'; // 👈 hook do tema
+import { useTheme } from '../hooks/useTheme';
 
 interface HeaderProps {
   activeSection: string;
@@ -11,7 +11,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme(); // 👈 tema atual
+  const { theme, setTheme } = useTheme();
 
   const menuItems = [
     { id: 'home', label: 'Início' },
@@ -42,11 +42,9 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-lirge-darker/95 dark:bg-lirge-darker/95 bg-cyan-50 backdrop-blur-md shadow-2xl'
-          : 'bg-transparent'
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md shadow-2xl ${
+        isScrolled ? 'bg-cyan-50 dark:bg-lirge-darker/95' : 'bg-transparent'
       }`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -92,10 +90,10 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
 
             {/* Botão Tema */}
             <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
               className="p-2 rounded-full bg-lirge-cyan text-white dark:bg-white dark:text-lirge-darker shadow-md transition-all"
             >
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             </button>
           </div>
 
@@ -136,10 +134,10 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
 
                 {/* Botão Tema no Mobile */}
                 <button
-                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                   className="mt-3 w-full flex items-center justify-center gap-2 p-2 rounded-md bg-lirge-cyan text-white dark:bg-white dark:text-lirge-darker shadow-md transition-all"
                 >
-                  {theme === "dark" ? (
+                  {theme === 'dark' ? (
                     <>
                       <Sun size={18} /> <span>Tema Claro</span>
                     </>
