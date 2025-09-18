@@ -1,56 +1,34 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface HeroProps {
   onNavigate: (section: string) => void;
 }
 
 const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
+  const { t } = useTranslation();
+
   return (
     <section
       id="home"
-      className="
-        min-h-screen flex items-center justify-center relative overflow-hidden
-        bg-white dark:bg-lirge-darker transition-colors duration-300
-      "
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-lirge-darker transition-colors duration-300"
     >
       {/* Background Gradient */}
-      <div
-        className="
-          absolute inset-0
-          bg-gradient-to-br
-            from-[#E0F7FA] via-[#B2EBF2] to-[#E8F5E9]
-            dark:from-lirge-darker dark:via-lirge-teal/20 dark:to-lirge-darker
-          transition-colors duration-300
-        "
-      />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#E0F7FA] via-[#B2EBF2] to-[#E8F5E9] dark:from-lirge-darker dark:via-lirge-teal/20 dark:to-lirge-darker transition-colors duration-300" />
 
       {/* Floating Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-            rotate: [0, 180, 360]
-          }}
+          animate={{ x: [0, 100, 0], y: [0, -50, 0], rotate: [0, 180, 360] }}
           transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-          className="
-            absolute top-1/4 left-1/4 w-24 h-24 rounded-full
-            border-2 border-[#81D4FA] dark:border-lirge-cyan/20
-          "
+          className="absolute top-1/4 left-1/4 w-24 h-24 rounded-full border-2 border-[#81D4FA] dark:border-lirge-cyan/20"
         />
         <motion.div
-          animate={{
-            x: [0, -80, 0],
-            y: [0, 60, 0],
-            rotate: [0, -180, -360]
-          }}
+          animate={{ x: [0, -80, 0], y: [0, 60, 0], rotate: [0, -180, -360] }}
           transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-          className="
-            absolute bottom-1/4 right-1/4 w-20 h-20 rounded-full
-            border-2 border-[#A5D6A7] dark:border-lirge-cyan/15
-          "
+          className="absolute bottom-1/4 right-1/4 w-20 h-20 rounded-full border-2 border-[#A5D6A7] dark:border-lirge-cyan/15"
         />
       </div>
 
@@ -86,13 +64,9 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="
-              text-lg sm:text-xl lg:text-2xl
-              text-gray-700 dark:text-gray-300
-              mb-4 max-w-4xl mx-auto
-            "
+            className="text-lg sm:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 mb-4 max-w-4xl mx-auto"
           >
-            Laboratório de Pesquisa Integrada em Geoenergia
+            {t('hero.subtitle')}
           </motion.p>
 
           <motion.p
@@ -101,7 +75,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="text-base sm:text-lg text-lirge-cyan mb-12 font-medium"
           >
-            Universidade Federal do Pará
+            {t('hero.university')}
           </motion.p>
 
           {/* Call to Action */}
@@ -113,16 +87,10 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           >
             <button
               onClick={() => onNavigate('about')}
-              className="
-                group px-8 py-4
-                bg-gradient-to-r from-lirge-cyan to-lirge-teal
-                text-white font-semibold rounded-full
-                hover:shadow-2xl hover:shadow-lirge-cyan/25
-                transition-all duration-300 transform hover:scale-105
-              "
+              className="group px-8 py-4 bg-gradient-to-r from-lirge-cyan to-lirge-teal text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-lirge-cyan/25 transition-all duration-300 transform hover:scale-105"
             >
               <span className="flex items-center space-x-2">
-                <span>Conheça o LIRGE</span>
+                <span>{t('hero.cta')}</span>
                 <motion.div
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}

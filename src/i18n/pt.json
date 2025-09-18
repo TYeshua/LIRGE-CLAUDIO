@@ -1,0 +1,331 @@
+{
+  "menu": {
+    "home": "Início",
+    "news": "Notícias",
+    "eventsPublications": "Eventos/Publicações",
+    "about": "Sobre o LIRGE",
+    "research": "Pesquisas",
+    "team": "Equipe",
+    "partners": "Parceiros/Patrocinadores",
+    "contact": "Contato"
+  },
+  "theme": {
+    "light": "Tema Claro",
+    "dark": "Tema Escuro"
+  },
+  "hero": {
+    "subtitle": "Laboratório de Pesquisa Integrada em Geoenergia",
+    "university": "Universidade Federal do Pará",
+    "cta": "Conheça o LIRGE"
+  },
+  "news": {
+    "title": "Últimas",
+    "highlight": "Notícias",
+    "subtitle": "Acompanhe as novidades, conquistas e eventos do nosso laboratório de pesquisa em geoenergia.",
+    "highlights": "Destaques:"
+  },
+  "newsList": {
+    "1": {
+      "title": "Novo Projeto de Pesquisa em Transição Energética",
+      "description": "Nosso laboratório lançou uma iniciativa inovadora para acelerar o desenvolvimento de tecnologias limpas e sustentáveis, focando em captura e uso de carbono.",
+      "highlights": ["Energia Sustentável", "Colaboração Internacional", "Impacto Social"],
+      "date": "12/09/2025"
+    },
+    "2": {
+      "title": "Publicação em Revista Internacional",
+      "description": "Pesquisadores do LIRGE publicaram um artigo em uma das principais revistas científicas da área de geoenergia, destacando avanços em modelagem petrofísica.",
+      "highlights": ["Pesquisa Reconhecida", "Avanços Científicos", "Inovação"],
+      "date": "28/08/2025"
+    },
+    "3": {
+      "title": "Workshop sobre Inteligência Artificial",
+      "description": "Realizamos um workshop para explorar aplicações de Machine Learning em dados petrofísicos, reunindo estudantes, professores e profissionais da indústria.",
+      "highlights": ["Capacitação", "Integração Acadêmica", "Indústria 4.0"],
+      "date": "15/07/2025"
+    },
+    "4": {
+      "title": "Parceria Estratégica com Empresas de Energia",
+      "description": "Firmamos um acordo de cooperação com empresas líderes para desenvolver soluções inovadoras que apoiem a exploração e produção de energia limpa.",
+      "highlights": ["Parceria", "Inovação", "Energia do Futuro"],
+      "date": "02/06/2025"
+    }
+  },
+  "events": {
+    "title": "Eventos &",
+    "highlight": "Publicações",
+    "subtitle": "Explore os eventos que organizamos e as publicações que refletem nosso compromisso com a pesquisa e inovação em geoenergia.",
+    "highlights": "Destaques:"
+  },
+  "eventsList": {
+    "1": {
+      "type": "Evento",
+      "date": "05/09/2025",
+      "title": "Conferência Internacional de Geoenergia",
+      "description": "Participação do LIRGE em uma conferência internacional, apresentando pesquisas em transição energética e novas tecnologias de captura de carbono.",
+      "highlights": ["Palestras", "Networking", "Inovação"]
+    },
+    "2": {
+      "type": "Publicação",
+      "date": "22/08/2025",
+      "title": "Artigo em Revista Científica de Prestígio",
+      "description": "Publicação de um artigo na *Energy & Fuels Journal*, abordando modelagem e simulação de reservatórios com aprendizado de máquina.",
+      "highlights": ["Reconhecimento Internacional", "Pesquisa Avançada", "IA aplicada"]
+    },
+    "3": {
+      "type": "Evento",
+      "date": "10/07/2025",
+      "title": "Workshop Nacional de Geoenergia",
+      "description": "Evento organizado pelo laboratório reunindo especialistas, estudantes e empresas para debater sobre exploração sustentável de energia.",
+      "highlights": ["Integração Acadêmica", "Capacitação", "Sustentabilidade"]
+    },
+    "4": {
+      "type": "Publicação",
+      "date": "15/06/2025",
+      "title": "Prêmio de Inovação em Energia",
+      "description": "Pesquisadores do LIRGE foram premiados pela contribuição em soluções inovadoras para otimização da exploração energética.",
+      "highlights": ["Reconhecimento", "Excelência", "Impacto Científico"]
+    }
+  },
+  "about": {
+    "title": "Sobre o",
+    "highlight": "LIRGE",
+    "paragraphs": [
+      "O Laboratório de Pesquisa Integrada em Geoenergia (LIRGE) é um centro de excelência vinculado à Universidade Federal do Pará (UFPA), dedicado ao desenvolvimento de pesquisas inovadoras na interseção entre geociências e energia.",
+      "Nossa missão é contribuir para o avanço do conhecimento científico e tecnológico no setor energético, promovendo soluções sustentáveis e formando profissionais altamente qualificados para enfrentar os desafios contemporâneos da geoenergia.",
+      "Com uma abordagem multidisciplinar, o LIRGE desenvolve projetos que abrangem desde pesquisas básicas até aplicações práticas, sempre alinhado com os mais altos padrões de qualidade acadêmica e relevância social."
+    ],
+    "imageAlt": "Pesquisa em Geoenergia",
+    "features": {
+      "objective": {
+        "title": "Objetivo",
+        "description": "Laboratório de PD&I dedicado à investigação, desenvolvimento e inovação de soluções em geoenergias, com atuação em áreas como: Exploração e Produção de Energia, Carbon Capture, Utilization and Storage (CCUS), Segurança e Integridade de Poços, além de Modelagem e Simulação Geológica."
+      },
+      "mission": {
+        "title": "Missão",
+        "description": "Impulsionar o avanço do conhecimento e o desenvolvimento de tecnologias inovadoras no campo das geoenergias, contribuindo para a transição energética sustentável, a segurança e eficiência na exploração de recursos geológicos e a mitigação de impactos ambientais."
+      },
+      "vision": {
+        "title": "Visão",
+        "description": "Consolidar-se como referência internacional em pesquisa, inovação e desenvolvimento tecnológico em geoenergia, promovendo a segurança energética, a sustentabilidade ambiental e a evolução das tecnologias de exploração e aproveitamento de recursos geológicos."
+      }
+    }
+  },
+  "research": {
+    "title": "Áreas de",
+    "highlight": "Pesquisa",
+    "subtitle": "Nossos projetos de pesquisa abrangem diversas áreas estratégicas da geoenergia, sempre focando na inovação e sustentabilidade.",
+    "featuresLabel": "Principais Focos:"
+  },
+  "researchList": {
+    "1": {
+      "title": "Carbono Capture",
+      "description": "Investigação de tecnologias inovadoras para reduzir as emissões de CO₂, promovendo soluções sustentáveis para a indústria energética. Nosso foco está em compreender os riscos, a segurança operacional e a eficiência dos processos.",
+      "features": ["Armazenamento Geológico", "Integridade de Poços", "Avaliação de Riscos"]
+    },
+    "2": {
+      "title": "Exploração e Produção de Energia",
+      "description": "Pesquisamos métodos para otimizar a descoberta, desenvolvimento e produção de recursos energéticos, com atenção à eficiência, sustentabilidade e segurança operacional.",
+      "features": ["Caracterização de Reservatório", "Recuperação Avançada de Petróleo e Gás", "Sustentabilidade Operacional"]
+    },
+    "3": {
+      "title": "Modelagem e Simulação Geológica",
+      "description": "Utilizamos ferramentas de modelagem para compreender e prever comportamentos do sistema geológico, apoiando decisões estratégicas na indústria energética.",
+      "features": ["Simulação de Fluxo", "Previsão de Cenários Geológicos"]
+    },
+    "4": {
+      "title": "Machine Learning",
+      "description": "Exploramos o uso da inteligência artificial para otimizar processos de análise de dados na área de geoenergia, acelerando descobertas e aumentando a precisão dos resultados.",
+      "features": ["Análise de Dados", "Predição de Propriedade", "Automatização de Processos"]
+    }
+  },
+  "team": {
+    "title": "Nossa",
+    "highlight": "Equipe",
+    "subtitle": "Conheça os pesquisadores e bolsistas que fazem do LIRGE um centro de excelência em pesquisa e inovação.",
+    "coordination": "Coordenação",
+    "researchers": "Pesquisadores e Bolsistas",
+    "coordinators": [
+      {
+        "name": "Prof. Dr. Cláudio Regis S. Lucas",
+        "role": "Coordenador Geral",
+        "area": "-------------------------------------------------------",
+        "email": "claudiolucas@ufpa.br",
+        "image": "images/claudio.jpg",
+        "linkedin": "https://www.linkedin.com/in/cl%C3%A1udio-lucas-a7186020"
+      },
+      {
+        "name": "Prof. Dr. Daniel Nobre Nunes da Sila",
+        "role": "Vice-Coordenador",
+        "area": "-------------------------------------------------------",
+        "email": "danielnobre@ufpa.biz",
+        "image": "images/daniel.jpg",
+        "linkedin": "https://www.linkedin.com/in/daniel-nobre-02856442/"
+      }
+    ],
+    "students": [
+      {
+        "name": "Igor Alexandre Rocha Barreto",
+        "role": "Doutorando",
+        "area": "Mineralogia Aplicada",
+        "email": "Igorbarreto@ufpa.br",
+        "image": "images/igor.jpg",
+        "linkedin": "https://www.linkedin.com/in/igor-barreto-phd-405485104"
+      },
+      {
+        "name": "João Rafael Barroso Sampaio da Silveira",
+        "role": "Doutorando",
+        "area": "Inteligência Artificial Aplicada à Geociências",
+        "email": "joao.silveira@ig.ufpa.br",
+        "image": "images/joao.jpg",
+        "linkedin": "https://www.linkedin.com/in/joao-rafael-sampaio-da-silveira/"
+      },
+      {
+        "name": "Jessica Nascimento Pereira",
+        "role": "Mestranda",
+        "area": "Mineralogia e Reatividade de Rochas Carbonáticas",
+        "email": "jessica.pereira@salinopolis.ufpa.br",
+        "image": "images/jess.jpg",
+        "linkedin": "https://www.linkedin.com/in/jessica-pereira-engenhariadepetroleo"
+      },
+      {
+        "name": "Paloma Andrade Rebouças",
+        "role": "Bolsista IC",
+        "area": "Análise Petrofísica e CCUS",
+        "email": "paloma.reboucas@salinopolis.ufpa.br",
+        "image": "images/diego.png",
+        "linkedin": "http://www.linkedin.com/in/paloma-rebou%C3%A7as-386a02289"
+      },
+      {
+        "name": "João Victor da Silva Fonseca",
+        "role": "Bolsista IC",
+        "area": "Análise Petrofísica e CCUS",
+        "email": "joao.fonseca@salinopolis.ufpa.br",
+        "image": "images/joao.jpg",
+        "linkedin": "http://www.linkedin.com/in/jo%C3%A3o-victor58"
+      },
+      {
+        "name": "Pedro Pantoja dos Santos",
+        "role": "Bolsista IC",
+        "area": "Análise Petrofísica e CCUS",
+        "email": "natalino.souza@salinopolis.ufpa.br",
+        "image": "images/pantoja.jpg",
+        "linkedin": "https://www.linkedin.com/in/pedro-pantoja-1aa566326"
+      },
+      {
+        "name": "Natalino da Silva Souza",
+        "role": "Bolsista IC",
+        "area": "Análise Petrofísica e CCUS",
+        "email": "natalino.souza@salinopolis.ufpa.br",
+        "image": "images/natalino.jpg",
+        "linkedin": "http://www.linkedin.com/in/natalino-souza-a592851ab"
+      },
+      {
+        "name": "Yasmin Yukari Ferreira Ishii",
+        "role": "Bolsista IC",
+        "area": "Introdução a Simulação Computacional",
+        "email": "yasmin.ishii@salinopolis.ufpa.br",
+        "image": "images/yasmin.jpg",
+        "linkedin": "https://www.linkedin.com/in/yukari-ishii-99aa49369"
+      },
+      {
+        "name": "Nathalya de Fátima de Lima do Vale",
+        "role": "Bolsista IC",
+        "area": "Introdução a Propriedades Petrofísicas",
+        "email": "nathalya.vale@salinopolis.ufpa.br",
+        "image": "images/nath.jpg",
+        "linkedin": "http://www.linkedin.com/in/nathalya-vale-6bab02369"
+      },
+      {
+        "name": "Sophia Macedo Pereira",
+        "role": "Bolsista IC",
+        "area": "Análise Petrofísica e CCUS",
+        "email": "sophia.pereira@salinopolis.ufpa.br",
+        "image": "images/sophia.jpg",
+        "linkedin": "https://www.linkedin.com/in/sophia-macedo-pereira-10643a1a5"
+      },
+      {
+        "name": "Eliel Silva da Cruz",
+        "role": "Bolsista IC",
+        "area": "Avaliação de Formações",
+        "email": "eliel.cruz@salinopolis.ufpa.br",
+        "image": "images/eliel.jpg",
+        "linkedin": "https://www.linkedin.com/in/eliel-silva-8662b023b"
+      }
+    ]
+  },
+  "partners": {
+    "title": "Laboratórios",
+    "partners": "Parceiros",
+    "sponsors": "Patrocinadores",
+    "subtitle": "Nossa rede de colaboração fortalece a pesquisa e amplia o impacto das nossas descobertas, conectando academia, indústria e sociedade.",
+    "areasLabel": "Áreas de Cooperação:"
+  },
+  "partnersList": {
+    "1": {
+      "name": "Laboratório Nacional de Energia",
+      "description": "Colaboração em projetos de captura e armazenamento de carbono, com foco em inovação sustentável.",
+      "highlights": ["Projetos conjuntos", "Transferência de tecnologia", "Publicações científicas"]
+    },
+    "2": {
+      "name": "PetroTech Global",
+      "description": "Parceria estratégica para desenvolvimento de soluções digitais e inteligência artificial aplicadas à exploração de petróleo.",
+      "highlights": ["Inteligência Artificial", "Indústria 4.0", "Exploração Sustentável"]
+    },
+    "3": {
+      "name": "Universidade Internacional de Geoenergia",
+      "description": "Intercâmbio acadêmico e cooperação em pesquisas voltadas para a transição energética.",
+      "highlights": ["Intercâmbio", "Projetos educacionais", "Conferências conjuntas"]
+    }
+  },
+  "contact": {
+    "title": "Contato",
+    "subtitle": "Entre em contato conosco para saber mais sobre nossos projetos de pesquisa, colaborações ou oportunidades acadêmicas.",
+    "infoTitle": "Informações de Contato",
+    "linksTitle": "Links Institucionais",
+    "contactInfo": [
+      {
+        "title": "E-mail",
+        "content": "lirge@ufpa.br"
+      },
+      {
+        "title": "Telefone",
+        "content": "+55 (84) 99898-8983"
+      },
+      {
+        "title": "Endereço",
+        "content": "Campus Universitário Salinópolis\nRua Raimundo Santana Cruz, s/n - Bairro São Tomé\nSalinópolis - PA, 68721-000"
+      },
+      {
+        "title": "Horário",
+        "content": "Segunda a Sexta\n08:00 - 18:00"
+      }
+    ],
+    "links": [
+      {
+        "title": "UFPA - Campus Salinópolis",
+        "url": "https://campussalinopolis.ufpa.br/"
+      },
+      {
+        "title": "Instituto de Geociências",
+        "url": "https://www.ig.ufpa.br"
+      },
+      {
+        "title": "CNPq - Conselho Nacional de Desenvolvimento Científico e Tecnológico",
+        "url": "https://www.cnpq.br"
+      }
+    ],
+    "mapTitle": "UFPA - Campus Salinópolis",
+    "mapSubtitle": "Universidade Federal do Pará"
+  },
+  "footer": {
+    "quickLinks": "Links Úteis",
+    "social": "Redes Sociais",
+    "follow": "Acompanhe nossas pesquisas e descobertas mais recentes.",
+    "developedBy": "Desenvolvido por",
+    "rights": "© 2025 LIRGE - Laboratório de Pesquisa Integrada em Geoenergia. Todos os direitos reservados.",
+    "creators": {
+      "thiago": "Thiago Yeshua",
+      "josue": "Josué Dias"
+    }
+  }
+}

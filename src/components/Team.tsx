@@ -1,123 +1,20 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Mail, GraduationCap, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState, useRef, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  Mail,
+  GraduationCap,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Team: React.FC = () => {
   const ref = useRef(null);
+  const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const coordinators = [
-    {
-      name: 'Prof. Dr. Cláudio Regis S. Lucas',
-      role: 'Coordenador Geral',
-      area: '-------------------------------------------------------',
-      email: 'claudiolucas@ufpa.br',
-      image: `${import.meta.env.BASE_URL}images/claudio.jpg`,
-      linkedin: 'https://www.linkedin.com/in/cl%C3%A1udio-lucas-a7186020',
-    },
-    {
-      name: 'Prof. Dr. Daniel Nobre Nunes da Sila',
-      role: 'Vice-Coordenador',
-      area: '-------------------------------------------------------',
-      email: 'danielnobre@ufpa.br',
-      image: `${import.meta.env.BASE_URL}images/daniel.jpg`,
-      linkedin: 'https://www.linkedin.com/in/daniel-nobre-02856442/',
-    },
-  ];
-
-  const students = [
-    {
-      name: 'Igor Alexandre Rocha Barreto',
-      role: 'Doutorando',
-      area: 'Mineralogia Aplicada',
-      email: 'Igorbarreto@ufpa.br',
-      image: `${import.meta.env.BASE_URL}images/igor.jpg`,
-      linkedin: 'https://www.linkedin.com/in/igor-barreto-phd-405485104',
-    },
-    {
-      name: 'João Rafael Barroso Sampaio da Silveira',
-      role: 'Doutorando',
-      area: 'Inteligência Artificial Aplicada à Geociências',
-      email: 'joao.silveira@ig.ufpa.br',
-      image: `${import.meta.env.BASE_URL}images/joao.jpg`,
-      linkedin: 'https://www.linkedin.com/in/joao-rafael-sampaio-da-silveira/',
-    },
-    {
-      name: 'Jessica Nascimento Pereira',
-      role: 'Mestranda',
-      area: 'Mineralogia e Reatividade de Rochas Carbonáticas',
-      email: 'jessica.pereira@salinopolis.ufpa.br',
-      image: `${import.meta.env.BASE_URL}images/jess.jpg`,
-      linkedin: 'https://www.linkedin.com/in/jessica-pereira-engenhariadepetroleo',
-    },
-    {
-      name: 'Paloma Andrade Rebouças',
-      role: 'Bolsista IC',
-      area: 'Análise Petrofísica e CCUS',
-      email: 'paloma.reboucas@salinopolis.ufpa.br',
-      image: `${import.meta.env.BASE_URL}images/diego.png`,
-      linkedin: 'http://www.linkedin.com/in/paloma-rebou%C3%A7as-386a02289',
-    },
-    {
-      name: 'João Victor da Silva Fonseca',
-      role: 'Bolsista IC',
-      area: 'Análise Petrofísica e CCUS',
-      email: 'joao.fonseca@salinopolis.ufpa.br',
-      image: `${import.meta.env.BASE_URL}images/joao.jpg`,
-      linkedin: 'http://www.linkedin.com/in/jo%C3%A3o-victor58',
-    },
-    {
-      name: 'Pedro Pantoja dos Santos',
-      role: 'Bolsista IC',
-      area: 'Análise Petrofísica e CCUS',
-      email: 'natalino.souza@salinopolis.ufpa.br',
-      image: `${import.meta.env.BASE_URL}images/pantoja.jpg`,
-      linkedin:
-        'https://www.linkedin.com/in/pedro-pantoja-1aa566326?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
-    },
-    {
-      name: 'Natalino da Silva Souza',
-      role: 'Bolsista IC',
-      area: 'Análise Petrofísica e CCUS',
-      email: 'natalino.souza@salinopolis.ufpa.br',
-      image: `${import.meta.env.BASE_URL}images/natalino.jpg`,
-      linkedin: 'http://www.linkedin.com/in/natalino-souza-a592851ab',
-    },
-    {
-      name: 'Yasmin Yukari Ferreira Ishii',
-      role: 'Bolsista IC',
-      area: 'Introdução a Simulação Computacional',
-      email: 'yasmin.ishii@salinopolis.ufpa.br',
-      image: `${import.meta.env.BASE_URL}images/yasmin.jpg`,
-      linkedin: 'https://www.linkedin.com/in/yukari-ishii-99aa49369',
-    },
-    {
-      name: 'Nathalya de Fátima de Lima do Vale',
-      role: 'Bolsista IC',
-      area: 'Introdução a Propriedades Petrofísicas',
-      email: 'nathalya.vale@salinopolis.ufpa.br',
-      image: `${import.meta.env.BASE_URL}images/nath.jpg`,
-      linkedin: 'http://www.linkedin.com/in/nathalya-vale-6bab02369',
-    },
-    {
-      name: 'Sophia Macedo Pereira',
-      role: 'Bolsista IC',
-      area: 'Análise Petrofísica e CCUS',
-      email: 'sophia.pereira@salinopolis.ufpa.br',
-      image: `${import.meta.env.BASE_URL}images/sophia.jpg`,
-      linkedin:
-        'https://www.linkedin.com/in/sophia-macedo-pereira-10643a1a5?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
-    },
-    {
-      name: 'Eliel Silva da Cruz',
-      role: 'Bolsista IC',
-      area: 'Avaliação de Formações',
-      email: 'eliel.cruz@salinopolis.ufpa.br',
-      image: `${import.meta.env.BASE_URL}images/eliel.jpg`,
-      linkedin:
-        'https://www.linkedin.com/in/eliel-silva-8662b023b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
-    },
-  ];
+  const coordinators = t("team.coordinators", { returnObjects: true }) as any[];
+  const students = t("team.students", { returnObjects: true }) as any[];
 
   const copyEmail = (email: string) => {
     navigator.clipboard.writeText(email);
@@ -131,12 +28,10 @@ const Team: React.FC = () => {
     setCurrentSlide((prev) => (prev - 1 + students.length) % students.length);
   };
 
-  // 🔹 Auto Scroll a cada 2 segundos
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
     }, 3000);
-
     return () => clearInterval(interval);
   }, [currentSlide]);
 
@@ -150,34 +45,24 @@ const Team: React.FC = () => {
           {/* Header */}
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-[#04363e] dark:text-white">
-              Nossa <span className="text-lirge-cyan">Equipe</span>
+              {t("team.title")}{" "}
+              <span className="text-lirge-cyan">{t("team.highlight")}</span>
             </h2>
             <div className="w-24 h-1 bg-lirge-cyan mx-auto mb-8" />
             <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-              Conheça os pesquisadores e bolsistas que fazem do LIRGE um centro de excelência em
-              pesquisa e inovação.
+              {t("team.subtitle")}
             </p>
           </div>
 
           {/* Coordinators */}
           <div className="mb-16">
             <h3 className="text-2xl font-bold text-center mb-8 text-cyan-700 dark:text-lirge-cyan">
-              Coordenação
+              {t("team.coordination")}
             </h3>
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {coordinators.map((coord) => (
                 <div key={coord.name} className="group">
-                  <div
-                    className="bg-gradient-to-br
-                      from-[#7bc3cf]
-                      to-[#7bc3cf]
-                    border border-[#81D4FA]
-                    dark:bg-gradient-to-br
-                    dark:from-lirge-teal/20
-                    dark:to-lirge-cyan/20
-                    dark:border-lirge-cyan/20
-                    transition-colors duration-300 rounded-2xl p-6"
-                  >
+                  <div className="bg-gradient-to-br from-[#7bc3cf] to-[#7bc3cf] border border-[#81D4FA] dark:bg-gradient-to-br dark:from-lirge-teal/20 dark:to-lirge-cyan/20 dark:border-lirge-cyan/20 transition-colors duration-300 rounded-2xl p-6">
                     <div className="relative mb-6">
                       <a
                         href={coord.linkedin}
@@ -203,7 +88,9 @@ const Team: React.FC = () => {
                       <p className="text-cyan-700 dark:text-lirge-cyan font-semibold mb-2">
                         {coord.role}
                       </p>
-                      <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">{coord.area}</p>
+                      <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
+                        {coord.area}
+                      </p>
                       <button
                         onClick={() => copyEmail(coord.email)}
                         className="inline-flex items-center space-x-2 px-4 py-2 bg-[#04363e] dark:bg-lirge-teal/30 rounded-full text-sm text-cyan-50 dark:text-white"
@@ -221,7 +108,7 @@ const Team: React.FC = () => {
           {/* Students Carousel */}
           <div>
             <h3 className="text-2xl font-bold text-center mb-8 text-cyan-700 dark:text-lirge-cyan">
-              Pesquisadores e Bolsistas
+              {t("team.researchers")}
             </h3>
 
             <div className="relative max-w-3xl mx-auto">
@@ -233,17 +120,7 @@ const Team: React.FC = () => {
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: -300, opacity: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="
-                    bg-gradient-to-br
-                      from-[#7bc3cf]
-                      to-[#7bc3cf]
-                    border border-[#81D4FA]
-                    dark:bg-gradient-to-br
-                    dark:from-lirge-teal/20
-                    dark:to-lirge-cyan/20
-                    dark:border-lirge-cyan/20
-                    transition-colors duration-300
-                  "
+                    className="bg-gradient-to-br from-[#7bc3cf] to-[#7bc3cf] border border-[#81D4FA] dark:bg-gradient-to-br dark:from-lirge-teal/20 dark:to-lirge-cyan/20 dark:border-lirge-cyan/20 transition-colors duration-300"
                   >
                     <div className="flex flex-col items-center text-center">
                       <a
@@ -295,7 +172,7 @@ const Team: React.FC = () => {
                       key={index}
                       onClick={() => setCurrentSlide(index)}
                       className={`w-3 h-3 rounded-full ${
-                        index === currentSlide ? 'bg-lirge-cyan' : 'bg-lirge-cyan/40'
+                        index === currentSlide ? "bg-lirge-cyan" : "bg-lirge-cyan/40"
                       }`}
                     />
                   ))}

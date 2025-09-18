@@ -1,0 +1,331 @@
+{
+  "menu": {
+    "home": "Home",
+    "news": "News",
+    "eventsPublications": "Events/Publications",
+    "about": "About LIRGE",
+    "research": "Research",
+    "team": "Team",
+    "partners": "Partners/Sponsors",
+    "contact": "Contact"
+  },
+  "theme": {
+    "light": "Light Theme",
+    "dark": "Dark Theme"
+  },
+  "hero": {
+    "subtitle": "Integrated Research Laboratory in Geoenergy",
+    "university": "Federal University of Pará",
+    "cta": "Discover LIRGE"
+  },
+  "news": {
+    "title": "Latest",
+    "highlight": "News",
+    "subtitle": "Follow updates, achievements, and events from our geoenergy research lab.",
+    "highlights": "Highlights:"
+  },
+  "newsList": {
+    "1": {
+      "title": "New Research Project on Energy Transition",
+      "description": "Our lab launched an innovative initiative to accelerate the development of clean and sustainable technologies, focusing on carbon capture and utilization.",
+      "highlights": ["Sustainable Energy","International Collaboration","Social Impact"],
+      "date": "09/12/2025"
+    },
+    "2": {
+      "title": "Publication in International Journal",
+      "description": "LIRGE researchers published an article in one of the leading scientific journals in geoenergy, highlighting advances in petrophysical modeling.",
+      "highlights": ["Recognized Research","Scientific Advances","Innovation"],
+      "date": "08/28/2025"
+    },
+    "3": {
+      "title": "Workshop on Artificial Intelligence",
+      "description": "We held a workshop to explore machine learning applications in petrophysical data, bringing together students, professors, and industry professionals.",
+      "highlights": ["Training","Academic Integration","Industry 4.0"],
+      "date": "07/15/2025"
+    },
+    "4": {
+      "title": "Strategic Partnership with Energy Companies",
+      "description": "We signed a cooperation agreement with leading companies to develop innovative solutions that support clean energy exploration and production.",
+      "highlights": ["Partnership","Innovation","Future Energy"],
+      "date": "06/02/2025"
+    }
+  },
+  "events": {
+    "title": "Events &",
+    "highlight": "Publications",
+    "subtitle": "Explore the events we organize and the publications that reflect our commitment to research and innovation in geoenergy.",
+    "highlights": "Highlights:"
+  },
+  "eventsList": {
+    "1": {
+      "type": "Event",
+      "date": "09/05/2025",
+      "title": "International Geoenergy Conference",
+      "description": "LIRGE participated in an international conference, presenting research on energy transition and new carbon capture technologies.",
+      "highlights": ["Lectures","Networking","Innovation"]
+    },
+    "2": {
+      "type": "Publication",
+      "date": "08/22/2025",
+      "title": "Article in Prestigious Scientific Journal",
+      "description": "Publication of an article in the Energy & Fuels Journal, covering reservoir modeling and simulation with machine learning.",
+      "highlights": ["International Recognition","Advanced Research","Applied AI"]
+    },
+    "3": {
+      "type": "Event",
+      "date": "07/10/2025",
+      "title": "National Geoenergy Workshop",
+      "description": "An event organized by the lab bringing together experts, students, and companies to discuss sustainable energy exploration.",
+      "highlights": ["Academic Integration","Training","Sustainability"]
+    },
+    "4": {
+      "type": "Publication",
+      "date": "06/15/2025",
+      "title": "Innovation in Energy Award",
+      "description": "LIRGE researchers were honored for their contributions to innovative solutions that optimize energy exploration.",
+      "highlights": ["Recognition","Excellence","Scientific Impact"]
+    }
+  },
+  "about": {
+    "title": "About",
+    "highlight": "LIRGE",
+    "paragraphs": [
+      "The Integrated Research Laboratory in Geoenergy (LIRGE) is a center of excellence affiliated with the Federal University of Pará (UFPA), dedicated to developing innovative research at the intersection of geosciences and energy.",
+      "Our mission is to contribute to the advancement of scientific and technological knowledge in the energy sector, promoting sustainable solutions and training highly qualified professionals to face contemporary geoenergy challenges.",
+      "With a multidisciplinary approach, LIRGE develops projects ranging from basic research to practical applications, always aligned with the highest academic standards and social relevance."
+    ],
+    "imageAlt": "Geoenergy research",
+    "features": {
+      "objective": {
+        "title": "Objective",
+        "description": "R&D&I laboratory dedicated to the investigation, development, and innovation of geoenergy solutions, operating in areas such as Energy Exploration and Production, Carbon Capture, Utilization and Storage (CCUS), Well Integrity and Safety, and Geological Modeling and Simulation."
+      },
+      "mission": {
+        "title": "Mission",
+        "description": "To drive the advancement of knowledge and the development of innovative technologies in geoenergy, contributing to sustainable energy transition, safety and efficiency in resource exploration, and environmental impact reduction."
+      },
+      "vision": {
+        "title": "Vision",
+        "description": "To become an international reference in geoenergy research, innovation, and technological development, promoting energy security, environmental sustainability, and the evolution of resource exploration technologies."
+      }
+    }
+  },
+  "research": {
+    "title": "Research",
+    "highlight": "Areas",
+    "subtitle": "Our research projects cover diverse strategic areas in geoenergy, always focusing on innovation and sustainability.",
+    "featuresLabel": "Key Focus Areas:"
+  },
+  "researchList": {
+    "1": {
+      "title": "Carbon Capture",
+      "description": "Investigating innovative technologies to reduce CO₂ emissions, promoting sustainable solutions for the energy industry. We focus on understanding risks, operational safety, and process efficiency.",
+      "features": ["Geological Storage","Well Integrity","Risk Assessment"]
+    },
+    "2": {
+      "title": "Energy Exploration and Production",
+      "description": "Researching methods to optimize the discovery, development, and production of energy resources, with attention to efficiency, sustainability, and operational safety.",
+      "features": ["Reservoir Characterization","Enhanced Oil & Gas Recovery","Operational Sustainability"]
+    },
+    "3": {
+      "title": "Geological Modeling and Simulation",
+      "description": "Using modeling tools to understand and predict geological system behaviors, supporting strategic decision-making in the energy industry.",
+      "features": ["Flow Simulation","Geological Scenario Prediction"]
+    },
+    "4": {
+      "title": "Machine Learning",
+      "description": "Exploring the use of artificial intelligence to optimize data analysis processes in geoenergy, accelerating discoveries and improving result accuracy.",
+      "features": ["Data Analysis","Property Prediction","Process Automation"]
+    }
+  },
+  "team": {
+    "title": "Our",
+    "highlight": "Team",
+    "subtitle": "Meet the researchers and fellows who make LIRGE a center of excellence in research and innovation.",
+    "coordination": "Coordination",
+    "researchers": "Researchers and Fellows",
+    "coordinators": [
+      {
+        "name": "Prof. Dr. Cláudio Regis S. Lucas",
+        "role": "General Coordinator",
+        "area": "-------------------------------------------------------",
+        "email": "claudiolucas@ufpa.br",
+        "image": "images/claudio.jpg",
+        "linkedin": "https://www.linkedin.com/in/cl%C3%A1udio-lucas-a7186020"
+      },
+      {
+        "name": "Prof. Dr. Daniel Nobre Nunes da Sila",
+        "role": "Vice-Coordinator",
+        "area": "-------------------------------------------------------",
+        "email": "danielnobre@ufpa.br",
+        "image": "images/daniel.jpg",
+        "linkedin": "https://www.linkedin.com/in/daniel-nobre-02856442/"
+      }
+    ],
+    "students": [
+      {
+        "name": "Igor Alexandre Rocha Barreto",
+        "role": "PhD Student",
+        "area": "Applied Mineralogy",
+        "email": "Igorbarreto@ufpa.br",
+        "image": "images/igor.jpg",
+        "linkedin": "https://www.linkedin.com/in/igor-barreto-phd-405485104"
+      },
+      {
+        "name": "João Rafael Barroso Sampaio da Silveira",
+        "role": "PhD Student",
+        "area": "Artificial Intelligence Applied to Geosciences",
+        "email": "joao.silveira@ig.ufpa.br",
+        "image": "images/joao.jpg",
+        "linkedin": "https://www.linkedin.com/in/joao-rafael-sampaio-da-silveira/"
+      },
+      {
+        "name": "Jessica Nascimento Pereira",
+        "role": "Master’s Student",
+        "area": "Mineralogy and Reactivity of Carbonate Rocks",
+        "email": "jessica.pereira@salinopolis.ufpa.br",
+        "image": "images/jess.jpg",
+        "linkedin": "https://www.linkedin.com/in/jessica-pereira-engenhariadepetroleo"
+      },
+      {
+        "name": "Paloma Andrade Rebouças",
+        "role": "Undergraduate Fellow",
+        "area": "Petrophysical Analysis and CCUS",
+        "email": "paloma.reboucas@salinopolis.ufpa.br",
+        "image": "images/diego.png",
+        "linkedin": "http://www.linkedin.com/in/paloma-rebou%C3%A7as-386a02289"
+      },
+      {
+        "name": "João Victor da Silva Fonseca",
+        "role": "Undergraduate Fellow",
+        "area": "Petrophysical Analysis and CCUS",
+        "email": "joao.fonseca@salinopolis.ufpa.br",
+        "image": "images/joao.jpg",
+        "linkedin": "http://www.linkedin.com/in/jo%C3%A3o-victor58"
+      },
+      {
+        "name": "Pedro Pantoja dos Santos",
+        "role": "Undergraduate Fellow",
+        "area": "Petrophysical Analysis and CCUS",
+        "email": "natalino.souza@salinopolis.ufpa.br",
+        "image": "images/pantoja.jpg",
+        "linkedin": "https://www.linkedin.com/in/pedro-pantoja-1aa566326"
+      },
+      {
+        "name": "Natalino da Silva Souza",
+        "role": "Undergraduate Fellow",
+        "area": "Petrophysical Analysis and CCUS",
+        "email": "natalino.souza@salinopolis.ufpa.br",
+        "image": "images/natalino.jpg",
+        "linkedin": "http://www.linkedin.com/in/natalino-souza-a592851ab"
+      },
+      {
+        "name": "Yasmin Yukari Ferreira Ishii",
+        "role": "Undergraduate Fellow",
+        "area": "Introduction to Computational Simulation",
+        "email": "yasmin.ishii@salinopolis.ufpa.br",
+        "image": "images/yasmin.jpg",
+        "linkedin": "https://www.linkedin.com/in/yukari-ishii-99aa49369"
+      },
+      {
+        "name": "Nathalya de Fátima de Lima do Vale",
+        "role": "Undergraduate Fellow",
+        "area": "Introduction to Petrophysical Properties",
+        "email": "nathalya.vale@salinopolis.ufpa.br",
+        "image": "images/nath.jpg",
+        "linkedin": "http://www.linkedin.com/in/nathalya-vale-6bab02369"
+      },
+      {
+        "name": "Sophia Macedo Pereira",
+        "role": "Undergraduate Fellow",
+        "area": "Petrophysical Analysis and CCUS",
+        "email": "sophia.pereira@salinopolis.ufpa.br",
+        "image": "images/sophia.jpg",
+        "linkedin": "https://www.linkedin.com/in/sophia-macedo-pereira-10643a1a5"
+      },
+      {
+        "name": "Eliel Silva da Cruz",
+        "role": "Undergraduate Fellow",
+        "area": "Formation Evaluation",
+        "email": "eliel.cruz@salinopolis.ufpa.br",
+        "image": "images/eliel.jpg",
+        "linkedin": "https://www.linkedin.com/in/eliel-silva-8662b023b"
+      }
+    ]
+  },
+  "partners": {
+    "title": "Laboratories",
+    "partners": "Partners",
+    "sponsors": "Sponsors",
+    "subtitle": "Our collaboration network strengthens research and amplifies the impact of our discoveries by connecting academia, industry, and society.",
+    "areasLabel": "Areas of Cooperation:"
+  },
+  "partnersList": {
+    "1": {
+      "name": "National Energy Laboratory",
+      "description": "Collaboration on carbon capture and storage projects, focusing on sustainable innovation.",
+      "highlights": ["Joint Projects","Technology Transfer","Scientific Publications"]
+    },
+    "2": {
+      "name": "PetroTech Global",
+      "description": "Strategic partnership to develop digital solutions and AI applied to oil exploration.",
+      "highlights": ["Artificial Intelligence","Industry 4.0","Sustainable Exploration"]
+    },
+    "3": {
+      "name": "International University of Geoenergy",
+      "description": "Academic exchange and research cooperation focused on the energy transition.",
+      "highlights": ["Exchange Programs","Educational Projects","Joint Conferences"]
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Get in touch with us to learn more about our research projects, collaborations, or academic opportunities.",
+    "infoTitle": "Contact Information",
+    "linksTitle": "Institutional Links",
+    "contactInfo": [
+      {
+        "title": "E-mail",
+        "content": "lirge@ufpa.br"
+      },
+      {
+        "title": "Phone",
+        "content": "+55 (84) 99898-8983"
+      },
+      {
+        "title": "Address",
+        "content": "Salinópolis University Campus\nRua Raimundo Santana Cruz, s/n ‑ Bairro São Tomé\nSalinópolis ‑ PA, 68721-000"
+      },
+      {
+        "title": "Hours",
+        "content": "Monday to Friday\n08:00 AM ‑ 06:00 PM"
+      }
+    ],
+    "links": [
+      {
+        "title": "UFPA ‑ Salinópolis Campus",
+        "url": "https://campussalinopolis.ufpa.br/"
+      },
+      {
+        "title": "Institute of Geosciences",
+        "url": "https://www.ig.ufpa.br"
+      },
+      {
+        "title": "CNPq ‑ National Council for Scientific and Technological Development",
+        "url": "https://www.cnpq.br"
+      }
+    ],
+    "mapTitle": "UFPA ‑ Salinópolis Campus",
+    "mapSubtitle": "Federal University of Pará"
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "social": "Social Media",
+    "follow": "Follow our latest research and discoveries.",
+    "developedBy": "Developed by",
+    "rights": "© 2025 LIRGE – Integrated Research Laboratory in Geoenergy. All rights reserved.",
+    "creators": {
+      "thiago": "Thiago Yeshua",
+      "josue": "Josué Dias"
+    }
+  }
+}

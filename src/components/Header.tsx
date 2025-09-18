@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../hooks/useTheme';
+import { useTranslation } from 'react-i18next';
 
 interface HeaderProps {
   activeSection: string;
@@ -12,23 +13,23 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const { t, i18n } = useTranslation();
 
   const menuItems = [
-    { id: 'home', label: 'Início' },
-    { id: 'news', label: 'Notícias' },
-    { id: 'events-publications', label: 'Eventos/Publicações' },
-    { id: 'about', label: 'Sobre o LIRGE' },
-    { id: 'research', label: 'Pesquisas' },
-    { id: 'team', label: 'Equipe' },
-    { id: 'partners', label: 'Parceiros/Patrocínios' },
-    { id: 'contact', label: 'Contato' },
+    { id: 'home', label: t('menu.home') },
+    { id: 'news', label: t('menu.news') },
+    { id: 'events-publications', label: t('menu.eventsPublications') },
+    { id: 'about', label: t('menu.about') },
+    { id: 'research', label: t('menu.research') },
+    { id: 'team', label: t('menu.team') },
+    { id: 'partners', label: t('menu.partners') },
+    { id: 'contact', label: t('menu.contact') },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -36,6 +37,11 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
   const handleNavClick = (sectionId: string) => {
     onNavigate(sectionId);
     setIsMobileMenuOpen(false);
+  };
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'pt' ? 'en' : 'pt';
+    i18n.changeLanguage(newLang);
   };
 
   return (
@@ -88,13 +94,22 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
               </motion.button>
             ))}
 
-            {/* Botão Tema */}
-            <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-full bg-lirge-cyan text-white dark:bg-white dark:text-lirge-darker shadow-md transition-all"
-            >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
+            {/* Botões Tema + Idioma */}
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                className="p-2 rounded-full bg-lirge-cyan text-white dark:bg-white dark:text-lirge-darker shadow-md transition-all"
+              >
+                {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+              </button>
+
+              <button
+                onClick={toggleLanguage}
+                className="px-3 py-2 rounded-md bg-lirge-cyan text-white dark:bg-white dark:text-lirge-darker text-sm font-medium shadow-md transition-all"
+              >
+                {i18n.language === 'pt' ? 'EN' : 'PT'}
+              </button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -139,11 +154,11 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
                 >
                   {theme === 'dark' ? (
                     <>
-                      <Sun size={18} /> <span>Tema Claro</span>
+                      <Sun size={18} /> <span>{t('theme.light')}</span>
                     </>
                   ) : (
                     <>
-                      <Moon size={18} /> <span>Tema Escuro</span>
+                      <Moon size={18} /> <span>{t('theme.dark')}</span>
                     </>
                   )}
                 </button>
