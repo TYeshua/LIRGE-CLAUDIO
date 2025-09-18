@@ -1,6 +1,13 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, ExternalLink, Building } from 'lucide-react';
+import {
+  MapPin,
+  Phone,
+  Mail as MailIcon,
+  Clock,
+  ExternalLink,
+  Building,
+} from 'lucide-react';
 
 const Contact: React.FC = () => {
   const ref = useRef(null);
@@ -8,7 +15,7 @@ const Contact: React.FC = () => {
 
   const contactInfo = [
     {
-      icon: Mail,
+      icon: MailIcon,
       title: 'E-mail',
       content: 'lirge@ufpa.br',
       action: () => window.open('mailto:lirge@ufpa.br'),
@@ -17,14 +24,15 @@ const Contact: React.FC = () => {
       icon: Phone,
       title: 'Telefone',
       content: '+55 (84) 99898-8983',
-      action: () => window.open('tel:+559132017000'),
+      action: () => window.open('tel:+5584998988983'),
     },
     {
       icon: MapPin,
       title: 'Endereço',
       content:
-        'Campus Universitário de Salinópolis\nRua Raimundo Santana Cruz, s/n- Bairro São Tomé \nSalinópolis - PA, 68721-000',
-      action: () => window.open('https://maps.google.com/?q=UFPA+Belem'),
+        'Campus Universitário de Salinópolis\nRua Raimundo Santana Cruz, s/n - Bairro São Tomé\nSalinópolis - PA, 68721-000',
+      action: () =>
+        window.open('https://maps.google.com/?q=UFPA+Salinópolis'),
     },
     {
       icon: Clock,
@@ -35,7 +43,10 @@ const Contact: React.FC = () => {
   ];
 
   const links = [
-    { title: 'UFPA - Campus Salinópolis', url: 'https://campussalinopolis.ufpa.br/' },
+    {
+      title: 'UFPA - Campus Salinópolis',
+      url: 'https://campussalinopolis.ufpa.br/',
+    },
     { title: 'Instituto de Geociências', url: 'https://www.ig.ufpa.br' },
     {
       title: 'CNPq - Conselho Nacional de Desenvolvimento Científico',
@@ -44,27 +55,30 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 lg:py-32 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-lirge-darker via-lirge-teal/10 to-lirge-darker" />
-
+    <section
+      id="contact"
+      className="py-20 lg:py-32 relative bg-cyan-50 dark:bg-lirge-darker transition-colors duration-300"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div ref={ref} className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-[#04363e] dark:text-white">
               <span className="text-lirge-cyan">Contato</span>
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-lirge-cyan to-lirge-teal mx-auto mb-8" />
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              Entre em contato conosco para saber mais sobre nossos projetos de pesquisa,
-              colaborações ou oportunidades acadêmicas.
+            <div className="w-24 h-1 bg-lirge-cyan mx-auto mb-8" />
+            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+              Entre em contato conosco para saber mais sobre nossos projetos de
+              pesquisa, colaborações ou oportunidades acadêmicas.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div className="space-y-8">
-              <h3 className="text-2xl font-bold text-white mb-8">Informações de Contato</h3>
+              <h3 className="text-2xl font-bold text-[#04363e] dark:text-white mb-8">
+                Informações de Contato
+              </h3>
 
               {contactInfo.map((info) => (
                 <div
@@ -72,15 +86,26 @@ const Contact: React.FC = () => {
                   className={`group ${info.action ? 'cursor-pointer' : ''}`}
                   onClick={info.action || undefined}
                 >
-                  <div className="flex items-start space-x-4 p-6 bg-gradient-to-br from-lirge-teal/10 to-lirge-cyan/10 rounded-xl border border-lirge-cyan/20 hover:border-lirge-cyan/40 transition-all duration-300">
-                    <div className="w-12 h-12 bg-gradient-to-br from-lirge-cyan to-lirge-teal rounded-lg flex items-center justify-center flex-shrink-0">
-                      <info.icon className="text-white" size={24} />
+                  <div className="flex items-start space-x-4 p-6  bg-gradient-to-br
+                    from-[#7bc3cf]
+                    to-[#7bc3cf]
+                    border border-[#81D4FA]
+                    dark:bg-gradient-to-br
+                   dark:from-lirge-teal/20
+                    dark:to-lirge-cyan/20
+                    dark:border-lirge-cyan/20
+                    transition-colors duration-300">
+                    <div className="w-12 h-12 bg-[#04363e] dark:bg-gradient-to-br dark:from-lirge-cyan dark:to-lirge-teal rounded-lg flex items-center justify-center flex-shrink-0">
+                      <info.icon
+                        className="text-cyan-50 dark:text-white"
+                        size={24}
+                      />
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-white mb-2">
+                      <h4 className="text-lg font-semibold text-[#04363e] dark:text-white mb-2">
                         {info.title}
                       </h4>
-                      <p className="text-gray-300 whitespace-pre-line text-sm leading-relaxed">
+                      <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line text-sm leading-relaxed">
                         {info.content}
                       </p>
                     </div>
@@ -91,7 +116,9 @@ const Contact: React.FC = () => {
 
             {/* Links and Resources */}
             <div className="space-y-8">
-              <h3 className="text-2xl font-bold text-white mb-8">Links Institucionais</h3>
+              <h3 className="text-2xl font-bold text-[#04363e] dark:text-white mb-8">
+                Links Institucionais
+              </h3>
 
               <div className="space-y-4">
                 {links.map((link) => (
@@ -102,25 +129,49 @@ const Contact: React.FC = () => {
                     rel="noopener noreferrer"
                     className="group block"
                   >
-                    <div className="flex items-center justify-between p-4 bg-gradient-to-br from-lirge-teal/10 to-lirge-cyan/10 rounded-xl border border-lirge-cyan/20 hover:border-lirge-cyan/40 transition-all duration-300">
+                    <div className="flex items-center justify-between p-4  bg-gradient-to-br
+                    from-[#7bc3cf]
+                    to-[#7bc3cf]
+                    border border-[#81D4FA]
+                    dark:bg-gradient-to-br
+                   dark:from-lirge-teal/20
+                    dark:to-lirge-cyan/20
+                    dark:border-lirge-cyan/20
+                    transition-all duration-300">
                       <div className="flex items-center space-x-3">
-                        <Building className="text-lirge-cyan" size={20} />
-                        <span className="text-white">{link.title}</span>
+                        <Building
+                          className="text-cyan-700 dark:text-lirge-cyan"
+                          size={20}
+                        />
+                        <span className="text-[#04363e] dark:text-white">
+                          {link.title}
+                        </span>
                       </div>
-                      <ExternalLink className="text-gray-400" size={16} />
+                      <ExternalLink
+                        className="text-cyan-700 dark:text-gray-400"
+                        size={16}
+                      />
                     </div>
                   </a>
                 ))}
               </div>
 
-              {/* Map Placeholder - única animação mantida */}
+              {/* Map Placeholder */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : {}}
                 transition={{ duration: 0.6 }}
                 className="mt-8"
               >
-                <div className="bg-gradient-to-br from-lirge-teal/10 to-lirge-cyan/10 rounded-xl border border-lirge-cyan/20 overflow-hidden">
+                <div className="bg-gradient-to-br
+                    from-[#7bc3cf]
+                    to-[#7bc3cf]
+                    border border-[#81D4FA]
+                    dark:bg-gradient-to-br
+                   dark:from-lirge-teal/20
+                    dark:to-lirge-cyan/20
+                    dark:border-lirge-cyan/20
+                    transition-colors duration-300 rounded-xl overflow-hidden">
                   {/* Mapa incorporado */}
                   <div className="h-64 relative">
                     <iframe
@@ -132,13 +183,16 @@ const Contact: React.FC = () => {
                       loading="lazy"
                       referrerPolicy="no-referrer-when-downgrade"
                       className="absolute inset-0 w-full h-full"
-                    ></iframe>
+                    />
                   </div>
 
                   {/* Informações abaixo do mapa */}
                   <div className="p-4 text-center">
-                    <MapPin className="text-lirge-cyan mx-auto mb-2" size={32} />
-                    <p className="text-white font-semibold">
+                    <MapPin
+                      className="text-cyan-700 dark:text-lirge-cyan mx-auto mb-2"
+                      size={32}
+                    />
+                    <p className="text-[#04363e] dark:text-white font-semibold">
                       <a
                         href="https://maps.app.goo.gl/juruUVibaRdvjP5K9"
                         target="_blank"
@@ -148,7 +202,7 @@ const Contact: React.FC = () => {
                         UFPA - Campus Salinópolis
                       </a>
                     </p>
-                    <p className="text-gray-300 text-sm">
+                    <p className="text-gray-700 dark:text-gray-300 text-sm">
                       <a
                         href="https://www.google.com/maps/place/Universidade+Federal+do+Par%C3%A1+-+Campus+Salin%C3%B3polis/@-0.6310413,-47.3418561,17z"
                         target="_blank"

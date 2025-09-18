@@ -8,29 +8,49 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section
+      id="home"
+      className="
+        min-h-screen flex items-center justify-center relative overflow-hidden
+        bg-white dark:bg-lirge-darker transition-colors duration-300
+      "
+    >
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-lirge-darker via-lirge-teal/20 to-lirge-darker" />
-      
+      <div
+        className="
+          absolute inset-0
+          bg-gradient-to-br
+            from-[#E0F7FA] via-[#B2EBF2] to-[#E8F5E9]
+            dark:from-lirge-darker dark:via-lirge-teal/20 dark:to-lirge-darker
+          transition-colors duration-300
+        "
+      />
+
       {/* Floating Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          animate={{ 
+          animate={{
             x: [0, 100, 0],
             y: [0, -50, 0],
             rotate: [0, 180, 360]
           }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/4 left-1/4 w-20 h-20 border border-lirge-cyan/20 rounded-full"
+          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+          className="
+            absolute top-1/4 left-1/4 w-24 h-24 rounded-full
+            border-2 border-[#81D4FA] dark:border-lirge-cyan/20
+          "
         />
         <motion.div
-          animate={{ 
+          animate={{
             x: [0, -80, 0],
             y: [0, 60, 0],
             rotate: [0, -180, -360]
           }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-1/4 right-1/4 w-16 h-16 border border-lirge-cyan/15 rounded-full"
+          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+          className="
+            absolute bottom-1/4 right-1/4 w-20 h-20 rounded-full
+            border-2 border-[#A5D6A7] dark:border-lirge-cyan/15
+          "
         />
       </div>
 
@@ -44,9 +64,9 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             className="mb-8"
           >
             <img
-             src={`${import.meta.env.BASE_URL}images/logos2.png`}
-             alt="Logo LIRGE"
-             className="mx-auto h-24 lg:h-32 w-auto"
+              src={`${import.meta.env.BASE_URL}images/logos2.png`}
+              alt="Logo LIRGE"
+              className="mx-auto h-24 lg:h-32 w-auto"
             />
           </motion.div>
 
@@ -57,7 +77,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6"
           >
-            <span className="text-white">LIR</span>
+            <span className="text-gray-900 dark:text-white">LIR</span>
             <span className="text-lirge-cyan">GE</span>
           </motion.h1>
 
@@ -66,7 +86,11 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg sm:text-xl lg:text-2xl text-gray-300 mb-4 max-w-4xl mx-auto"
+            className="
+              text-lg sm:text-xl lg:text-2xl
+              text-gray-700 dark:text-gray-300
+              mb-4 max-w-4xl mx-auto
+            "
           >
             Laboratório de Pesquisa Integrada em Geoenergia
           </motion.p>
@@ -89,7 +113,13 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           >
             <button
               onClick={() => onNavigate('about')}
-              className="group px-8 py-4 bg-gradient-to-r from-lirge-cyan to-lirge-teal text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-lirge-cyan/25 transition-all duration-300 transform hover:scale-105"
+              className="
+                group px-8 py-4
+                bg-gradient-to-r from-lirge-cyan to-lirge-teal
+                text-white font-semibold rounded-full
+                hover:shadow-2xl hover:shadow-lirge-cyan/25
+                transition-all duration-300 transform hover:scale-105
+              "
             >
               <span className="flex items-center space-x-2">
                 <span>Conheça o LIRGE</span>
@@ -97,7 +127,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                   animate={{ x: [0, 5, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
                 >
-                  <ChevronDown size={20} className="transform rotate-[-90deg]" />
+                  <ChevronDown size={20} className="transform -rotate-90" />
                 </motion.div>
               </span>
             </button>

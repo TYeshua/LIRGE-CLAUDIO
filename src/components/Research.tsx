@@ -57,35 +57,46 @@ const Research: React.FC = () => {
   };
 
   return (
-    <section id="research" className="py-20 lg:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-lirge-darker via-lirge-teal/5 to-lirge-darker" />
-
+    <section
+      id="research"
+      className="py-20 lg:py-32 relative overflow-hidden bg-cyan-50 dark:bg-lirge-darker transition-colors duration-300"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-[#04363e] dark:text-white">
               Áreas de <span className="text-lirge-cyan">Pesquisa</span>
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-lirge-cyan to-lirge-teal mx-auto mb-8" />
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+            <div className="w-24 h-1 bg-lirge-cyan mx-auto mb-8" />
+            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
               Nossos projetos de pesquisa abrangem diversas áreas estratégicas da geoenergia,
               sempre focando na inovação e sustentabilidade.
             </p>
           </div>
 
           {/* Carousel */}
-          <div className="relative">
-            <div className="overflow-hidden rounded-2xl">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentSlide}
-                  initial={{ x: 300, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: -300, opacity: 0 }}
-                  transition={{ duration: 0.5, ease: 'easeInOut' }} // Mantida apenas a transição lateral fluida
-                  className="bg-gradient-to-br from-lirge-teal/20 to-lirge-cyan/20 border border-lirge-cyan/20"
-                >
+                    <div className="relative">
+                      <div className="overflow-hidden rounded-2xl">
+                        <AnimatePresence mode="wait">
+                          <motion.div
+                            key={currentSlide}
+                            initial={{ x: 300, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            exit={{ x: -300, opacity: 0 }}
+                            transition={{ duration: 0.5, ease: "easeInOut" }}
+                            className="
+                              bg-gradient-to-br
+                                from-[#7bc3cf]
+                                to-[#7bc3cf]
+                              border border-[#81D4FA]
+                              dark:bg-gradient-to-br
+                              dark:from-lirge-teal/20
+                              dark:to-lirge-cyan/20
+                              dark:border-lirge-cyan/20
+                              transition-colors duration-300
+                            "
+                          >
                   <div className="grid lg:grid-cols-2 gap-8">
                     {/* Image */}
                     <div className="relative w-full h-64 sm:h-80 lg:h-auto overflow-hidden">
@@ -96,9 +107,16 @@ const Research: React.FC = () => {
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-lirge-darker/80 to-transparent" />
-                      <div className="absolute top-4 right-4 w-12 h-12 bg-lirge-cyan/20 rounded-full flex items-center justify-center border border-lirge-cyan/40">
+                      <div
+                        className="
+                          absolute top-4 right-4 w-12 h-12 rounded-full flex items-center justify-center
+                          bg-[#04363e] border border-cyan-700
+                          dark:bg-lirge-cyan/20 dark:border-lirge-cyan/40
+                          transition-colors duration-300
+                        "
+                      >
                         {React.createElement(researchAreas[currentSlide].icon, {
-                          className: 'text-lirge-cyan',
+                          className: 'text-cyan-50 dark:text-lirge-cyan',
                           size: 24,
                         })}
                       </div>
@@ -106,21 +124,25 @@ const Research: React.FC = () => {
 
                     {/* Content */}
                     <div className="p-8 flex flex-col justify-center">
-                      <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">
+                      <h3 className="text-2xl lg:text-3xl font-bold text-[#04363e] dark:text-white mb-4">
                         {researchAreas[currentSlide].title}
                       </h3>
 
-                      <p className="text-gray-300 mb-6 leading-relaxed">
+                      <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                         {researchAreas[currentSlide].description}
                       </p>
 
                       <div className="space-y-3">
-                        <h4 className="text-lirge-cyan font-semibold">Principais Focos:</h4>
+                        <h4 className="text-cyan-50 dark:text-lirge-cyan font-semibold">
+                          Principais Focos:
+                        </h4>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                           {researchAreas[currentSlide].features.map((feature) => (
                             <div key={feature} className="flex items-center space-x-2">
-                              <div className="w-2 h-2 bg-lirge-cyan rounded-full" />
-                              <span className="text-sm text-gray-300">{feature}</span>
+                              <div className="w-2 h-2 bg-cyan-50 dark:bg-lirge-cyan rounded-full" />
+                              <span className="text-sm text-gray-700 dark:text-gray-300">
+                                {feature}
+                              </span>
                             </div>
                           ))}
                         </div>
@@ -135,21 +157,22 @@ const Research: React.FC = () => {
             <div className="flex items-center justify-between mt-8">
               <button
                 onClick={prevSlide}
-                className="p-3 bg-lirge-teal/20 border border-lirge-cyan/20 rounded-full"
+                className="
+                  p-3 bg-[#7bc3cf] border border-cyan-700 rounded-full
+                  dark:bg-lirge-teal/20 dark:border-lirge-cyan/20
+                  transition-colors duration-200
+                "
               >
-                <ChevronLeft className="text-lirge-cyan" size={24} />
+                <ChevronLeft className="text-cyan-700" size={24} />
               </button>
 
-              {/* Indicators */}
               <div className="flex space-x-2">
                 {researchAreas.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentSlide(index)}
                     className={`w-3 h-3 rounded-full ${
-                      index === currentSlide
-                        ? 'bg-lirge-cyan'
-                        : 'bg-lirge-cyan/30'
+                      index === currentSlide ? 'bg-lirge-cyan' : 'bg-lirge-cyan/30'
                     }`}
                   />
                 ))}
@@ -157,9 +180,13 @@ const Research: React.FC = () => {
 
               <button
                 onClick={nextSlide}
-                className="p-3 bg-lirge-teal/20 border border-lirge-cyan/20 rounded-full"
+                className="
+                  p-3 bg-[#7bc3cf] border border-cyan-700 rounded-full
+                  dark:bg-lirge-teal/20 dark:border-lirge-cyan/20
+                  transition-colors duration-200
+                "
               >
-                <ChevronRight className="text-lirge-cyan" size={24} />
+                <ChevronRight className="text-cyan-700" size={24} />
               </button>
             </div>
           </div>

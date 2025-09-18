@@ -2,24 +2,27 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import News from './components/News';
+import EventsPublications from './components/EventsPublications';
 import About from './components/About';
 import Research from './components/Research';
 import Team from './components/Team';
+import Partners from './components/Partners'; 
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { useScrollSpy } from './hooks/useScrollSpy';
 
 function App() {
-  const sectionIds = ['home', 'about', 'research', 'team', 'contact'];
+  const sectionIds = ['home', 'news','events-publications', 'about', 'research', 'team', 'partners', 'contact']; 
   const activeSection = useScrollSpy(sectionIds);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offsetTop = element.offsetTop - 80; // Account for fixed header
+      const offsetTop = element.offsetTop - 80;
       window.scrollTo({
         top: offsetTop,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
   };
@@ -30,9 +33,12 @@ function App() {
       
       <main>
         <Hero onNavigate={scrollToSection} />
+        <News />
+        <EventsPublications />
         <About />
         <Research />
         <Team />
+        <Partners /> {/* ✅ nova seção */}
         <Contact />
       </main>
       

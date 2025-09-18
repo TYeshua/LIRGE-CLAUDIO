@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTheme } from '../hooks/useTheme'; // 👈 hook do tema
 
 interface HeaderProps {
   activeSection: string;
@@ -10,12 +11,16 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, setTheme } = useTheme(); // 👈 tema atual
 
   const menuItems = [
     { id: 'home', label: 'Início' },
+    { id: 'news', label: 'Notícias' },
+    { id: 'events-publications', label: 'Eventos/Publicações' },
     { id: 'about', label: 'Sobre o LIRGE' },
     { id: 'research', label: 'Pesquisas' },
     { id: 'team', label: 'Equipe' },
+    { id: 'partners', label: 'Parceiros/Patrocínios' },
     { id: 'contact', label: 'Contato' },
   ];
 
@@ -39,8 +44,8 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-lirge-darker/95 backdrop-blur-md shadow-2xl' 
+        isScrolled
+          ? 'bg-lirge-darker/95 dark:bg-lirge-darker/95 bg-cyan-50 backdrop-blur-md shadow-2xl'
           : 'bg-transparent'
       }`}
     >
@@ -60,7 +65,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
           </motion.div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {menuItems.map((item) => (
               <motion.button
                 key={item.id}
@@ -70,7 +75,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
                 className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                   activeSection === item.id
                     ? 'text-lirge-cyan'
-                    : 'text-white hover:text-lirge-cyan'
+                    : 'text-gray-900 dark:text-white hover:text-lirge-cyan'
                 }`}
               >
                 {item.label}
@@ -84,11 +89,19 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
                 )}
               </motion.button>
             ))}
+
+            {/* Botão Tema */}
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2 rounded-full bg-lirge-cyan text-white dark:bg-white dark:text-lirge-darker shadow-md transition-all"
+            >
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-white hover:text-lirge-cyan transition-colors"
+            className="md:hidden p-2 text-gray-900 dark:text-white hover:text-lirge-cyan transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -103,7 +116,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden bg-lirge-darker/95 backdrop-blur-md border-t border-lirge-teal/20"
+              className="md:hidden bg-white/90 dark:bg-lirge-darker/95 backdrop-blur-md border-t border-lirge-teal/20"
             >
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {menuItems.map((item) => (
@@ -114,12 +127,28 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
                     className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
                       activeSection === item.id
                         ? 'text-lirge-cyan bg-lirge-teal/10'
-                        : 'text-white hover:text-lirge-cyan hover:bg-lirge-teal/5'
+                        : 'text-gray-900 dark:text-white hover:text-lirge-cyan hover:bg-lirge-teal/5'
                     }`}
                   >
                     {item.label}
                   </motion.button>
                 ))}
+
+                {/* Botão Tema no Mobile */}
+                <button
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="mt-3 w-full flex items-center justify-center gap-2 p-2 rounded-md bg-lirge-cyan text-white dark:bg-white dark:text-lirge-darker shadow-md transition-all"
+                >
+                  {theme === "dark" ? (
+                    <>
+                      <Sun size={18} /> <span>Tema Claro</span>
+                    </>
+                  ) : (
+                    <>
+                      <Moon size={18} /> <span>Tema Escuro</span>
+                    </>
+                  )}
+                </button>
               </div>
             </motion.div>
           )}
