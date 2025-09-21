@@ -23,17 +23,7 @@
   <body class="bg-lirge-darker text-white font-sans overflow-x-hidden">
     <div id="root"></div>
 
-    <!-- VLibras Plugin -->
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
-      window.addEventListener("load", function () {
-        if (window.VLibras) {
-          new window.VLibras.Widget("https://vlibras.gov.br/app");
-        }
-      });
-    </script>
-
-    <!-- Seu script principal -->
+    <!-- Script principal do Vite/React -->
     <script type="module" src="./src/main.tsx"></script>
   </body>
 </html>

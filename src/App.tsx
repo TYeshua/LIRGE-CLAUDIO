@@ -10,7 +10,6 @@ import Team from "./components/Team";
 import Partners from "./components/Partners";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import VLibrasToggle from "./components/VLibrasToggle";
 import { useScrollSpy } from "./hooks/useScrollSpy";
 
 function App() {
@@ -53,7 +52,7 @@ function App() {
       </main>
 
       <Footer />
-      <VLibrasToggle />
+
 
       {/* Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0">
