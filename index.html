@@ -19,12 +19,22 @@
       rel="stylesheet"
     />
     <title>LIRGE - Laboratório de Pesquisa Integrada em Geoenergia | UFPA</title>
-    <script type="module" crossorigin src="./assets/index-BklYnRM9.js"></script>
+    <script type="module" crossorigin src="./assets/index-BatApHA5.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-1dmDM4Zf.css">
   </head>
   <body class="bg-lirge-darker text-white font-sans overflow-x-hidden">
     <div id="root"></div>
 
     <!-- Script principal do Vite/React -->
+    <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
   </body>
 </html>
