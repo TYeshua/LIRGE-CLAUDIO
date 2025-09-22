@@ -21,8 +21,9 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
     { id: "events-publications", label: t("menu.eventsPublications") },
     { id: "about", label: t("menu.about") },
     { id: "research", label: t("menu.research") },
+    { id: "projects", label: t("menu.projects") },
     { id: "team", label: t("menu.team") },
-    { id: "partners", label: t("menu.partners") },
+    { id: "partnerships", label: t("menu.partnerships") },
     { id: "contact", label: t("menu.contact") },
   ];
 

@@ -6,8 +6,9 @@
     "about": "About LIRGE",
     "research": "Research",
     "team": "Team",
-    "partners": "Partners/Sponsors",
-    "contact": "Contact"
+    "projects": "Projects",
+    "contact": "Contact",
+    "partnerships": "Partnerships"
   },
   "theme": {
     "light": "Light Theme",
@@ -253,29 +254,29 @@
       }
     ]
   },
-  "partners": {
-    "title": "Laboratories",
-    "partners": "Partners",
-    "sponsors": "Sponsors",
-    "subtitle": "Our collaboration network strengthens research and amplifies the impact of our discoveries by connecting academia, industry, and society.",
-    "areasLabel": "Areas of Cooperation:"
+  "projects": {
+  "title": "Projects",
+  "highlight": "Showcase",
+  "subtitle": "Discover the projects developed by LIRGE with support from our sponsors.",
+  "highlights": "Focus areas:"
+},
+"projectsList": {
+  "1": {
+    "title": "Reservoir Simulation Platform",
+    "description": "Development of an integrated platform for reservoir simulation using artificial intelligence, aiming to optimize energy production.",
+    "highlights": ["Advanced Modeling", "Applied AI", "International Collaboration"]
   },
-  "partnersList": {
-    "1": {
-      "name": "National Energy Laboratory",
-      "description": "Collaboration on carbon capture and storage projects, focusing on sustainable innovation.",
-      "highlights": ["Joint Projects","Technology Transfer","Scientific Publications"]
-    },
-    "2": {
-      "name": "PetroTech Global",
-      "description": "Strategic partnership to develop digital solutions and AI applied to oil exploration.",
-      "highlights": ["Artificial Intelligence","Industry 4.0","Sustainable Exploration"]
-    },
-    "3": {
-      "name": "International University of Geoenergy",
-      "description": "Academic exchange and research cooperation focused on the energy transition.",
-      "highlights": ["Exchange Programs","Educational Projects","Joint Conferences"]
-    }
+  "2": {
+    "title": "Real-Time Emissions Monitoring",
+    "description": "Intelligent system for continuous monitoring of emissions in production fields, focused on sustainability and environmental compliance.",
+    "highlights": ["Sustainability", "Cutting-Edge Technology", "Environmental Impact"]
+  },
+  "3": {
+    "title": "Geoenergy for Remote Communities",
+    "description": "Project focused on implementing clean and accessible energy solutions in remote communities across the Amazon region.",
+    "highlights": ["Energy Inclusion", "Renewable Energy", "Regional Development"]
+  }
+
   },
   "contact": {
     "title": "Contact",
@@ -293,7 +294,7 @@
       },
       {
         "title": "Address",
-        "content": "Salinópolis University Campus\nRua Raimundo Santana Cruz, s/n ‑ Bairro São Tomé\nSalinópolis ‑ PA, 68721-000"
+        "content": "Salinópolis University Campus\nRua Raimundo Santana Cruz UFPA, s/n ‑ Bairro São Tomé\nSalinópolis ‑ PA, 68721-000"
       },
       {
         "title": "Hours",
@@ -301,6 +302,10 @@
       }
     ],
     "links": [
+       {
+        "title": "UFPA - Federal University of Pará",
+        "url": "https://ufpa.br/"
+      },
       {
         "title": "UFPA ‑ Salinópolis Campus",
         "url": "https://campussalinopolis.ufpa.br/"
@@ -312,6 +317,10 @@
       {
         "title": "CNPq ‑ National Council for Scientific and Technological Development",
         "url": "https://www.cnpq.br"
+      },
+      {
+        "title": "ANP - National Agency of Petroleum, Natural Gas and Biofuels",
+        "url": "https://www.gov.br/anp/pt-br"
       }
     ],
     "mapTitle": "UFPA ‑ Salinópolis Campus",
@@ -327,5 +336,10 @@
       "thiago": "Thiago Yeshua",
       "josue": "Josué Dias"
     }
+  },
+  "partnerships": {
+  "title": "Our",
+  "highlight": "Partnerships",
+  "subtitle": "Companies that support and collaborate with LIRGE in research, innovation, and technological development initiatives."
   }
 }

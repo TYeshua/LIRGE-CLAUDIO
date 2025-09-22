@@ -6,8 +6,9 @@
     "about": "Sobre o LIRGE",
     "research": "Pesquisas",
     "team": "Equipe",
-    "partners": "Parceiros/Patrocinadores",
-    "contact": "Contato"
+    "projects": "Projetos",
+    "contact": "Contato",
+    "partnerships": "Parcerias"
   },
   "theme": {
     "light": "Tema Claro",
@@ -253,29 +254,29 @@
       }
     ]
   },
-  "partners": {
-    "title": "Laboratórios",
-    "partners": "Parceiros",
-    "sponsors": "Patrocinadores",
-    "subtitle": "Nossa rede de colaboração fortalece a pesquisa e amplia o impacto das nossas descobertas, conectando academia, indústria e sociedade.",
-    "areasLabel": "Áreas de Cooperação:"
+    "projects": {
+    "title": "Projetos",
+    "highlight": "em Destaque",
+    "subtitle": "Conheça os projetos desenvolvidos pelo LIRGE com apoio de nossos patrocinadores.",
+    "highlights": "Áreas de atuação:"
   },
-  "partnersList": {
+  "projectsList": {
     "1": {
-      "name": "Laboratório Nacional de Energia",
-      "description": "Colaboração em projetos de captura e armazenamento de carbono, com foco em inovação sustentável.",
-      "highlights": ["Projetos conjuntos", "Transferência de tecnologia", "Publicações científicas"]
+      "title": "Plataforma de Simulação de Reservatórios",
+      "description": "Desenvolvimento de uma plataforma integrada para simulação de reservatórios com inteligência artificial, visando otimizar a produção energética.",
+      "highlights": ["Modelagem Avançada", "IA aplicada", "Colaboração Internacional"]
     },
     "2": {
-      "name": "PetroTech Global",
-      "description": "Parceria estratégica para desenvolvimento de soluções digitais e inteligência artificial aplicadas à exploração de petróleo.",
-      "highlights": ["Inteligência Artificial", "Indústria 4.0", "Exploração Sustentável"]
+      "title": "Monitoramento de Emissões em Tempo Real",
+      "description": "Sistema inteligente para monitoramento contínuo de emissões em campos de produção, com foco em sustentabilidade e conformidade ambiental.",
+      "highlights": ["Sustentabilidade", "Tecnologia de Ponta", "Impacto Ambiental"]
     },
     "3": {
-      "name": "Universidade Internacional de Geoenergia",
-      "description": "Intercâmbio acadêmico e cooperação em pesquisas voltadas para a transição energética.",
-      "highlights": ["Intercâmbio", "Projetos educacionais", "Conferências conjuntas"]
+      "title": "Geoenergia para Comunidades Isoladas",
+      "description": "Projeto voltado à implementação de soluções energéticas limpas e acessíveis em comunidades remotas da região amazônica.",
+      "highlights": ["Inclusão Energética", "Energia Renovável", "Desenvolvimento Regional"]
     }
+
   },
   "contact": {
     "title": "Contato",
@@ -293,7 +294,7 @@
       },
       {
         "title": "Endereço",
-        "content": "Campus Universitário Salinópolis\nRua Raimundo Santana Cruz, s/n - Bairro São Tomé\nSalinópolis - PA, 68721-000"
+        "content": "Campus Universitário Salinópolis\nRua Raimundo Santana Cruz UFPA, s/n - Bairro São Tomé\nSalinópolis - PA, 68721-000"
       },
       {
         "title": "Horário",
@@ -301,6 +302,10 @@
       }
     ],
     "links": [
+      {
+        "title": "UFPA - Universidade Federal do Pará",
+        "url": "https://ufpa.br/"
+      },
       {
         "title": "UFPA - Campus Salinópolis",
         "url": "https://campussalinopolis.ufpa.br/"
@@ -312,7 +317,12 @@
       {
         "title": "CNPq - Conselho Nacional de Desenvolvimento Científico e Tecnológico",
         "url": "https://www.cnpq.br"
+      },
+      {
+        "title": "ANP - Agência Nacional do Petróleo, Gás Natural e Biocombustíveis",
+        "url": "https://www.gov.br/anp/pt-br"
       }
+      
     ],
     "mapTitle": "UFPA - Campus Salinópolis",
     "mapSubtitle": "Universidade Federal do Pará"
@@ -327,5 +337,10 @@
       "thiago": "Thiago Yeshua",
       "josue": "Josué Dias"
     }
-  }
+  },
+  "partnerships": {
+  "title": "Nossas",
+  "highlight": "Parcerias",
+  "subtitle": "Empresas que apoiam e colaboram com o LIRGE em iniciativas de pesquisa, inovação e desenvolvimento tecnológico."
+}
 }

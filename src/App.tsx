@@ -6,8 +6,9 @@ import News from "./components/News";
 import EventsPublications from "./components/EventsPublications";
 import About from "./components/About";
 import Research from "./components/Research";
+import Projects from "./components/Projects"; // ✅ agora vem antes de Team
 import Team from "./components/Team";
-import Partners from "./components/Partners";
+import Partnerships from "./components/Partnerships";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import { useScrollSpy } from "./hooks/useScrollSpy";
@@ -19,8 +20,9 @@ function App() {
     "events-publications",
     "about",
     "research",
+    "projects", // ✅ movido logo após research
     "team",
-    "partners",
+    "partnerships",
     "contact",
   ];
   const activeSection = useScrollSpy(sectionIds);
@@ -46,13 +48,13 @@ function App() {
         <EventsPublications />
         <About />
         <Research />
+        <Projects /> {/* ✅ agora aparece logo após Research */}
         <Team />
-        <Partners />
+        <Partnerships />
         <Contact />
       </main>
 
       <Footer />
-
 
       {/* Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0">
