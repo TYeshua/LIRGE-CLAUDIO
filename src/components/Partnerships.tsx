@@ -3,16 +3,23 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 const logos = [
-  `${import.meta.env.BASE_URL}public/images/parceiros/geowellex.png`,
-  `${import.meta.env.BASE_URL}public/images/parceiros/petrobras.png`,
-  `${import.meta.env.BASE_URL}public/images/parceiros/Petroreconcavo.png`,
-  `${import.meta.env.BASE_URL}public/images/parceiros/DAP_UFPA.jpg`,
-  `${import.meta.env.BASE_URL}public/images/parceiros/LEAR.png`,
-  `${import.meta.env.BASE_URL}public/images/parceiros/GSED.png`,
-  `${import.meta.env.BASE_URL}public/images/parceiros/LABCIM.png`,
-  `${import.meta.env.BASE_URL}public/images/parceiros/LASPORO.jpg`,
-  `${import.meta.env.BASE_URL}public/images/parceiros/LCM.png`,
-  `${import.meta.env.BASE_URL}public/images/parceiros/LPSA.jpg`,
+  `${import.meta.env.BASE_URL}images/geowellex.png`,
+  `${import.meta.env.BASE_URL}images/petrobras.png`,
+  `${import.meta.env.BASE_URL}images/Petroreconcavo.png`,
+  `${import.meta.env.BASE_URL}images/Anp.png`,
+  `${import.meta.env.BASE_URL}images/capes.png`,
+  `${import.meta.env.BASE_URL}images/fapespa.png`,
+  `${import.meta.env.BASE_URL}images/PPGG.png`,
+  `${import.meta.env.BASE_URL}images/PRH-15.png`,
+  `${import.meta.env.BASE_URL}images/propesq.png`,
+  `${import.meta.env.BASE_URL}images/ufpa.png`,
+  `${import.meta.env.BASE_URL}images/DAP_UFPA.jpg`,
+  `${import.meta.env.BASE_URL}images/LEAR.png`,
+  `${import.meta.env.BASE_URL}images/GSED.png`,
+  `${import.meta.env.BASE_URL}images/LABCIM.png`,
+  `${import.meta.env.BASE_URL}images/LASPORO.jpg`,
+  `${import.meta.env.BASE_URL}images/LCM.png`,
+  `${import.meta.env.BASE_URL}images/LPSA.jpg`,
 
 ];
 

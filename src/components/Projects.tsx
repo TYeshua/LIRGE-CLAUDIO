@@ -19,19 +19,19 @@ const Projects: React.FC = () => {
       id: 1,
       icon: Award,
       image: `${import.meta.env.BASE_URL}images/projeto1.jpg`,
-      sponsorLogo: `${import.meta.env.BASE_URL}public/images/parceiros/geowellex.png`,
+      sponsorLogo: `${import.meta.env.BASE_URL}images/geowellex.png`,
     },
     {
       id: 2,
       icon: Users,
       image: `${import.meta.env.BASE_URL}images/projeto2.jpg`,
-      sponsorLogo: `${import.meta.env.BASE_URL}public/images/parceiros/petrobras.png`,
+      sponsorLogo: `${import.meta.env.BASE_URL}images/petrobras.png`,
     },
     {
       id: 3,
       icon: Award,
       image: `${import.meta.env.BASE_URL}images/projeto3.jpg`,
-      sponsorLogo: `${import.meta.env.BASE_URL}public/images/parceiros/Petroreconcavo.png`,
+      sponsorLogo: `${import.meta.env.BASE_URL}images/Petroreconcavo.png`,
     },
   ];
 
