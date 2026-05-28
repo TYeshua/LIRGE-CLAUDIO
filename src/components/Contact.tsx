@@ -6,8 +6,6 @@ import {
   Phone,
   Mail as MailIcon,
   Clock,
-  ExternalLink,
-  Building,
   LucideIcon,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -15,11 +13,6 @@ import { useTranslation } from "react-i18next";
 interface ContactItem {
   title: string;
   content: string;
-}
-
-interface LinkItem {
-  title: string;
-  url: string;
 }
 
 const iconMapping: Record<number, LucideIcon> = {
@@ -48,17 +41,13 @@ const Contact: React.FC = () => {
     returnObjects: true,
   }) as ContactItem[];
 
-  const links = t("contact.links", {
-    returnObjects: true,
-  }) as LinkItem[];
-
   return (
     <section
       id="contact"
       className="py-20 lg:py-32 relative bg-cyan-50 dark:bg-lirge-darker transition-colors duration-300"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div ref={ref} className="max-w-6xl mx-auto">
+        <div ref={ref} className="max-w-3xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-[#04363e] dark:text-white">
@@ -70,10 +59,10 @@ const Contact: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="space-y-12">
             {/* Contact Information */}
-            <div className="space-y-8">
-              <h3 className="text-2xl font-bold text-[#04363e] dark:text-white mb-8">
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-[#04363e] dark:text-white mb-8 text-center">
                 {t("contact.infoTitle")}
               </h3>
 
@@ -91,7 +80,7 @@ const Contact: React.FC = () => {
                   >
                     <div
                       className="
-                        flex items-start space-x-4 p-6 bg-gradient-to-br
+                        flex items-start space-x-4 p-6 rounded-xl bg-gradient-to-br
                         from-[#7bc3cf] to-[#7bc3cf] border border-[#81D4FA]
                         dark:bg-gradient-to-br dark:from-lirge-teal/20
                         dark:to-lirge-cyan/20 dark:border-lirge-cyan/20
@@ -125,55 +114,12 @@ const Contact: React.FC = () => {
               })}
             </div>
 
-            {/* Links and Map */}
-            <div className="space-y-8">
-              <h3 className="text-2xl font-bold text-[#04363e] dark:text-white mb-8">
-                {t("contact.linksTitle")}
-              </h3>
-
-              <div className="space-y-4">
-                {links.map((link, idx) => (
-                  <a
-                    key={idx}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block"
-                  >
-                    <div
-                      className="
-                        flex items-center justify-between p-4
-                        bg-gradient-to-br from-[#7bc3cf] to-[#7bc3cf]
-                        border border-[#81D4FA]
-                        dark:bg-gradient-to-br dark:from-lirge-teal/20
-                        dark:to-lirge-cyan/20 dark:border-lirge-cyan/20
-                        transition-all duration-300
-                      "
-                    >
-                      <div className="flex items-center space-x-3">
-                        <Building
-                          className="text-cyan-700 dark:text-lirge-cyan"
-                          size={20}
-                        />
-                        <span className="text-[#04363e] dark:text-white">
-                          {link.title}
-                        </span>
-                      </div>
-                      <ExternalLink
-                        className="text-cyan-700 dark:text-gray-400"
-                        size={16}
-                      />
-                    </div>
-                  </a>
-                ))}
-              </div>
-
-              {/* Map */}
+            {/* Map */}
+            <div className="flex flex-col justify-start">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : {}}
                 transition={{ duration: 0.6 }}
-                className="mt-8"
               >
                 <div
                   className="
@@ -183,7 +129,7 @@ const Contact: React.FC = () => {
                     overflow-hidden
                   "
                 >
-                  <div className="h-64 relative">
+                  <div className="h-72 relative">
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.999682634279!2d-47.3418561!3d-0.6310413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a8991aa9bcb021%3A0x9d2277db2e684e09!2sUniversidade%20Federal%20do%20Par%C3%A1%20-%20Campus%20Salin%C3%B3polis!5e0!3m2!1spt-BR!2sbr!4v1713200000000!5m2!1spt-BR!2sbr"
                       width="100%"

@@ -8,7 +8,8 @@
     "team": "Equipe",
     "projects": "Projetos",
     "contact": "Contato",
-    "partnerships": "Parcerias"
+    "partnerships": "Parcerias",
+    "institutionalLinks": "Links Institucionais"
   },
   "theme": {
     "light": "Tema Claro",
@@ -91,9 +92,10 @@
     "title": "Sobre o",
     "highlight": "LIRGE",
     "paragraphs": [
-      "O Laboratório de Pesquisa Integrada em Geoenergia (LIRGE) é um centro de excelência vinculado à Universidade Federal do Pará (UFPA), dedicado ao desenvolvimento de pesquisas inovadoras na interseção entre geociências e energia.",
-      "Nossa missão é contribuir para o avanço do conhecimento científico e tecnológico no setor energético, promovendo soluções sustentáveis e formando profissionais altamente qualificados para enfrentar os desafios contemporâneos da geoenergia.",
-      "Com uma abordagem multidisciplinar, o LIRGE desenvolve projetos que abrangem desde pesquisas básicas até aplicações práticas, sempre alinhado com os mais altos padrões de qualidade acadêmica e relevância social."
+      "O Laboratório de Pesquisa Integrada em Geoenergia (LIRGE), vinculado à Universidade Federal do Pará, é um centro de excelência dedicado ao desenvolvimento de pesquisas inovadoras nas áreas de geociências, energia e sustentabilidade.",
+      "Com atuação multidisciplinar, o laboratório desenvolve estudos que integram pesquisa científica, desenvolvimento tecnológico e aplicações industriais, contribuindo para o avanço do conhecimento e para a busca de soluções estratégicas no setor energético.",
+      "O LIRGE tem como compromisso promover inovação, excelência acadêmica e impacto social, além de formar profissionais altamente qualificados para os desafios contemporâneos da geoenergia.",
+      "O laboratório também é uma unidade credenciada pela Agência Nacional do Petróleo, Gás Natural e Biocombustíveis (ANP), fortalecendo sua atuação em projetos de pesquisa, desenvolvimento e inovação voltados à indústria de petróleo, gás natural e energias associadas."
     ],
     "imageAlt": "Pesquisa em Geoenergia",
     "features": {
@@ -191,6 +193,7 @@
       {
         "name": "Paloma Andrade Rebouças",
         "role": "Bolsista IC",
+        "sponsor": "Petrobras",
         "area": "Análise Petrofísica e CCUS",
         "email": "paloma.reboucas@salinopolis.ufpa.br",
         "image": "images/paloma.jpg",
@@ -199,6 +202,7 @@
       {
         "name": "João Victor da Silva Fonseca",
         "role": "Bolsista IC",
+        "sponsor": "Petrobras",
         "area": "Análise Petrofísica e CCUS",
         "email": "joao.fonseca@salinopolis.ufpa.br",
         "image": "images/vitor.jpg",
@@ -207,14 +211,16 @@
       {
         "name": "Pedro Pantoja dos Santos",
         "role": "Bolsista IC",
+        "sponsor": "Petrobras",
         "area": "Análise Petrofísica e CCUS",
-        "email": "natalino.souza@salinopolis.ufpa.br",
+        "email": "pedro.pantoja@salinopolis.ufpa.br",
         "image": "images/pantoja.jpg",
         "linkedin": "https://www.linkedin.com/in/pedro-pantoja-1aa566326"
       },
       {
         "name": "Natalino da Silva Souza",
         "role": "Bolsista IC",
+        "sponsor": "Petrobras",
         "area": "Análise Petrofísica e CCUS",
         "email": "natalino.souza@salinopolis.ufpa.br",
         "image": "images/natalino.jpg",
@@ -223,6 +229,7 @@
       {
         "name": "Yasmin Yukari Ferreira Ishii",
         "role": "Bolsista IC",
+        "sponsor": "PRH ANP-UFPA",
         "area": "Introdução a Simulação Computacional",
         "email": "yasmin.ishii@salinopolis.ufpa.br",
         "image": "images/yasmin.jpg",
@@ -231,6 +238,7 @@
       {
         "name": "Nathalya de Fátima de Lima do Vale",
         "role": "Bolsista IC",
+        "sponsor": "PRH ANP-UFPA",
         "area": "Introdução a Propriedades Petrofísicas",
         "email": "nathalya.vale@salinopolis.ufpa.br",
         "image": "images/nath.jpg",
@@ -239,6 +247,7 @@
       {
         "name": "Sophia Macedo Pereira",
         "role": "Bolsista IC",
+        "sponsor": "Petrobras",
         "area": "Análise Petrofísica e CCUS",
         "email": "sophia.pereira@salinopolis.ufpa.br",
         "image": "images/sophia.jpg",
@@ -247,6 +256,7 @@
       {
         "name": "Eliel Silva da Cruz",
         "role": "Bolsista IC",
+        "sponsor": "Petrobras",
         "area": "Avaliação de Formações",
         "email": "eliel.cruz@salinopolis.ufpa.br",
         "image": "images/eliel.jpg",
@@ -342,5 +352,10 @@
   "title": "Nossas",
   "highlight": "Parcerias",
   "subtitle": "Empresas que apoiam e colaboram com o LIRGE em iniciativas de pesquisa, inovação e desenvolvimento tecnológico."
-}
+},
+  "institutionalLinks": {
+    "title": "Links",
+    "highlight": "Institucionais",
+    "subtitle": "Acesse os principais portais e instituições parceiras do LIRGE."
+  }
 }

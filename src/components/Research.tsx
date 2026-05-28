@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronLeft,
@@ -51,6 +51,13 @@ const Research: React.FC = () => {
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + researchAreas.length) % researchAreas.length);
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % researchAreas.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [researchAreas.length]);
 
   const currentId = String(researchAreas[currentSlide].id);
   const features = t(`researchList.${currentId}.features`, {

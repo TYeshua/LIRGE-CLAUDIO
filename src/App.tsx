@@ -2,28 +2,24 @@ import React from "react";
 import { motion } from "framer-motion";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import News from "./components/News";
-import EventsPublications from "./components/EventsPublications";
 import About from "./components/About";
 import Research from "./components/Research";
-import Projects from "./components/Projects"; // ✅ agora vem antes de Team
 import Team from "./components/Team";
 import Partnerships from "./components/Partnerships";
 import Contact from "./components/Contact";
+import InstitutionalLinks from "./components/InstitutionalLinks";
 import Footer from "./components/Footer";
 import { useScrollSpy } from "./hooks/useScrollSpy";
 
 function App() {
   const sectionIds = [
     "home",
-    "news",
-    "events-publications",
     "about",
     "research",
-    "projects", // ✅ movido logo após research
     "team",
     "partnerships",
     "contact",
+    "institutional-links",
   ];
   const activeSection = useScrollSpy(sectionIds);
 
@@ -44,14 +40,12 @@ function App() {
 
       <main>
         <Hero onNavigate={scrollToSection} />
-        <News />
-        <EventsPublications />
         <About />
         <Research />
-        <Projects /> {/* ✅ agora aparece logo após Research */}
         <Team />
         <Partnerships />
         <Contact />
+        <InstitutionalLinks />
       </main>
 
       <Footer />

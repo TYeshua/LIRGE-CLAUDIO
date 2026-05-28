@@ -17,14 +17,12 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
 
   const menuItems = [
     { id: "home", label: t("menu.home") },
-    { id: "news", label: t("menu.news") },
-    { id: "events-publications", label: t("menu.eventsPublications") },
     { id: "about", label: t("menu.about") },
     { id: "research", label: t("menu.research") },
-    { id: "projects", label: t("menu.projects") },
     { id: "team", label: t("menu.team") },
     { id: "partnerships", label: t("menu.partnerships") },
     { id: "contact", label: t("menu.contact") },
+    { id: "institutional-links", label: t("menu.institutionalLinks") },
   ];
 
   useEffect(() => {
