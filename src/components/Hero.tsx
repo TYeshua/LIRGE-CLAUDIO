@@ -91,12 +91,6 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             >
               <span className="flex items-center space-x-2">
                 <span>{t('hero.cta')}</span>
-                <motion.div
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  <ChevronDown size={20} className="transform -rotate-90" />
-                </motion.div>
               </span>
             </button>
           </motion.div>
