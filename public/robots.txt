@@ -1,0 +1,56 @@
+# robots.txt - LIRGE | Laboratório de Pesquisa Integrada em Geoenergia | UFPA
+# https://lirge.ufpa.br/
+
+# ============================================================
+# Permissões para todos os robôs de busca
+# ============================================================
+User-agent: *
+Allow: /
+
+# Bloquear arquivos e pastas de build/desenvolvimento
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.bolt/
+
+# ============================================================
+# Configurações específicas por robô
+# ============================================================
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Google Imagens
+User-agent: Googlebot-Image
+Allow: /images/
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# Yahoo
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 5
+
+# Yandex
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 3
+
+# ============================================================
+# Sitemap
+# ============================================================
+Sitemap: https://lirge.ufpa.br/sitemap.xml

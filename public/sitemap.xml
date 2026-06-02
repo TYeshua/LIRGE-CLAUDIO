@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!--
+    Sitemap - LIRGE | Laboratório de Pesquisa Integrada em Geoenergia | UFPA
+    Gerado em: 2025-06-02
+    Site: https://lirge.ufpa.br
+  -->
+
+  <!-- Página Principal -->
+  <url>
+    <loc>https://lirge.ufpa.br/</loc>
+    <lastmod>2025-06-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://lirge.ufpa.br/"/>
+  </url>
+
+  <!-- Seção: Início (Hero) -->
+  <url>
+    <loc>https://lirge.ufpa.br/#home</loc>
+    <lastmod>2025-06-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Seção: Notícias -->
+  <url>
+    <loc>https://lirge.ufpa.br/#news</loc>
+    <lastmod>2025-06-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Seção: Eventos e Publicações -->
+  <url>
+    <loc>https://lirge.ufpa.br/#events</loc>
+    <lastmod>2025-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Seção: Sobre o LIRGE -->
+  <url>
+    <loc>https://lirge.ufpa.br/#about</loc>
+    <lastmod>2025-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Seção: Áreas de Pesquisa -->
+  <url>
+    <loc>https://lirge.ufpa.br/#research</loc>
+    <lastmod>2025-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Seção: Projetos em Destaque -->
+  <url>
+    <loc>https://lirge.ufpa.br/#projects</loc>
+    <lastmod>2025-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Seção: Equipe -->
+  <url>
+    <loc>https://lirge.ufpa.br/#team</loc>
+    <lastmod>2025-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Seção: Parcerias -->
+  <url>
+    <loc>https://lirge.ufpa.br/#partnerships</loc>
+    <lastmod>2025-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Seção: Contato -->
+  <url>
+    <loc>https://lirge.ufpa.br/#contact</loc>
+    <lastmod>2025-06-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Seção: Links Institucionais -->
+  <url>
+    <loc>https://lirge.ufpa.br/#institutional-links</loc>
+    <lastmod>2025-06-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>
