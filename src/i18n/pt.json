@@ -92,10 +92,8 @@
     "title": "Sobre o",
     "highlight": "LIRGE",
     "paragraphs": [
-      "O Laboratório de Pesquisa Integrada em Geoenergia (LIRGE), vinculado à Universidade Federal do Pará, é um centro de excelência dedicado ao desenvolvimento de pesquisas inovadoras nas áreas de geociências, energia e sustentabilidade.",
-      "Com atuação multidisciplinar, o laboratório desenvolve estudos que integram pesquisa científica, desenvolvimento tecnológico e aplicações industriais, contribuindo para o avanço do conhecimento e para a busca de soluções estratégicas no setor energético.",
-      "O LIRGE tem como compromisso promover inovação, excelência acadêmica e impacto social, além de formar profissionais altamente qualificados para os desafios contemporâneos da geoenergia.",
-      "O laboratório também é uma unidade credenciada pela Agência Nacional do Petróleo, Gás Natural e Biocombustíveis (ANP), fortalecendo sua atuação em projetos de pesquisa, desenvolvimento e inovação voltados à indústria de petróleo, gás natural e energias associadas."
+      "O Laboratório de Pesquisa Integrada em Geoenergia (LIRGE), vinculado à Universidade Federal do Pará (UFPA), realiza atividades de pesquisa, desenvolvimento tecnológico e formação de recursos humanos nas áreas de geociências, energia e sustentabilidade.",
+      "Suas atividades envolvem estudos relacionados à geoenergia, integrando abordagens experimentais, computacionais e de campo. O laboratório também desenvolve projetos em parceria com instituições de pesquisa, universidades e empresas do setor energético."
     ],
     "imageAlt": "Pesquisa em Geoenergia",
     "features": {
@@ -116,7 +114,7 @@
   "research": {
     "title": "Áreas de",
     "highlight": "Pesquisa",
-    "subtitle": "Nossos projetos de pesquisa abrangem diversas áreas estratégicas da geoenergia, sempre focando na inovação e sustentabilidade.",
+    "subtitle": "Nossos projetos de pesquisa abrangem diversas áreas estratégicas da geoenergia.",
     "featuresLabel": "Principais Focos:"
   },
   "researchList": {
@@ -144,7 +142,7 @@
   "team": {
     "title": "Nossa",
     "highlight": "Equipe",
-    "subtitle": "Conheça os pesquisadores e bolsistas que fazem do LIRGE um centro de excelência em pesquisa e inovação.",
+    "subtitle": "Conheça os pesquisadores e bolsistas que fazem do LIRGE.",
     "coordination": "Coordenação",
     "researchers": "Pesquisadores e Bolsistas",
     "coordinators": [
@@ -351,7 +349,7 @@
   "partnerships": {
   "title": "Nossas",
   "highlight": "Parcerias",
-  "subtitle": "Empresas que apoiam e colaboram com o LIRGE em iniciativas de pesquisa, inovação e desenvolvimento tecnológico."
+  "subtitle": "Instituições que apoiam e colaboram com o LIRGE em iniciativas de PD&I."
 },
   "institutionalLinks": {
     "title": "Links",
