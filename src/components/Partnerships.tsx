@@ -1,99 +1,74 @@
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { partners } from "../data/partners";
+import Reveal from "./Reveal";
 
-const logos = [
-  `${import.meta.env.BASE_URL}images/geowellex.png`,
-  `${import.meta.env.BASE_URL}images/petrobras.png`,
-  `${import.meta.env.BASE_URL}images/Petroreconcavo.png`,
-  `${import.meta.env.BASE_URL}images/Anp.png`,
-  `${import.meta.env.BASE_URL}images/capes.png`,
-  `${import.meta.env.BASE_URL}images/fapespa.png`,
-  `${import.meta.env.BASE_URL}images/PPGG.png`,
-  `${import.meta.env.BASE_URL}images/PRH-15.png`,
-  `${import.meta.env.BASE_URL}images/propesq.png`,
-  `${import.meta.env.BASE_URL}images/ufpa.png`,
-  `${import.meta.env.BASE_URL}images/DAP_UFPA.jpg`,
-  `${import.meta.env.BASE_URL}images/LEAR.png`,
-  `${import.meta.env.BASE_URL}images/GSED.png`,
-  `${import.meta.env.BASE_URL}images/LABCIM.png`,
-  `${import.meta.env.BASE_URL}images/LASPORO.jpg`,
-  `${import.meta.env.BASE_URL}images/LCM.png`,
-  `${import.meta.env.BASE_URL}images/LPSA.jpg`,
+interface PartnershipsProps {
+  onNavigate: (section: string) => void;
+}
 
-];
-
-const Partnerships: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(3);
+const Partnerships: React.FC<PartnershipsProps> = ({ onNavigate }) => {
   const { t } = useTranslation();
 
-  // Responsividade: 2 logos no mobile, 3 no desktop
-  useEffect(() => {
-    const updateVisibleCount = () => {
-      setVisibleCount(window.innerWidth < 768 ? 2 : 3);
-    };
-    updateVisibleCount();
-    window.addEventListener("resize", updateVisibleCount);
-    return () => window.removeEventListener("resize", updateVisibleCount);
-  }, []);
-
-  // Rolagem automática
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + visibleCount) % logos.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [visibleCount]);
-
-  const visibleLogos = logos.slice(currentIndex, currentIndex + visibleCount);
-  if (visibleLogos.length < visibleCount) {
-    visibleLogos.push(...logos.slice(0, visibleCount - visibleLogos.length));
-  }
-
   return (
-    <section
-      id="partnerships"
-      className="py-20 lg:py-28 bg-cyan-50 dark:bg-lirge-darker transition-colors duration-300"
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-5xl font-bold text-[#04363e] dark:text-white">
-            {t("partnerships.title")}{" "}
-            <span className="text-lirge-cyan">{t("partnerships.highlight")}</span>
-          </h2>
-          <div className="w-24 h-1 bg-lirge-cyan mx-auto mt-4" />
-          <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto mt-6">
-            {t("partnerships.subtitle")}
-          </p>
-        </div>
+    <section id="partnerships" aria-labelledby="partnerships-title" className="section">
+      <div className="page">
+        <ul className="grid grid-cols-3 gap-1.5 sm:gap-2 md:grid-cols-4 xl:grid-cols-6">
+          <Reveal
+            as="li"
+            className="on-field col-span-3 flex flex-col md:col-span-2 justify-between gap-6 bg-field p-[clamp(1.5rem,2.5vw,2.25rem)] text-on-field md:row-span-2"
+          >
+            <h2 id="partnerships-title" className="font-display text-head font-bold text-on-field">
+              {t("partnerships.heading")}
+            </h2>
+            <p className="max-w-[26rem] text-body text-on-field">{t("partnerships.subtitle")}</p>
+          </Reveal>
 
-        <div className="overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentIndex}
-              initial={{ x: 100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -100, opacity: 0 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="grid grid-cols-2 md:grid-cols-3 gap-8 items-center justify-center"
+          {partners.map((partner, i) => (
+            <Reveal
+              as="li"
+              key={partner.name}
+              order={(i % 6) * 0.6}
+              className={`tile-hover flex aspect-[3/2] flex-col items-center justify-center bg-tile p-2 sm:p-4 ${
+                partner.caption ? "gap-1.5 sm:gap-2" : ""
+              }`}
             >
-              {visibleLogos.map((logo, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-center justify-center h-32 sm:h-36 lg:h-40 bg-white dark:bg-white 
-                            rounded-xl shadow-md p-4 border-[3px] border-[#81D4FA] dark:border-lirge-cyan"
-                >
-                  <img
-                    src={logo}
-                    alt={`Logo ${idx + 1}`}
-                    className="max-h-full max-w-full object-contain opacity-90"
-                  />
-                </div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
-        </div>
+              <img
+                src={partner.logo}
+                alt={partner.caption ? "" : partner.name}
+                title={partner.name}
+                loading="lazy"
+                className={`object-contain mix-blend-multiply ${
+                  partner.caption ? "max-h-[46%] max-w-[60%]" : "max-h-[62%] max-w-[78%]"
+                }`}
+              />
+              {partner.caption && (
+                <span className="max-w-[16ch] text-center text-[0.6875rem] font-bold leading-tight text-[#c46a1b] sm:text-small">
+                  {partner.caption}
+                </span>
+              )}
+            </Reveal>
+          ))}
+
+          {/* convite: no celular ocupa a vaga da última linha; nas telas maiores vira uma faixa */}
+          <Reveal as="li" className="col-span-1 aspect-[3/2] md:col-span-4 md:aspect-auto xl:col-span-6">
+            <button
+              type="button"
+              onClick={() => onNavigate("contact")}
+              className="btn-fill group flex h-full w-full flex-col justify-between gap-2 bg-sand p-3 text-left text-[#1b1307] sm:p-5 md:flex-row md:items-center md:px-8 md:py-6"
+            >
+              <span className="font-display text-[0.875rem] font-bold leading-snug sm:text-body md:text-lead">
+                <span className="md:hidden">{t("partnerships.ctaShort")}</span>
+                <span className="hidden md:inline">{t("partnerships.ctaTitle")}</span>
+              </span>
+              <span className="inline-flex items-center gap-2 text-small font-semibold">
+                <span className="hidden md:inline">{t("partnerships.ctaLink")}</span>
+                <ArrowRight size={16} className="transition-transform duration-500 ease-out group-hover:translate-x-1.5" />
+              </span>
+            </button>
+          </Reveal>
+        </ul>
       </div>
     </section>
   );

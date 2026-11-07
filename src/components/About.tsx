@@ -1,111 +1,97 @@
-import React from "react";
-import { Target, Rocket, Eye, Zap, LucideIcon } from "lucide-react";
+import React, { lazy, Suspense } from "react";
+import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import Reveal from "./Reveal";
+
+const GlobeVisual = lazy(() => import("./visuals/GlobeVisual"));
 
 type FeatureKey = "objective" | "mission" | "vision";
+const featureKeys: FeatureKey[] = ["objective", "mission", "vision"];
 
-interface FeatureConfig {
-  key: FeatureKey;
-  icon: LucideIcon;
+interface AboutBlock {
+  title: string;
+  text: string;
 }
 
-const featureConfigs: FeatureConfig[] = [
-  { key: "objective", icon: Target },
-  { key: "mission", icon: Rocket },
-  { key: "vision", icon: Eye },
-];
+interface AboutProps {
+  onNavigate: (section: string) => void;
+}
 
-const About: React.FC = () => {
+const About: React.FC<AboutProps> = ({ onNavigate }) => {
   const { t } = useTranslation();
-
-  // paragrafos estáticos
-  const paragraphs = t("about.paragraphs", { returnObjects: true }) as string[];
+  const blocks = t("about.blocks", { returnObjects: true }) as AboutBlock[];
 
   return (
-    <section
-      id="about"
-      className="py-20 lg:py-32 relative bg-cyan-50 dark:bg-lirge-darker transition-colors duration-300"
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-[#04363e] dark:text-white">
-              {t("about.title")}{" "}
-              <span className="text-lirge-cyan">{t("about.highlight")}</span>
-            </h2>
-            <div className="w-24 h-1 bg-lirge-cyan mx-auto mb-8" />
+    <section id="about" aria-labelledby="about-title" className="section">
+      <div className="page">
+        <div className="on-field relative grid overflow-hidden bg-field px-[clamp(1.5rem,4.5vw,4rem)] pt-[clamp(2.5rem,5vw,4.5rem)] text-on-field grid-cols-1 lg:grid-cols-12 lg:gap-x-8">
+          <div className="lg:col-span-6 lg:col-start-1 lg:row-start-1">
+            <Reveal>
+              <h2 id="about-title" className="font-display text-head font-bold text-on-field">
+                {t("about.heading")}
+              </h2>
+            </Reveal>
           </div>
 
-          {/* Main Content */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
-            {/* Text */}
-            <div className="space-y-6">
-              {paragraphs.map((text, idx) => (
-                <p
-                  key={idx}
-                  className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed text-justify"
-                >
-                  {text}
-                </p>
-              ))}
-            </div>
-
-            {/* Image */}
-            <div className="relative">
-              <div
-                className="
-                  rounded-2xl p-8 border
-                  bg-gradient-to-br from-[#7bc3cf] to-[#7bc3cf] border-[#81D4FA]
-                  dark:bg-gradient-to-br dark:from-lirge-teal/20 dark:to-lirge-cyan/20 dark:border-lirge-cyan/20
-                  transition-colors duration-300
-                "
-              >
-                <img
-                  src={`${import.meta.env.BASE_URL}images/sobrefoto.jpg`}
-                  alt={t("about.imageAlt")}
-                  loading="lazy"
-                  className="w-full h-full lg:h-80 object-cover rounded-xl"
-                />
-                <div
-                  className="
-                    absolute -top-4 -right-4 w-16 h-16 rounded-full flex items-center justify-center
-                    bg-[#04363e] border-2 border-cyan-700
-                    dark:bg-lirge-darker/80 dark:border-lirge-cyan
-                    transition-colors duration-300
-                  "
-                >
-                  <Zap className="text-cyan-50 dark:text-lirge-cyan" size={24} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Features Grid */}
-          <div className="flex flex-wrap justify-center gap-8">
-            {featureConfigs.map(({ key, icon: Icon }) => (
-              <div key={key} className="group w-full sm:w-[300px] max-w-sm">
-                <div
-                  className="
-                    h-full flex flex-col justify-between rounded-xl p-6 border
-                    bg-gradient-to-br from-[#7bc3cf] to-[#7bc3cf] border-[#81D4FA]
-                    dark:bg-gradient-to-br dark:from-lirge-teal/20 dark:to-lirge-cyan/20 dark:border-lirge-cyan/20
-                    transition-colors duration-300
-                  "
-                >
-                  <div className="w-12 h-12 bg-[#04363e] dark:bg-gradient-to-br dark:from-lirge-teal/20 dark:to-lirge-cyan/20 rounded-lg flex items-center justify-center mb-4">
-                    <Icon className="text-cyan-50 dark:text-white" size={24} />
-                  </div>
-                  <h3 className="text-xl font-semibold text-[#04363e] dark:text-white mb-3 text-center">
-                    {t(`about.features.${key}.title`)}
-                  </h3>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed text-justify">
-                    {t(`about.features.${key}.description`)}
-                  </p>
-                </div>
-              </div>
+          <div className="mt-10 space-y-10 lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1 lg:mt-2 lg:pb-16">
+            {blocks.map((block, i) => (
+              <Reveal key={block.title} order={i + 1}>
+                <h3 className="font-display text-lead font-semibold text-on-field">{block.title}</h3>
+                <p className="mt-3 text-body text-on-field">{block.text}</p>
+              </Reveal>
             ))}
+            <Reveal order={3}>
+              <button
+                type="button"
+                onClick={() => onNavigate("team")}
+                className="btn-fill group inline-flex items-center gap-2.5 rounded-full bg-sand px-7 py-3.5 font-semibold text-[#1b1307]"
+              >
+                {t("about.cta")}
+                <ArrowRight size={18} className="transition-transform duration-500 ease-out group-hover:translate-x-1.5" />
+              </button>
+            </Reveal>
           </div>
+
+          {/* Globo 3D com Salinópolis, cortado pela base do painel */}
+          <Reveal
+            order={2}
+            className="mx-auto mt-14 w-[86%] max-w-[34rem] lg:col-span-6 lg:col-start-1 lg:row-start-2 lg:mx-0 lg:mt-16 lg:w-[88%] lg:self-end"
+          >
+            <div className="relative -mb-[22%] aspect-square overflow-hidden rounded-full bg-field-deep">
+              <Suspense fallback={null}>
+                <GlobeVisual
+                  fallback={
+                    <img
+                      src={`${import.meta.env.BASE_URL}images/web/sobrefoto.webp`}
+                      alt={t("about.imageAlt")}
+                      width={1000}
+                      height={661}
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
+                  }
+                />
+              </Suspense>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Objetivo, missão e visão */}
+        <div className="mt-[clamp(4rem,8vw,7rem)] grid grid-cols-1 gap-y-10 lg:grid-cols-12 lg:gap-x-8">
+          <Reveal className="lg:col-span-4">
+            <h3 className="max-w-[14ch] font-display text-lead font-bold text-ink">{t("about.pillarsTitle")}</h3>
+          </Reveal>
+          <dl className="space-y-12 lg:col-span-8">
+            {featureKeys.map((key, i) => (
+              <Reveal key={key} order={i + 1} className="grid gap-3 sm:grid-cols-[11rem_1fr] sm:gap-8">
+                <dt className="flex items-baseline gap-3 font-display text-lead font-bold text-ink">
+                  <span aria-hidden className="h-2.5 w-2.5 shrink-0 translate-y-[-0.15em] rounded-full bg-sand" />
+                  {t(`about.features.${key}.title`)}
+                </dt>
+                <dd className="text-body text-ink">{t(`about.features.${key}.description`)}</dd>
+              </Reveal>
+            ))}
+          </dl>
         </div>
       </div>
     </section>

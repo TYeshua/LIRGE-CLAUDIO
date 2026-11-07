@@ -1,173 +1,166 @@
 import React from "react";
-import { motion } from "framer-motion";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  ExternalLink,
-  Instagram,
-  Linkedin as LinkedinIcon,
-} from "lucide-react";
+import { ArrowUp, Instagram, Linkedin, ShieldCheck } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import LirgeMark from "./LirgeMark";
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  onNavigate: (section: string) => void;
+}
+
+// Preencha com os endereços oficiais; links com "#" não são exibidos.
+const socialLinks = [
+  { Icon: Instagram, url: "#", label: "Instagram" },
+  { Icon: Linkedin, url: "#", label: "LinkedIn" },
+].filter((link) => link.url !== "#");
+
+// Sombra só numa sobreposição que flutua de fato
+const TOOLTIP_SHADOW = "shadow-xl"; // taste-skill-ignore
+
+const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const { t } = useTranslation();
 
-  const quickLinks = [
-    { title: "UFPA - Salinópolis Campus", url: "https://campussalinopolis.ufpa.br/" },
-    { title: "Instituto de Geociências", url: "https://www.ig.ufpa.br" },
-    {
-      title: "CNPq - National Council for Scientific and Technological Development",
-      url: "https://www.cnpq.br",
-    },
+  const navItems = [
+    { id: "about", label: t("menu.about") },
+    { id: "research", label: t("menu.research") },
+    { id: "team", label: t("menu.team") },
+    { id: "partnerships", label: t("menu.partnerships") },
+    { id: "contact", label: t("menu.contact") },
+    { id: "institutional-links", label: t("menu.institutionalLinks") },
   ];
 
-  const socialLinks = [
-    { Icon: Instagram, url: "#", label: "Instagram" },
-    { Icon: LinkedinIcon, url: "#", label: "LinkedIn" },
-  ];
+  const linkClass = "link-line text-body text-on-field hover:text-logo-glow";
 
   return (
-    <footer className="relative bg-cyan-50 border-t border-cyan-700 dark:bg-lirge-darker dark:border-lirge-cyan/20 transition-colors duration-300">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="py-12 grid md:grid-cols-3 gap-8">
-          {/* Logo & Contact */}
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
-            <div className="flex items-center space-x-3">
-              <img
-                src={`${import.meta.env.BASE_URL}images/logos2.png`}
-                alt="Logo LIRGE"
-                className="h-12 w-auto"
-              />
-            </div>
-            <p className="text-[#04363e] text-sm leading-relaxed max-w-sm dark:text-gray-300">
+    <footer className="on-field bg-field-deep text-on-field">
+      <div className="page pt-[clamp(4rem,8vw,7rem)]">
+        {/* A marca, construída em grande escala */}
+        <div className="flex items-end gap-[clamp(1rem,3vw,2.5rem)]" aria-hidden>
+          <LirgeMark className="w-[19%] shrink-0" />
+          <span className="block font-display text-[19.5vw] font-extrabold leading-[0.74] tracking-[-0.045em] text-on-field xl:text-[16.5rem]">
+            LIRGE
+          </span>
+        </div>
+
+        <div className="mt-[clamp(3rem,6vw,5rem)] grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-12">
+          <div className="sm:col-span-2 lg:col-span-5">
+            <p className="max-w-[24rem] font-display text-lead font-semibold text-on-field">
               {t("hero.subtitle")}
             </p>
-            <div className="space-y-3 text-sm text-[#04363e] dark:text-gray-300">
-              <div className="flex items-center space-x-3">
-                <Mail size={16} className="text-cyan-700" />
-                <span>lirge@ufpa.br</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone size={16} className="text-cyan-700" />
-                <span>+55 (84) 99898-8983</span>
-              </div>
-              <div className="flex items-start space-x-3">
-                <MapPin size={16} className="text-cyan-700 mt-0.5" />
-                <span className="leading-relaxed">
-                  Campus Universitário Salinópolis<br />
-                  Rua Raimundo Santana Cruz, s/n - Bairro São Tomé<br />
-                  Salinópolis - PA, 68721-000
-                </span>
-              </div>
-            </div>
-          </motion.div>
+            <p className="mt-3 text-body text-on-field-soft">{t("hero.university")}</p>
+          </div>
 
-          {/* Quick Links */}
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-6"
-          >
-            <h3 className="text-lg font-semibold text-[#04363e] dark:text-white">
-              {t("footer.quickLinks")}
-            </h3>
-            <div className="space-y-3">
-              {quickLinks.map((link) => (
-                <motion.a
-                  key={link.title}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ x: 5 }}
-                  className="flex items-center space-x-2 text-[#04363e] dark:text-gray-300 hover:text-cyan-700 dark:hover:text-lirge-cyan transition-colors duration-200 group"
-                >
-                  <ExternalLink
-                    size={14}
-                    className="opacity-0 group-hover:opacity-100 text-cyan-700 dark:text-lirge-cyan transition-opacity"
-                  />
-                  <span className="text-sm">{link.title}</span>
-                </motion.a>
+          <nav aria-label={t("footer.navigation")} className="lg:col-span-3">
+            <h3 className="text-small text-on-field-soft">{t("footer.navigation")}</h3>
+            <ul className="mt-4 space-y-2.5">
+              {navItems.map((item) => (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate(item.id);
+                    }}
+                    className={linkClass}
+                  >
+                    {item.label}
+                  </a>
+                </li>
               ))}
-            </div>
-          </motion.div>
+            </ul>
+          </nav>
 
-          {/* Social Media */}
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="space-y-6"
-          >
-            <h3 className="text-lg font-semibold text-[#04363e] dark:text-white">
-              {t("footer.social")}
-            </h3>
-            <div className="flex space-x-4">
-              {socialLinks.map(({ Icon, url, label }) => (
-                <motion.a
-                  key={label}
-                  href={url}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 bg-[#04363e] text-cyan-50 border border-cyan-700 rounded-full flex items-center justify-center dark:bg-gradient-to-br dark:from-lirge-cyan/20 dark:to-lirge-teal/20 dark:border-lirge-cyan/30 hover:border-cyan-700 dark:hover:border-lirge-cyan/60 transition-all duration-300"
-                  aria-label={label}
-                >
-                  <Icon size={18} />
-                </motion.a>
-              ))}
-            </div>
-            <p className="text-sm text-[#04363e] dark:text-gray-300">
-              {t("footer.follow")}
-            </p>
-          </motion.div>
+          <div className="lg:col-span-4">
+            <h3 className="text-small text-on-field-soft">{t("footer.contactTitle")}</h3>
+            <ul className="mt-4 space-y-2.5">
+              <li>
+                <a href="mailto:lirge.ufpa@gmail.com" className={linkClass}>
+                  lirge.ufpa@gmail.com
+                </a>
+              </li>
+              <li>
+                <a href="tel:+5584998988983" className={linkClass}>
+                  +55 (84) 99898-8983
+                </a>
+              </li>
+              <li className="text-body text-on-field">
+                Rua Raimundo Santana Cruz, s/n
+                <br />
+                Salinópolis – PA, 68721-000
+              </li>
+            </ul>
+            {socialLinks.length > 0 && (
+              <div className="mt-6 flex gap-2">
+                {socialLinks.map(({ Icon, url, label }) => (
+                  <a
+                    key={label}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="icon-btn inline-flex h-11 w-11 items-center justify-center rounded-full bg-on-field/10 text-on-field"
+                  >
+                    <Icon size={18} />
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
 
-      {/* Bottom Bar */}
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-        className="border-t border-cyan-700 dark:border-lirge-cyan/20 py-6 transition-colors duration-300"
-      >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-          <p className="text-sm text-[#04363e] dark:text-gray-400 text-center sm:text-left">
-            {t("footer.rights")}
-          </p>
-          <div className="flex items-center space-x-2 text-xs">
-            <span className="text-[#04363e] dark:text-gray-400">
-              {t("footer.developedBy")}
+        <div className="mt-[clamp(3.5rem,7vw,6rem)] flex flex-col gap-5 pb-10 text-small text-on-field-soft lg:flex-row lg:items-center lg:justify-between">
+          <p>{t("footer.rights", { year: new Date().getFullYear() })}</p>
+
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <span className="group relative inline-flex">
+              <button
+                type="button"
+                aria-describedby="secure-badge-tooltip"
+                className="inline-flex cursor-help items-center gap-1.5 text-on-field-soft transition-colors hover:text-logo-glow"
+              >
+                <ShieldCheck size={15} />
+                {t("footer.secure")}
+              </button>
+              <span
+                id="secure-badge-tooltip"
+                role="tooltip"
+                className={`pointer-events-none absolute bottom-full left-0 mb-3 w-72 bg-on-field px-4 py-3 text-small leading-relaxed text-field-deep translate-y-1 opacity-0 ${TOOLTIP_SHADOW} transition-[opacity,transform] duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100`}
+              >
+                {t("footer.secureDetail")}
+              </span>
             </span>
-            <span className="flex items-center space-x-2 text-cyan-700 dark:text-lirge-cyan">
+
+            <span>
+              {t("footer.developedBy")}{" "}
               <a
-                href="https://www.linkedin.com/in/thiagoyeshua"
+                href="https://tyeshua.github.io/DOF-Portifolio/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-1 hover:underline"
+                className="link-line text-on-field hover:text-logo-glow"
               >
-                <LinkedinIcon size={12} className="text-cyan-700 dark:text-lirge-cyan" />
-                <span>{t("footer.creators.thiago")}</span>
-              </a>
-              <span className="text-[#04363e] dark:text-gray-400">e</span>
+                {t("footer.creators.thiago")}
+              </a>{" "}
+              {t("footer.and")}{" "}
               <a
                 href="https://www.linkedin.com/in/josuedias"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-1 hover:underline"
+                className="link-line text-on-field hover:text-logo-glow"
               >
-                <LinkedinIcon size={12} className="text-cyan-700 dark:text-lirge-cyan" />
-                <span>{t("footer.creators.josue")}</span>
+                {t("footer.creators.josue")}
               </a>
             </span>
+
+            <button
+              type="button"
+              onClick={() => onNavigate("home")}
+              className="btn-fill group inline-flex items-center gap-2 rounded-full bg-on-field/10 px-4 py-2 font-semibold text-on-field"
+            >
+              <ArrowUp size={15} className="transition-transform duration-500 ease-out group-hover:-translate-y-1" />
+              {t("footer.toTop")}
+            </button>
           </div>
         </div>
-      </motion.div>
+      </div>
     </footer>
   );
 };

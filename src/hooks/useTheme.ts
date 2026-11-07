@@ -1,29 +1,24 @@
 import { useEffect, useState } from "react";
 
+type Theme = "light" | "dark";
+
+// O index.html já aplica a classe "dark" antes da primeira pintura;
+// o estado inicial parte dela para não haver troca de tema ao carregar.
+const initialTheme = (): Theme =>
+  typeof document !== "undefined" && document.documentElement.classList.contains("dark")
+    ? "dark"
+    : "light";
+
 export function useTheme() {
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [theme, setTheme] = useState<Theme>(initialTheme);
 
-  // Carrega o tema salvo ou detecta o padrão do SO
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-    } else {
-      // se não tiver salvo, segue o tema do sistema
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      setTheme(prefersDark ? "dark" : "light");
-    }
-  }, []);
-
-  // Aplica a classe "dark" no html
   useEffect(() => {
     const root = window.document.documentElement;
-    if (theme === "dark") {
-      root.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      root.classList.remove("dark");
-      localStorage.setItem("theme", "light");
+    root.classList.toggle("dark", theme === "dark");
+    try {
+      localStorage.setItem("theme", theme);
+    } catch {
+      /* armazenamento indisponível: o tema vale só para esta visita */
     }
   }, [theme]);
 

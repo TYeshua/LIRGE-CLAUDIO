@@ -1,117 +1,118 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import React, { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { partners } from "../data/partners";
 
 interface HeroProps {
   onNavigate: (section: string) => void;
 }
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+const SHUTTER = [0.76, 0, 0.24, 1] as const;
+
 const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   const { t } = useTranslation();
+  const reduce = useReducedMotion();
+  const globeRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: globeRef, offset: ["start end", "end start"] });
+  const photoY = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
+
+  // Números tirados do próprio conteúdo do site
+  const coordinators = t("team.coordinators", { returnObjects: true }) as unknown[];
+  const students = t("team.students", { returnObjects: true }) as unknown[];
+  const areas = Object.keys(t("researchList", { returnObjects: true }) as object).length;
+  const facts = [
+    { value: coordinators.length + students.length, label: t("hero.facts.people") },
+    { value: areas, label: t("hero.facts.areas") },
+    { value: partners.length, label: t("hero.facts.partners") },
+  ];
+
+  const rise = (order: number) => ({
+    initial: { opacity: 0, y: 28 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, ease: EASE, delay: 0.1 + order * 0.08 },
+  });
+
+  const base = import.meta.env.BASE_URL;
 
   return (
-    <section
-      id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-lirge-darker transition-colors duration-300"
-    >
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#E0F7FA] via-[#B2EBF2] to-[#E8F5E9] dark:from-lirge-darker dark:via-lirge-teal/20 dark:to-lirge-darker transition-colors duration-300" />
+    <section id="home" className="relative overflow-hidden pt-[4.5rem]">
+      <div className="page grid grid-cols-1 gap-x-8 pb-[clamp(2.5rem,4.5vw,4rem)] pt-[clamp(2rem,5vw,4.5rem)] lg:grid-cols-12">
+        <motion.h1 {...rise(0)} className="font-display text-display font-bold text-ink lg:col-span-12">
+          {t("hero.title")}
+        </motion.h1>
 
-      {/* Floating Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+        <motion.p {...rise(1)} className="mt-7 max-w-[44rem] text-lead text-ink lg:col-span-7 lg:mt-9">
+          {t("hero.lead")}
+        </motion.p>
+
         <motion.div
-          animate={{ x: [0, 100, 0], y: [0, -50, 0], rotate: [0, 180, 360] }}
-          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-          className="absolute top-1/4 left-1/4 w-24 h-24 rounded-full border-2 border-[#81D4FA] dark:border-lirge-cyan/20"
-        />
-        <motion.div
-          animate={{ x: [0, -80, 0], y: [0, 60, 0], rotate: [0, -180, -360] }}
-          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-          className="absolute bottom-1/4 right-1/4 w-20 h-20 rounded-full border-2 border-[#A5D6A7] dark:border-lirge-cyan/15"
-        />
+          {...rise(2)}
+          className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-4 lg:col-span-4 lg:col-start-9 lg:mt-0 lg:self-end lg:justify-end"
+        >
+          <button
+            type="button"
+            onClick={() => onNavigate("about")}
+            className="btn-fill group inline-flex items-center gap-2.5 rounded-full bg-sand px-7 py-3.5 font-semibold text-[#1b1307]"
+          >
+            {t("hero.cta")}
+            <ArrowRight size={18} className="transition-transform duration-500 ease-out group-hover:translate-x-1.5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => onNavigate("research")}
+            className="link-line is-static font-semibold text-ink hover:text-logo-deep dark:hover:text-logo-bright"
+          >
+            {t("hero.ctaSecondary")}
+          </button>
+        </motion.div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center">
-          {/* Logo Principal */}
+      {/* O globo: crescente em arenito sobre a foto da equipe */}
+      <div ref={globeRef} className="globe">
+        <motion.div
+          className="globe__layer globe__sand"
+          initial={reduce ? false : { opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: EASE, delay: 0.75 }}
+        />
+        <div className="globe__layer globe__gap" />
+        <div className="globe__layer globe__photo">
           <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-8"
+            className="absolute inset-0"
+            initial={reduce ? false : { clipPath: "inset(100% 0% 0% 0%)" }}
+            animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
+            transition={{ duration: 1.1, ease: SHUTTER, delay: 0.25 }}
           >
-            <img
-              src={`${import.meta.env.BASE_URL}images/logos2.png`}
-              alt="Logo LIRGE"
-              className="mx-auto h-24 lg:h-32 w-auto"
+            <motion.img
+              src={`${base}images/web/equipe-2400.webp`}
+              srcSet={`${base}images/web/equipe-1200.webp 1200w, ${base}images/web/equipe-2400.webp 2400w`}
+              sizes="100vw"
+              alt={t("hero.imageAlt")}
+              width={2400}
+              height={1350}
+              fetchPriority="high"
+              style={{ y: reduce ? 0 : photoY }}
+              initial={reduce ? false : { scale: 1.12 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1.6, ease: EASE, delay: 0.25 }}
+              className="absolute inset-x-0 -top-[7%] h-[114%] w-full object-cover object-[50%_68%]"
             />
           </motion.div>
-
-          {/* Título Principal */}
-          <motion.h1
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6"
-          >
-            <span className="text-gray-900 dark:text-white">LIR</span>
-            <span className="text-lirge-cyan">GE</span>
-          </motion.h1>
-
-          {/* Subtítulo */}
-          <motion.p
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg sm:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 mb-4 max-w-4xl mx-auto"
-          >
-            {t('hero.subtitle')}
-          </motion.p>
-
-          <motion.p
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-base sm:text-lg text-lirge-cyan mb-12 font-medium"
-          >
-            {t('hero.university')}
-          </motion.p>
-
-          {/* Call to Action */}
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
-            className="mb-16"
-          >
-            <button
-              onClick={() => onNavigate('about')}
-              className="group px-8 py-4 bg-gradient-to-r from-lirge-cyan to-lirge-teal text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-lirge-cyan/25 transition-all duration-300 transform hover:scale-105"
-            >
-              <span className="flex items-center space-x-2">
-                <span>{t('hero.cta')}</span>
-              </span>
-            </button>
-          </motion.div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.5 }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          >
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="cursor-pointer"
-              onClick={() => onNavigate('about')}
-            >
-              <ChevronDown size={24} className="text-lirge-cyan" />
-            </motion.div>
-          </motion.div>
         </div>
+      </div>
+
+      <div className="page grid grid-cols-1 gap-x-8 gap-y-8 pt-6 lg:grid-cols-12 lg:items-start">
+        <p className="text-small text-ink-soft lg:col-span-4">{t("hero.caption")}</p>
+        <dl className="grid grid-cols-3 gap-6 lg:col-span-6 lg:col-start-7">
+          {facts.map((fact) => (
+            <div key={fact.label} className="flex flex-col-reverse justify-end">
+              <dt className="mt-1 text-small text-ink-soft">{fact.label}</dt>
+              <dd className="font-display text-head font-bold tabular-nums text-ink">{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

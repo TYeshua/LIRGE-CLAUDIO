@@ -1,3 +1,448 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*
+ * Paleta LIRGE
+ * - petróleo profundo e azul luminoso: as duas cores da logo
+ * - arenito: terceira cor, tirada das camadas sedimentares (geologia),
+ *   usada com parcimônia em ações e no crescente do motivo
+ */
+@layer base {
+  :root {
+    --ground: 245 247 246;
+    --surface: 233 239 239;
+    --surface-2: 220 230 231;
+    --ink: 9 30 35;
+    --ink-soft: 70 92 97;
+    --brand: 0 94 112;
+    --brand-bright: 31 135 174;
+    --sand: 201 149 78;
+    --sand-ink: 133 88 26;
+    --field: 4 61 72;
+    --field-deep: 3 38 45;
+    --on-field: 236 244 244;
+    --on-field-soft: 172 199 203;
+    --on-field-accent: 108 200 224;
+    --tile: 255 255 255;
+
+    --mark-crescent: 31 135 174;
+    --mark-bands: 14 94 114;
+
+    /* Movimento: as duas cores da logo respondem a toda interação */
+    --logo-bright: 31 135 174; /* azul luminoso: linhas, anéis, pontos */
+    --logo-deep: 14 94 114;    /* petróleo profundo: preenchimentos com texto branco */
+    --logo-glow: 108 200 224;  /* azul claro para fundos escuros */
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+    --gutter: clamp(1rem, 4vw, 3.5rem);
+    --section: clamp(5rem, 9vw, 8.5rem);
+    --arc: clamp(3.5rem, 9vw, 10rem);
+
+    --step-small: clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);
+    --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+    --step-lead: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+    --step-head: clamp(2.125rem, 1.4rem + 2.9vw, 4rem);
+    --step-display: clamp(2.125rem, 0.4rem + 6.6vw, 6.25rem);
+
+    color-scheme: light;
+  }
+
+  .dark {
+    --ground: 6 18 21;
+    --surface: 11 30 35;
+    --surface-2: 17 42 48;
+    --ink: 230 239 240;
+    --ink-soft: 156 179 184;
+    --brand: 104 196 220;
+    --brand-bright: 31 135 174;
+    --sand: 214 167 98;
+    --sand-ink: 226 186 124;
+    --field: 0 56 66;
+    --field-deep: 2 40 47;
+    --on-field: 232 241 242;
+    --on-field-soft: 165 194 199;
+    --on-field-accent: 108 200 224;
+    --tile: 226 234 235;
+
+    --mark-crescent: 40 150 190;
+    --mark-bands: 22 112 133;
+
+    --logo-bright: 72 178 210;
+    --logo-deep: 23 120 156;
+    --logo-glow: 108 200 224;
+
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: rgb(var(--ground));
+    color: rgb(var(--ink));
+    font-size: var(--step-body);
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: Montserrat, Figtree, system-ui, sans-serif;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: rgb(var(--logo-bright) / 0.32);
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--logo-bright));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .on-field :focus-visible {
+    outline-color: rgb(var(--logo-glow));
+  }
+
+  /* barra de rolagem nas cores da logo */
+  html {
+    scrollbar-color: rgb(var(--logo-deep) / 0.7) transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--logo-deep) / 0.6);
+    border-radius: 999px;
+    border: 2px solid rgb(var(--ground));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--logo-bright));
+  }
+}
+
+@layer components {
+  /* Uma única moldura: as mesmas margens externas em todas as seções */
+  .page {
+    width: min(84rem, 100% - 2 * var(--gutter));
+    margin-inline: auto;
+  }
+
+  .section {
+    padding-block: var(--section);
+  }
+
+  /*
+   * ——— Movimento nas cores da logo ———
+   * btn-fill:  o petróleo da logo varre o botão da esquerda para a direita
+   * icon-btn:  um círculo cresce do centro do botão
+   * link-line: um sublinhado azul se desenha sob o texto
+   * ripple:    onda que nasce do ponto do clique (Ripple.tsx)
+   */
+  .btn-fill {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    transition: color 0.35s var(--ease-out), transform 0.2s var(--ease-out);
+  }
+  .btn-fill::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgb(var(--logo-deep));
+    border-radius: inherit;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.5s var(--ease-out);
+  }
+  .btn-fill:hover,
+  .btn-fill:focus-visible {
+    color: #ffffff;
+  }
+  .btn-fill:hover::before,
+  .btn-fill:focus-visible::before {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+  .btn-fill:active {
+    transform: scale(0.97);
+  }
+  .btn-fill:disabled::before {
+    display: none;
+  }
+
+  .icon-btn {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    transition: color 0.3s var(--ease-out), transform 0.2s var(--ease-out);
+  }
+  .icon-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: 999px;
+    background: rgb(var(--logo-deep));
+    transform: scale(0);
+    transition: transform 0.4s var(--ease-out);
+  }
+  .icon-btn:hover,
+  .icon-btn:focus-visible {
+    color: #ffffff;
+  }
+  .icon-btn:hover::before,
+  .icon-btn:focus-visible::before {
+    transform: scale(1);
+  }
+  .icon-btn:active {
+    transform: scale(0.92);
+  }
+
+  .link-line {
+    position: relative;
+    text-decoration: none;
+    transition: color 0.3s var(--ease-out);
+  }
+  .link-line::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.18em;
+    height: 2px;
+    border-radius: 2px;
+    background: rgb(var(--logo-bright));
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.45s var(--ease-out), background-color 0.3s var(--ease-out);
+  }
+  .link-line:hover::after,
+  .link-line:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+  /* sublinhado sempre visível: arenito em repouso, azul da logo na interação */
+  .link-line.is-static::after {
+    transform: scaleX(1);
+    background: rgb(var(--sand));
+  }
+  .link-line.is-static:hover::after,
+  .link-line.is-static:focus-visible::after {
+    background: rgb(var(--logo-bright));
+  }
+  .on-field .link-line::after {
+    background: rgb(var(--logo-glow));
+  }
+  .on-field .link-line.is-static::after {
+    background: rgb(var(--sand));
+  }
+  .on-field .link-line.is-static:hover::after,
+  .on-field .link-line.is-static:focus-visible::after {
+    background: rgb(var(--logo-glow));
+  }
+
+  .ripple-wave {
+    position: absolute;
+    border-radius: 999px;
+    pointer-events: none;
+    background: rgb(var(--logo-glow) / 0.45);
+    transform: scale(0);
+    animation: ripple 0.65s var(--ease-out) forwards;
+  }
+
+  /* anel que pulsa: "aberto agora" */
+  .pulse-ring {
+    position: relative;
+  }
+  .pulse-ring::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 999px;
+    border: 2px solid currentColor;
+    animation: pulse-ring 2.2s var(--ease-out) infinite;
+  }
+
+  /* tile de parceiro: o canto se curva no arco da logo, um contorno azul se fecha
+     e o logotipo se aproxima */
+  .tile-hover {
+    position: relative;
+    overflow: hidden;
+    transition: border-radius 0.5s var(--ease-out), box-shadow 0.4s var(--ease-out);
+  }
+  .tile-hover:hover {
+    border-top-right-radius: 2.75rem;
+    box-shadow: inset 0 0 0 2px rgb(var(--logo-bright));
+  }
+  .tile-hover img {
+    transition: transform 0.6s var(--ease-out);
+  }
+  .tile-hover:hover img {
+    transform: scale(1.07);
+  }
+
+  /* linha de lista: o ponto da logo surge antes do título e o fundo ganha um tom azul */
+  .row-hover {
+    position: relative;
+    transition: background-color 0.3s var(--ease-out);
+  }
+  .row-hover::before {
+    content: "";
+    position: absolute;
+    left: 0.15rem;
+    top: 1.55rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: rgb(var(--logo-bright));
+    transform: scale(0.4);
+    opacity: 0;
+    transition: transform 0.4s var(--ease-out), opacity 0.3s var(--ease-out);
+  }
+  .row-hover:hover,
+  .row-hover:focus-visible {
+    background: rgb(var(--logo-bright) / 0.08);
+  }
+  .row-hover:hover::before,
+  .row-hover:focus-visible::before {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  /* retrato: um anel azul se aproxima ao passar o mouse */
+  .portrait-ring {
+    outline: 2px solid rgb(var(--logo-bright) / 0);
+    outline-offset: 7px;
+    transition: outline-color 0.35s var(--ease-out), outline-offset 0.35s var(--ease-out), transform 0.5s var(--ease-out);
+  }
+  .group:hover .portrait-ring {
+    outline-color: rgb(var(--logo-bright));
+    outline-offset: 3px;
+    transform: scale(1.04);
+  }
+
+  /* O arco do globo como detalhe recorrente nas imagens */
+  .arc {
+    border-top-right-radius: var(--arc);
+    overflow: hidden;
+  }
+
+  /* Marca: as duas cores da logo, ajustadas por tema e por fundo */
+  .mark-crescent { fill: rgb(var(--mark-crescent)); }
+  .mark-bands { fill: rgb(var(--mark-bands)); }
+  .on-field .mark-crescent { fill: rgb(var(--on-field-accent)); }
+  .on-field .mark-bands { fill: rgb(var(--on-field) / 0.92); }
+
+  /*
+   * Herói: a foto da equipe recortada pelo arco de um globo gigante,
+   * com o crescente em arenito acima, como na logo.
+   */
+  .globe {
+    --r: 150vw;
+    --r-sand: 105vw;
+    --r-gap: 124vw;
+    --cx-sand: 62%;
+    --t-gap: 0.95vw;
+    --t-photo: 2vw;
+    position: relative;
+    height: clamp(17rem, 46vw, 46rem);
+  }
+
+  .globe__layer {
+    position: absolute;
+    inset: 0;
+  }
+
+  .globe__sand {
+    background: rgb(var(--sand));
+    clip-path: circle(var(--r-sand) at var(--cx-sand) var(--r-sand));
+  }
+
+  .globe__gap {
+    background: rgb(var(--ground));
+    clip-path: circle(var(--r-gap) at var(--cx-sand) calc(var(--r-gap) + var(--t-gap)));
+  }
+
+  .globe__photo {
+    clip-path: circle(var(--r) at 50% calc(var(--r) + var(--t-photo)));
+    overflow: hidden;
+  }
+
+  @media (max-width: 767px) {
+    .globe {
+      --r: 118vw;
+      --r-sand: 74vw;
+      --r-gap: 92vw;
+      --cx-sand: 64%;
+      --t-gap: 2vw;
+      --t-photo: 4vw;
+      height: 68vw;
+    }
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.3) rotate(-30deg);
+  }
+  70% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  80%,
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* troca de tema: o tema novo se abre num círculo a partir do botão (Header.tsx) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-ring::after,
+  .ripple-wave {
+    animation: none;
+    display: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

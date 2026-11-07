@@ -2,25 +2,38 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="lirge-favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="lirge-mark.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="LIRGE - Laboratório de Pesquisa Integrada em Geoenergia da UFPA. Centro de excelência em pesquisas sobre energia e geociências."
+      content="LIRGE - Laboratório de Pesquisa Integrada em Geoenergia da UFPA. Pesquisa, desenvolvimento e inovação em captura de carbono, reservatórios, modelagem geológica e aprendizado de máquina."
     />
     <meta
       name="keywords"
-      content="LIRGE, UFPA, geoenergia, pesquisa, laboratório, energia, geociências"
+      content="LIRGE, UFPA, geoenergia, pesquisa, laboratório, energia, geociências, CCUS, Salinópolis"
     />
+    <meta name="theme-color" content="#F5F7F6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#061215" media="(prefers-color-scheme: dark)" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" as="image" href="images/web/equipe-2400.webp" type="image/webp" />
     <title>LIRGE - Laboratório de Pesquisa Integrada em Geoenergia | UFPA</title>
+    <script>
+      // Aplica o tema antes da primeira pintura para evitar o "flash" de cor
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (dark) document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="bg-lirge-darker text-white font-sans overflow-x-hidden">
+  <body class="bg-ground text-ink font-sans antialiased overflow-x-hidden">
     <div id="root"></div>
 
     <!-- Script principal do Vite/React -->

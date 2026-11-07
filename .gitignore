@@ -24,3 +24,10 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Capturas do inspetor de design
+.taste-skill/
+
+# Credenciais locais (nunca versionar)
+credenciais-*
+deploy.ps1

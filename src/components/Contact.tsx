@@ -1,177 +1,141 @@
-// src/components/Contact.tsx
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import {
-  MapPin,
-  Phone,
-  Mail as MailIcon,
-  Clock,
-  LucideIcon,
-} from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import Reveal from "./Reveal";
 
 interface ContactItem {
   title: string;
   content: string;
 }
 
-const iconMapping: Record<number, LucideIcon> = {
-  1: MailIcon,
-  2: Phone,
-  3: MapPin,
-  4: Clock,
+const OPEN_HOUR = 8;
+const CLOSE_HOUR = 18;
+
+type LabStatus =
+  | { open: true }
+  | { open: false; when: "today" | "tomorrow" | "monday" };
+
+/** Situação do laboratório agora, no horário de Salinópolis (America/Belem). */
+const getLabStatus = (now = new Date()): LabStatus => {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Belem",
+    weekday: "short",
+    hour: "numeric",
+    hourCycle: "h23",
+  }).formatToParts(now);
+  const weekday = parts.find((p) => p.type === "weekday")?.value ?? "Mon";
+  const hour = Number(parts.find((p) => p.type === "hour")?.value ?? 0);
+  const isWeekday = !["Sat", "Sun"].includes(weekday);
+
+  if (isWeekday && hour >= OPEN_HOUR && hour < CLOSE_HOUR) return { open: true };
+  if (isWeekday && hour < OPEN_HOUR) return { open: false, when: "today" };
+  if (weekday === "Fri" || weekday === "Sat" || weekday === "Sun") return { open: false, when: "monday" };
+  return { open: false, when: "tomorrow" };
 };
 
-const actionMapping: Record<
-  number,
-  ((content: string) => void) | null
-> = {
-  1: (c) => window.open(`mailto:${c}`),
-  2: (c) => window.open(`tel:${c}`),
-  3: () => window.open("https://maps.google.com/?q=UFPA+Salinópolis"),
-  4: null,
+const LabStatusLine: React.FC = () => {
+  const { t } = useTranslation();
+  const [status, setStatus] = useState<LabStatus>(() => getLabStatus());
+
+  useEffect(() => {
+    const id = window.setInterval(() => setStatus(getLabStatus()), 60_000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  return (
+    <p className="mt-3 flex items-start gap-2.5 font-semibold text-on-field">
+      <span
+        aria-hidden
+        className={`mt-[0.55em] h-2.5 w-2.5 shrink-0 rounded-full ${status.open ? "pulse-ring bg-logo-glow text-logo-glow" : "bg-on-field-soft/60"}`}
+      />
+      {status.open
+        ? t("contact.status.open")
+        : t("contact.status.closed", { when: t(`contact.status.${status.when}`) })}
+    </p>
+  );
 };
 
 const Contact: React.FC = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
   const { t } = useTranslation();
-
-  const contactInfo = t("contact.contactInfo", {
-    returnObjects: true,
-  }) as ContactItem[];
+  const [email, phone, address, hours] = t("contact.contactInfo", { returnObjects: true }) as ContactItem[];
+  const telHref = `tel:+${phone.content.replace(/\D/g, "")}`;
 
   return (
-    <section
-      id="contact"
-      className="py-20 lg:py-32 relative bg-cyan-50 dark:bg-lirge-darker transition-colors duration-300"
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div ref={ref} className="max-w-3xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-[#04363e] dark:text-white">
-              <span className="text-lirge-cyan">{t("contact.title")}</span>
+    <section id="contact" aria-labelledby="contact-title" className="on-field section bg-field text-on-field">
+      <div className="page grid grid-cols-1 gap-y-14 lg:grid-cols-12 lg:gap-x-8">
+        <div className="lg:col-span-5">
+          <Reveal>
+            <h2 id="contact-title" className="font-display text-head font-bold text-on-field">
+              {t("contact.heading")}
             </h2>
-            <div className="w-24 h-1 bg-lirge-cyan mx-auto mb-8" />
-            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-              {t("contact.subtitle")}
-            </p>
-          </div>
+          </Reveal>
+          <Reveal order={1}>
+            <p className="mt-6 max-w-[30rem] text-lead text-on-field">{t("contact.subtitle")}</p>
+          </Reveal>
 
-          <div className="space-y-12">
-            {/* Contact Information */}
-            <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-[#04363e] dark:text-white mb-8 text-center">
-                {t("contact.infoTitle")}
-              </h3>
-
-              {contactInfo.map((item, idx) => {
-                const index = idx + 1;
-                const Icon = iconMapping[index];
-                const action = actionMapping[index];
-                return (
-                  <div
-                    key={idx}
-                    className={`group ${action ? "cursor-pointer" : ""}`}
-                    onClick={() =>
-                      action ? action(item.content) : undefined
-                    }
-                  >
-                    <div
-                      className="
-                        flex items-start space-x-4 p-6 rounded-xl bg-gradient-to-br
-                        from-[#7bc3cf] to-[#7bc3cf] border border-[#81D4FA]
-                        dark:bg-gradient-to-br dark:from-lirge-teal/20
-                        dark:to-lirge-cyan/20 dark:border-lirge-cyan/20
-                        transition-colors duration-300
-                      "
-                    >
-                      <div
-                        className="
-                          w-12 h-12 bg-[#04363e]
-                          dark:bg-gradient-to-br dark:from-lirge-cyan
-                          dark:to-lirge-teal rounded-lg flex items-center
-                          justify-center flex-shrink-0
-                        "
-                      >
-                        <Icon
-                          className="text-cyan-50 dark:text-white"
-                          size={24}
-                        />
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-semibold text-[#04363e] dark:text-white mb-2">
-                          {item.title}
-                        </h4>
-                        <p className="text-gray-700 dark:text-gray-300 whitespace-pre-line text-sm leading-relaxed">
-                          {item.content}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Map */}
-            <div className="flex flex-col justify-start">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={isInView ? { opacity: 1 } : {}}
-                transition={{ duration: 0.6 }}
-              >
-                <div
-                  className="
-                    bg-gradient-to-br from-[#7bc3cf] to-[#7bc3cf] border border-[#81D4FA]
-                    dark:bg-gradient-to-br dark:from-lirge-teal/20 dark:to-lirge-cyan/20
-                    dark:border-lirge-cyan/20 transition-colors duration-300 rounded-xl
-                    overflow-hidden
-                  "
+          <dl className="mt-12 space-y-8">
+            <Reveal order={2}>
+              <dt className="text-small text-on-field-soft">{email.title}</dt>
+              <dd className="mt-1">
+                <a
+                  href={`mailto:${email.content}`}
+                  className="link-line is-static break-all font-display text-lead font-bold text-on-field hover:text-logo-glow"
                 >
-                  <div className="h-72 relative">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.999682634279!2d-47.3418561!3d-0.6310413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a8991aa9bcb021%3A0x9d2277db2e684e09!2sUniversidade%20Federal%20do%20Par%C3%A1%20-%20Campus%20Salin%C3%B3polis!5e0!3m2!1spt-BR!2sbr!4v1713200000000!5m2!1spt-BR!2sbr"
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      className="absolute inset-0 w-full h-full"
-                    />
-                  </div>
-                  <div className="p-4 text-center">
-                    <MapPin
-                      className="text-cyan-700 dark:text-lirge-cyan mx-auto mb-2"
-                      size={32}
-                    />
-                    <p className="text-[#04363e] dark:text-white font-semibold">
-                      <a
-                        href="https://maps.app.goo.gl/juruUVibaRdvjP5K9"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:underline"
-                      >
-                        {t("contact.mapTitle")}
-                      </a>
-                    </p>
-                    <p className="text-gray-700 dark:text-gray-300 text-sm">
-                      <a
-                        href="https://www.google.com/maps/place/Universidade+Federal+do+Par%C3%A1+-+Campus+Salin%C3%B3polis/@-0.6310413,-47.3418561,17z"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:underline"
-                      >
-                        {t("contact.mapSubtitle")}
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
+                  {email.content}
+                </a>
+              </dd>
+            </Reveal>
+            <Reveal order={3}>
+              <dt className="text-small text-on-field-soft">{phone.title}</dt>
+              <dd className="mt-1">
+                <a
+                  href={telHref}
+                  className="link-line font-display text-lead font-bold text-on-field hover:text-logo-glow"
+                >
+                  {phone.content}
+                </a>
+              </dd>
+            </Reveal>
+            <Reveal order={4} className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-[1.3fr_1fr]">
+              <div>
+                <dt className="text-small text-on-field-soft">{address.title}</dt>
+                <dd className="mt-1 whitespace-pre-line text-body text-on-field">{address.content}</dd>
+              </div>
+              <div>
+                <dt className="text-small text-on-field-soft">{hours.title}</dt>
+                <dd className="mt-1 whitespace-pre-line text-body text-on-field">
+                  {hours.content}
+                  <LabStatusLine />
+                </dd>
+              </div>
+            </Reveal>
+          </dl>
         </div>
+
+        <Reveal order={2} className="flex flex-col lg:col-span-6 lg:col-start-7">
+          <div className="arc relative min-h-[22rem] flex-1 bg-field-deep">
+            <iframe
+              title={t("contact.mapTitle")}
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.999682634279!2d-47.3418561!3d-0.6310413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a8991aa9bcb021%3A0x9d2277db2e684e09!2sUniversidade%20Federal%20do%20Par%C3%A1%20-%20Campus%20Salin%C3%B3polis!5e0!3m2!1spt-BR!2sbr!4v1713200000000!5m2!1spt-BR!2sbr"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full border-0"
+            />
+          </div>
+          <a
+            href="https://maps.app.goo.gl/juruUVibaRdvjP5K9"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mt-5 inline-flex items-center gap-2 self-start font-semibold text-on-field transition-colors hover:text-logo-glow"
+          >
+            {t("contact.mapLink")}
+            <ArrowUpRight
+              size={18}
+              className="transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:translate-x-1"
+            />
+          </a>
+        </Reveal>
       </div>
     </section>
   );
