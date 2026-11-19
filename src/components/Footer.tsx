@@ -29,7 +29,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       <div className="page grid gap-10 py-12 md:grid-cols-[1.3fr_1fr_1fr] md:gap-12">
         <div>
           <button type="button" onClick={() => onNavigate("home")} className="group flex items-center gap-2.5" aria-label={t("nav.home")}>
-            <LirgeMark className="h-9 w-9 transition-transform duration-700 ease-out group-hover:rotate-[-24deg]" />
+            <LirgeMark className="h-9 w-9" />
             <span className="font-display text-xl font-bold tracking-[-0.02em] text-ink transition-colors group-hover:text-logo-bright">
               LIRGE
             </span>
@@ -123,7 +123,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               title={t("footer.toTop")}
               className="icon-btn group inline-flex h-9 w-9 items-center justify-center rounded-full bg-surface-2 text-ink"
             >
-              <ArrowUp size={16} className="transition-transform duration-500 ease-out group-hover:-translate-y-0.5" />
+              <ArrowUp size={16} className="transition-transform duration-200 ease-out group-hover:-translate-y-0.5" />
             </button>
           </div>
         </div>

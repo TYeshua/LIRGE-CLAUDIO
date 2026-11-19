@@ -13,8 +13,8 @@ interface ResearchArea {
   features: string[];
 }
 
-const EASE = [0.22, 1, 0.36, 1] as const;
-const AUTOPLAY_S = 11;
+const EASE = [0.25, 0.1, 0.25, 1] as const;
+const AUTOPLAY_S = 14;
 
 const Research: React.FC = () => {
   const { t } = useTranslation();
@@ -77,26 +77,26 @@ const Research: React.FC = () => {
               <motion.div
                 key={index}
                 custom={dir}
-                initial={{ opacity: 0, x: dir * 36 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: dir * -36 }}
-                transition={{ duration: 0.45, ease: EASE }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, ease: EASE }}
                 className="grid items-center gap-8 lg:grid-cols-[1.2fr_1fr] lg:gap-10"
               >
                 <ResearchIllustration index={index} />
                 <div className="px-3 pb-4 lg:px-2 lg:pb-0 lg:pr-8">
                   <motion.h3
-                    initial={{ opacity: 0, y: 14 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, ease: EASE, delay: 0.08 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3, ease: EASE }}
                     className="font-display text-lead font-bold text-ink lg:text-[2rem] lg:leading-tight"
                   >
                     {area.title}
                   </motion.h3>
                   <motion.p
-                    initial={{ opacity: 0, y: 14 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, ease: EASE, delay: 0.15 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3, ease: EASE, delay: 0.05 }}
                     className="mt-4 text-body text-ink-soft"
                   >
                     {area.description}
@@ -104,7 +104,7 @@ const Research: React.FC = () => {
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.22 }}
+                    transition={{ duration: 0.3, delay: 0.08 }}
                     className="mt-6 text-small font-semibold text-brand"
                   >
                     {t("research.featuresLabel")}
@@ -113,9 +113,9 @@ const Research: React.FC = () => {
                     {area.features.map((feature, i) => (
                       <motion.li
                         key={feature}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.45, ease: EASE, delay: 0.26 + i * 0.06 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3, ease: EASE, delay: 0.1 + i * 0.03 }}
                         className="flex items-start gap-2.5 text-body text-ink"
                       >
                         <span aria-hidden className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-sand" />

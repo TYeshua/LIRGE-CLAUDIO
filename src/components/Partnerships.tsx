@@ -51,8 +51,8 @@ const Partnerships: React.FC<PartnershipsProps> = ({ onNavigate }) => {
       </div>
 
       <Reveal order={2} className="mt-14 space-y-4">
-        <Row items={partners.slice(0, half)} duration={60} />
-        <Row items={partners.slice(half)} duration={66} reverse />
+        <Row items={partners.slice(0, half)} duration={95} />
+        <Row items={partners.slice(half)} duration={105} reverse />
       </Reveal>
 
       <Reveal order={3} className="page mt-12 flex justify-center">
@@ -66,7 +66,7 @@ const Partnerships: React.FC<PartnershipsProps> = ({ onNavigate }) => {
             <span className="link-line is-static text-ink group-hover:text-logo-deep dark:group-hover:text-logo-bright">
               {t("partnerships.ctaLink")}
             </span>
-            <ArrowRight size={16} className="text-ink transition-transform duration-500 ease-out group-hover:translate-x-1.5" />
+            <ArrowRight size={16} className="text-ink transition-transform duration-200 ease-out group-hover:translate-x-1" />
           </span>
         </button>
       </Reveal>

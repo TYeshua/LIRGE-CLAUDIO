@@ -50,7 +50,7 @@ const InstitutionalLinks: React.FC = () => {
                   <ArrowUpRight
                     size={18}
                     aria-hidden
-                    className="shrink-0 text-ink-soft transition-[transform,color] duration-500 ease-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-logo-bright"
+                    className="shrink-0 text-ink-soft transition-[transform,color] duration-200 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-logo-bright"
                   />
                 </a>
               </Reveal>

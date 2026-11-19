@@ -10,7 +10,6 @@ import Contact from "./components/Contact";
 import InstitutionalLinks from "./components/InstitutionalLinks";
 import Footer from "./components/Footer";
 import { useScrollSpy } from "./hooks/useScrollSpy";
-import { useRipple } from "./components/Ripple";
 
 const sectionIds = [
   "home",
@@ -25,7 +24,6 @@ const sectionIds = [
 function App() {
   const { t } = useTranslation();
   const activeSection = useScrollSpy(sectionIds);
-  useRipple();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);

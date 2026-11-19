@@ -34,7 +34,8 @@
     --logo-bright: 31 135 174; /* azul luminoso: linhas, anéis, pontos */
     --logo-deep: 14 94 114;    /* petróleo profundo: preenchimentos com texto branco */
     --logo-glow: 108 200 224;  /* azul claro para fundos escuros */
-    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-out: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --dur: 200ms;
 
     --gutter: clamp(1rem, 4vw, 3.5rem);
     --section: clamp(5rem, 9vw, 8.5rem);
@@ -144,16 +145,15 @@
 
   /*
    * ——— Movimento nas cores da logo ———
-   * btn-fill:  o petróleo da logo varre o botão da esquerda para a direita
-   * icon-btn:  um círculo cresce do centro do botão
+   * btn-fill:  o fundo passa ao petróleo da logo (transição curta de cor)
+   * icon-btn:  fundo petróleo suave ao passar o mouse
    * link-line: um sublinhado azul se desenha sob o texto
-   * ripple:    onda que nasce do ponto do clique (Ripple.tsx)
    */
   .btn-fill {
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    transition: color 0.35s var(--ease-out), transform 0.2s var(--ease-out);
+    transition: color var(--dur) var(--ease-out), background-color var(--dur) var(--ease-out);
   }
   .btn-fill::before {
     content: "";
@@ -162,9 +162,8 @@
     z-index: -1;
     background: rgb(var(--logo-deep));
     border-radius: inherit;
-    transform: scaleX(0);
-    transform-origin: right center;
-    transition: transform 0.5s var(--ease-out);
+    opacity: 0;
+    transition: opacity var(--dur) var(--ease-out);
   }
   .btn-fill:hover,
   .btn-fill:focus-visible {
@@ -172,11 +171,10 @@
   }
   .btn-fill:hover::before,
   .btn-fill:focus-visible::before {
-    transform: scaleX(1);
-    transform-origin: left center;
+    opacity: 1;
   }
-  .btn-fill:active {
-    transform: scale(0.97);
+  .btn-fill:active::before {
+    opacity: 0.85;
   }
   .btn-fill:disabled::before {
     display: none;
@@ -186,7 +184,7 @@
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    transition: color 0.3s var(--ease-out), transform 0.2s var(--ease-out);
+    transition: color var(--dur) var(--ease-out);
   }
   .icon-btn::before {
     content: "";
@@ -195,8 +193,8 @@
     z-index: -1;
     border-radius: 999px;
     background: rgb(var(--logo-deep));
-    transform: scale(0);
-    transition: transform 0.4s var(--ease-out);
+    opacity: 0;
+    transition: opacity var(--dur) var(--ease-out);
   }
   .icon-btn:hover,
   .icon-btn:focus-visible {
@@ -204,10 +202,10 @@
   }
   .icon-btn:hover::before,
   .icon-btn:focus-visible::before {
-    transform: scale(1);
+    opacity: 1;
   }
-  .icon-btn:active {
-    transform: scale(0.92);
+  .icon-btn:active::before {
+    opacity: 0.85;
   }
 
   .link-line {
@@ -226,7 +224,7 @@
     background: rgb(var(--logo-bright));
     transform: scaleX(0);
     transform-origin: right center;
-    transition: transform 0.45s var(--ease-out), background-color 0.3s var(--ease-out);
+    transition: transform 0.28s var(--ease-out), background-color var(--dur) var(--ease-out);
   }
   .link-line:hover::after,
   .link-line:focus-visible::after {
@@ -253,15 +251,6 @@
     background: rgb(var(--logo-glow));
   }
 
-  .ripple-wave {
-    position: absolute;
-    border-radius: 999px;
-    pointer-events: none;
-    background: rgb(var(--logo-glow) / 0.45);
-    transform: scale(0);
-    animation: ripple 0.65s var(--ease-out) forwards;
-  }
-
   /* anel que pulsa: "aberto agora" */
   .pulse-ring {
     position: relative;
@@ -272,89 +261,38 @@
     inset: -4px;
     border-radius: 999px;
     border: 2px solid currentColor;
-    animation: pulse-ring 2.2s var(--ease-out) infinite;
+    animation: pulse-ring 3.2s ease-out infinite;
   }
 
-  /* tile de parceiro: o canto se curva no arco da logo, um contorno azul se fecha
-     e o logotipo se aproxima */
-  .tile-hover {
-    position: relative;
-    overflow: hidden;
-    transition: border-radius 0.5s var(--ease-out), box-shadow 0.4s var(--ease-out);
-  }
-  .tile-hover:hover {
-    border-top-right-radius: 2.75rem;
-    box-shadow: inset 0 0 0 2px rgb(var(--logo-bright));
-  }
-  .tile-hover img {
-    transition: transform 0.6s var(--ease-out);
-  }
-  .tile-hover:hover img {
-    transform: scale(1.07);
-  }
-
-  /* linha de lista: o ponto da logo surge antes do título e o fundo ganha um tom azul */
-  .row-hover {
-    position: relative;
-    transition: background-color 0.3s var(--ease-out);
-  }
-  .row-hover::before {
-    content: "";
-    position: absolute;
-    left: 0.15rem;
-    top: 1.55rem;
-    width: 8px;
-    height: 8px;
-    border-radius: 999px;
-    background: rgb(var(--logo-bright));
-    transform: scale(0.4);
-    opacity: 0;
-    transition: transform 0.4s var(--ease-out), opacity 0.3s var(--ease-out);
-  }
-  .row-hover:hover,
-  .row-hover:focus-visible {
-    background: rgb(var(--logo-bright) / 0.08);
-  }
-  .row-hover:hover::before,
-  .row-hover:focus-visible::before {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  /* retrato: um anel azul se aproxima ao passar o mouse */
+  /* retrato: um anel azul discreto aparece ao passar o mouse */
   .portrait-ring {
     outline: 2px solid rgb(var(--logo-bright) / 0);
     outline-offset: 7px;
-    transition: outline-color 0.35s var(--ease-out), outline-offset 0.35s var(--ease-out), transform 0.5s var(--ease-out);
+    transition: outline-color var(--dur) var(--ease-out), outline-offset var(--dur) var(--ease-out);
   }
   .group:hover .portrait-ring {
     outline-color: rgb(var(--logo-bright));
     outline-offset: 3px;
-    transform: scale(1.04);
   }
 
   /*
    * ——— Padrão original, refinado ———
    * card: superfície com borda fina nas cores da logo
-   * card-interactive: sobe e acende ao passar o mouse
-   * icon-tile: pastilha de ícone que gira levemente junto com o card
+   * card-interactive: a borda acende ao passar o mouse
+   * icon-tile: pastilha de ícone que muda de tom junto com o card
    */
   .card {
     position: relative;
     border-radius: 1.25rem;
     background: rgb(var(--card));
     border: 1px solid rgb(var(--logo-bright) / 0.16);
-    transition: transform 0.5s var(--ease-out), border-color 0.4s var(--ease-out), box-shadow 0.5s var(--ease-out);
+    transition: border-color var(--dur) var(--ease-out), background-color var(--dur) var(--ease-out);
   }
   .card-interactive:hover,
   .card-interactive:focus-visible {
-    transform: translateY(-4px);
     border-color: rgb(var(--logo-bright) / 0.55);
-    box-shadow: 0 22px 44px -28px rgb(var(--logo-deep) / 0.6);
   }
-  .card-interactive:active {
-    transform: translateY(-1px);
-  }
+
 
   .icon-tile {
     display: inline-flex;
@@ -366,7 +304,7 @@
     border-radius: 0.9rem;
     background: rgb(var(--logo-deep));
     color: #ffffff;
-    transition: transform 0.5s var(--ease-out), background-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
+    transition: background-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
   }
   .dark .icon-tile {
     background: rgb(var(--logo-bright) / 0.16);
@@ -374,7 +312,6 @@
   }
   .card-interactive:hover .icon-tile,
   .card-interactive:focus-visible .icon-tile {
-    transform: rotate(-8deg) scale(1.06);
     background: rgb(var(--logo-bright));
     color: #ffffff;
   }
@@ -411,7 +348,7 @@
     border-radius: 1rem;
     background: rgb(var(--tile));
     border: 1px solid rgb(var(--logo-bright) / 0.12);
-    transition: transform 0.5s var(--ease-out), border-color 0.4s var(--ease-out), box-shadow 0.5s var(--ease-out);
+    transition: border-color var(--dur) var(--ease-out);
   }
   .logo-chip img {
     max-height: 62%;
@@ -420,45 +357,24 @@
     mix-blend-mode: multiply;
     filter: grayscale(1);
     opacity: 0.72;
-    transition: filter 0.45s var(--ease-out), opacity 0.45s var(--ease-out), transform 0.6s var(--ease-out);
+    transition: filter 0.3s var(--ease-out), opacity 0.3s var(--ease-out);
   }
   .logo-chip:hover {
-    transform: translateY(-3px);
     border-color: rgb(var(--logo-bright) / 0.55);
-    box-shadow: 0 16px 32px -24px rgb(var(--logo-deep) / 0.6);
   }
   .logo-chip:hover img {
     filter: none;
     opacity: 1;
-    transform: scale(1.06);
   }
 
-  /* herói: brilho suave nas cores da logo e anéis que lembram o globo */
+  /* herói: brilho suave nas cores da logo */
   .hero-glow {
     position: absolute;
     inset: -20%;
     background:
       radial-gradient(38% 42% at 74% 38%, rgb(var(--logo-bright) / 0.2), transparent 70%),
       radial-gradient(32% 36% at 18% 78%, rgb(var(--sand) / 0.12), transparent 70%);
-    animation: drift 18s var(--ease-in-out, ease-in-out) infinite alternate;
   }
-  .hero-ring {
-    position: absolute;
-    border-radius: 999px;
-    border: 1.5px solid rgb(var(--logo-bright) / 0.22);
-  }
-  .hero-ring::after {
-    content: "";
-    position: absolute;
-    top: 12%;
-    left: 50%;
-    width: 9px;
-    height: 9px;
-    margin-left: -4.5px;
-    border-radius: 999px;
-    background: rgb(var(--logo-bright) / 0.7);
-  }
-
   /* O arco do globo como detalhe recorrente nas imagens */
   .arc {
     border-top-right-radius: var(--arc);
@@ -519,22 +435,9 @@
   }
 }
 
-@keyframes ripple {
-  to {
-    transform: scale(1);
-    opacity: 0;
-  }
-}
-
 @keyframes marquee {
   to {
     transform: translateX(-50%);
-  }
-}
-
-@keyframes drift {
-  to {
-    transform: translate3d(3%, -2%, 0) scale(1.05);
   }
 }
 
@@ -544,18 +447,6 @@
   }
   to {
     transform: scaleX(1);
-  }
-}
-
-@keyframes pop {
-  0% {
-    transform: scale(0.3) rotate(-30deg);
-  }
-  70% {
-    transform: scale(1.25);
-  }
-  100% {
-    transform: scale(1);
   }
 }
 
@@ -574,13 +465,11 @@
 /* troca de tema: o tema novo se abre num círculo a partir do botão (Header.tsx) */
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
+  animation-duration: 0.25s;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pulse-ring::after,
-  .ripple-wave {
+  .pulse-ring::after {
     animation: none;
     display: none;
   }

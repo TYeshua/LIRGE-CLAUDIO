@@ -41,7 +41,7 @@ const Tabs: React.FC<TabsProps> = ({ id, label, items, value, onChange, classNam
             aria-controls={`${id}-panel`}
             tabIndex={active ? 0 : -1}
             onClick={() => onChange(i)}
-            className={`relative rounded-full px-4 py-2 text-small font-semibold transition-colors duration-300 sm:px-5 sm:py-2.5 sm:text-body ${
+            className={`relative rounded-full px-4 py-2 text-small font-semibold transition-colors duration-200 sm:px-5 sm:py-2.5 sm:text-body ${
               active ? "text-white" : "text-ink-soft hover:text-ink"
             }`}
           >
@@ -49,7 +49,7 @@ const Tabs: React.FC<TabsProps> = ({ id, label, items, value, onChange, classNam
               <motion.span
                 layoutId={`${id}-indicator`}
                 className="absolute inset-0 rounded-full bg-logo-deep"
-                transition={{ type: "spring", stiffness: 380, damping: 34 }}
+                transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
               />
             )}
             <span className="relative">{item.label}</span>

@@ -14,41 +14,15 @@ interface HeaderProps {
 // Sombra só numa sobreposição que flutua de fato
 const MENU_SHADOW = "shadow-[0_24px_40px_-24px_rgb(0_0_0/0.35)]"; // taste-skill-ignore
 
-const EASE = [0.22, 1, 0.36, 1] as const;
+const EASE = [0.25, 0.1, 0.25, 1] as const;
 const swap = {
-  initial: { rotate: -90, scale: 0.4, opacity: 0 },
-  animate: { rotate: 0, scale: 1, opacity: 1 },
-  exit: { rotate: 90, scale: 0.4, opacity: 0 },
-  transition: { duration: 0.3, ease: EASE },
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  transition: { duration: 0.15, ease: EASE },
 };
 
 type ViewTransitionDoc = Document & { startViewTransition?: (cb: () => void) => { ready: Promise<void> } };
-
-/** Anel azul da logo que se expande a partir do botão de tema. */
-function themeRing(x: number, y: number, radius: number) {
-  const ring = document.createElement("div");
-  Object.assign(ring.style, {
-    position: "fixed",
-    left: `${x - radius}px`,
-    top: `${y - radius}px`,
-    width: `${radius * 2}px`,
-    height: `${radius * 2}px`,
-    borderRadius: "999px",
-    border: "3px solid rgb(var(--logo-bright))",
-    pointerEvents: "none",
-    zIndex: "100",
-  });
-  document.body.appendChild(ring);
-  ring
-    .animate(
-      [
-        { transform: "scale(0)", opacity: 1 },
-        { transform: "scale(1)", opacity: 0 },
-      ],
-      { duration: 750, easing: "cubic-bezier(0.22, 1, 0.36, 1)" }
-    )
-    .finished.finally(() => ring.remove());
-}
 
 const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -88,30 +62,19 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
 
   const toggleLanguage = () => i18n.changeLanguage(isPt ? "en" : "pt");
 
-  // O tema novo se abre num círculo a partir do botão, com um anel azul da logo
-  const toggleTheme = (e: React.MouseEvent<HTMLButtonElement>) => {
+  // Troca de tema com um esmaecimento curto (quando o navegador permite)
+  const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";
     const apply = () => {
       document.documentElement.classList.toggle("dark", next === "dark");
       flushSync(() => setTheme(next));
     };
-    const r = e.currentTarget.getBoundingClientRect();
-    const x = r.left + r.width / 2;
-    const y = r.top + r.height / 2;
-    const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
     const doc = document as ViewTransitionDoc;
     if (reduce || !doc.startViewTransition) {
       apply();
       return;
     }
-    themeRing(x, y, radius);
-    const vt = doc.startViewTransition(apply);
-    vt.ready.then(() => {
-      document.documentElement.animate(
-        { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
-        { duration: 700, easing: "cubic-bezier(0.22, 1, 0.36, 1)", pseudoElement: "::view-transition-new(root)" }
-      );
-    });
+    doc.startViewTransition(apply);
   };
 
   const iconButton = "icon-btn inline-flex h-10 w-10 items-center justify-center rounded-full text-ink";
@@ -140,8 +103,8 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
           className="group flex items-center gap-2.5"
           aria-label={t("nav.home")}
         >
-          <LirgeMark className="h-9 w-9 transition-transform duration-700 ease-out group-hover:rotate-[-24deg] group-hover:scale-110" />
-          <span className="font-display text-[1.375rem] font-bold tracking-[-0.02em] text-ink transition-colors duration-300 group-hover:text-logo-bright">
+          <LirgeMark className="h-9 w-9" />
+          <span className="font-display text-[1.375rem] font-bold tracking-[-0.02em] text-ink transition-colors duration-200 group-hover:text-logo-bright">
             LIRGE
           </span>
         </a>
@@ -167,7 +130,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
                   <motion.span
                     layoutId="nav-dot"
                     className="absolute -bottom-0.5 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-logo-bright"
-                    transition={{ type: "spring", stiffness: 420, damping: 30 }}
+                    transition={{ duration: 0.25, ease: EASE }}
                   />
                 )}
               </a>
@@ -192,10 +155,10 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
               <AnimatePresence mode="wait" initial={false}>
                 <motion.span
                   key={isPt ? "en" : "pt"}
-                  initial={{ y: 12, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -12, opacity: 0 }}
-                  transition={{ duration: 0.22, ease: EASE }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15, ease: EASE }}
                   className="inline-block"
                 >
                   {isPt ? "EN" : "PT"}
@@ -244,17 +207,17 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
         {isMobileMenuOpen && (
           <motion.div
             id="mobile-menu"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.22, ease: EASE }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: EASE }}
             className={`bg-ground pb-6 ${MENU_SHADOW} lg:hidden`}
           >
             <motion.div
               className="page flex flex-col"
               initial="hidden"
               animate="show"
-              variants={{ show: { transition: { staggerChildren: 0.045, delayChildren: 0.05 } } }}
+              variants={{ show: { transition: { staggerChildren: 0.02 } } }}
             >
               {menuItems.map((item) => {
                 const active = activeSection === item.id;
@@ -262,7 +225,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
                   <motion.a
                     key={item.id}
                     href={`#${item.id}`}
-                    variants={{ hidden: { opacity: 0, x: -16 }, show: { opacity: 1, x: 0, transition: { duration: 0.35, ease: EASE } } }}
+                    variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.2, ease: EASE } } }}
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick(item.id);
@@ -273,8 +236,8 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
                     }`}
                   >
                     <span
-                      className={`h-2 w-2 rounded-full bg-logo-bright transition-transform duration-300 ${
-                        active ? "scale-100" : "scale-0 group-hover:scale-100"
+                      className={`h-2 w-2 rounded-full bg-logo-bright transition-opacity duration-200 ${
+                        active ? "opacity-100" : "opacity-0 group-hover:opacity-100"
                       }`}
                     />
                     <span className="link-line">{item.label}</span>
@@ -283,7 +246,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
               })}
               <motion.button
                 type="button"
-                variants={{ hidden: { opacity: 0, x: -16 }, show: { opacity: 1, x: 0 } }}
+                variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
                 onClick={toggleLanguage}
                 className="btn-fill mt-4 self-start rounded-full bg-surface px-5 py-2.5 text-sm font-semibold text-ink"
               >

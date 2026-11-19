@@ -242,7 +242,7 @@ const globe: SceneFactory = ({ scene, root, camera, reduced, emit }) => {
       // bacia em destaque: ponteiro > clique > legenda > revezamento automático
       if (zoomTarget && hover < 0 && pinned < 0 && external < 0 && !reduced) {
         autoClock += step;
-        if (autoClock > 3.2) {
+        if (autoClock > 5) {
           autoClock = 0;
           auto = (auto + 1) % BASINS.length;
         }

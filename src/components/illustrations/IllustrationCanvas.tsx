@@ -164,7 +164,7 @@ const IllustrationCanvas: React.FC<Props> = ({ load, label, className = "" }) =>
         ref={canvasRef}
         role="img"
         aria-label={label}
-        className={`block h-full w-full transition-opacity duration-700 ${ready ? "opacity-100" : "opacity-0"}`}
+        className={`block h-full w-full transition-opacity duration-500 ${ready ? "opacity-100" : "opacity-0"}`}
       />
     </div>
   );

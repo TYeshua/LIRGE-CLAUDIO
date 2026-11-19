@@ -45,7 +45,7 @@ const EmailLine: React.FC<{ email: string }> = ({ email }) => {
         title={copied ? t("team.copied") : t("team.copy")}
         className="icon-btn inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-ink-soft"
       >
-        {copied ? <Check size={14} className="animate-[pop_0.35s_var(--ease-out)]" /> : <Copy size={14} />}
+        {copied ? <Check size={14} /> : <Copy size={14} />}
       </button>
       <span aria-live="polite" className="sr-only">
         {copied ? t("team.copied") : ""}
@@ -111,7 +111,7 @@ const MemberCard: React.FC<{ person: Person; badge?: string }> = ({ person, badg
   </div>
 );
 
-const EASE = [0.22, 1, 0.36, 1] as const;
+const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 const Team: React.FC = () => {
   const { t } = useTranslation();
@@ -147,10 +147,10 @@ const Team: React.FC = () => {
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={tab}
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.4, ease: EASE }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25, ease: EASE }}
             >
               {tab === 0 ? (
                 <>
@@ -183,15 +183,10 @@ const Team: React.FC = () => {
                       count={t("team.countMembers", { count: students.length })}
                     />
                     <ul className="mt-8 grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
-                      {students.map((person, i) => (
-                        <motion.li
-                          key={person.name}
-                          initial={{ opacity: 0, y: 14 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.45, ease: EASE, delay: 0.05 + (i % 6) * 0.04 }}
-                        >
+                      {students.map((person) => (
+                        <li key={person.name}>
                           <MemberCard person={person} />
-                        </motion.li>
+                        </li>
                       ))}
                     </ul>
                   </div>

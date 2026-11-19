@@ -285,7 +285,7 @@ const SceneCanvas: React.FC<SceneCanvasProps> = (props) => {
             role="img"
             aria-label={label}
             tabIndex={0}
-            className={`block h-full w-full cursor-grab touch-pan-y outline-none transition-opacity duration-700 focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sand active:cursor-grabbing ${
+            className={`block h-full w-full cursor-grab touch-pan-y outline-none transition-opacity duration-500 focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-logo-bright active:cursor-grabbing ${
               ready ? "opacity-100" : "opacity-0"
             }`}
           />

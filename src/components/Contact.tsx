@@ -134,7 +134,7 @@ const Contact: React.FC = () => {
                 className="group inline-flex items-center gap-2 font-semibold text-ink transition-colors hover:text-logo-deep dark:hover:text-logo-bright"
               >
                 <span className="link-line">{t("contact.mapLink")}</span>
-                <ArrowUpRight size={18} className="transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:translate-x-1" />
+                <ArrowUpRight size={18} className="transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
             </div>
           </div>
