@@ -18,10 +18,10 @@ const ResearchIllustration: React.FC<{ index: number }> = ({ index }) => {
   const touch = typeof window !== "undefined" && window.matchMedia("(hover: none)").matches;
   return (
     <figure>
-      <div className="arc relative aspect-[3/2] bg-field-deep outline outline-2 outline-offset-[6px] outline-transparent transition-[outline-color,outline-offset] duration-500 ease-out hover:outline-offset-2 hover:outline-logo-bright/70">
+      <div className="relative aspect-[3/2] overflow-hidden rounded-[0.95rem] bg-field-deep">
         <IllustrationCanvas load={item.load} label={t(`research.illustrations.${item.key}.label`)} />
       </div>
-      <figcaption className="mt-3 flex items-center gap-1.5 text-small text-ink-soft">
+      <figcaption className="mt-3 flex items-center gap-1.5 px-1 text-small text-ink-soft">
         <MousePointer2 size={15} aria-hidden />
         {t(`research.illustrations.${item.key}.${touch ? "hintTouch" : "hint"}`)}
       </figcaption>

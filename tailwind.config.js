@@ -25,6 +25,7 @@ export default {
         'on-field-soft': token('on-field-soft'),
         'on-field-accent': token('on-field-accent'),
         tile: token('tile'),
+        card: token('card'),
         // Cores da logo, usadas nas interações e no movimento
         'logo-bright': token('logo-bright'),
         'logo-deep': token('logo-deep'),

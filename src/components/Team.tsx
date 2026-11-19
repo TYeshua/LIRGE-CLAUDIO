@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Check, Copy, Linkedin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import Reveal from "./Reveal";
+import SectionHeading from "./SectionHeading";
+import Tabs from "./Tabs";
 
 interface Person {
   name: string;
@@ -85,78 +88,132 @@ const GroupHeading: React.FC<{ title: string; count: string }> = ({ title, count
   </div>
 );
 
+const MemberCard: React.FC<{ person: Person; badge?: string }> = ({ person, badge }) => (
+  <div className="group flex items-start gap-5">
+    <Portrait person={person} className="h-[4.5rem] w-[4.5rem] sm:h-20 sm:w-20" />
+    <div className="min-w-0">
+      <h4 className="font-sans text-body font-semibold leading-snug text-ink">{person.name}</h4>
+      <p className="mt-0.5 text-small font-semibold text-brand">
+        {person.role}
+        {person.sponsor && <span className="font-normal text-ink-soft"> · {person.sponsor}</span>}
+      </p>
+      {badge && (
+        <span className="mt-1.5 inline-block rounded-full bg-sand/20 px-2.5 py-0.5 text-[0.8125rem] font-semibold text-sand-ink">
+          {badge}
+        </span>
+      )}
+      <p className="mt-1 text-small text-ink">{person.area}</p>
+      <div className="mt-1 flex items-center gap-0.5">
+        <EmailLine email={person.email} />
+        <LinkedinLink person={person} />
+      </div>
+    </div>
+  </div>
+);
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 const Team: React.FC = () => {
   const { t } = useTranslation();
   const coordinators = t("team.coordinators", { returnObjects: true }) as Person[];
   const students = t("team.students", { returnObjects: true }) as Person[];
+  const alumni = (t("team.alumni", { returnObjects: true }) as Person[]) ?? [];
+  const [tab, setTab] = useState(0);
 
   return (
     <section id="team" aria-labelledby="team-title" className="section bg-surface">
       <div className="page">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-end lg:gap-x-8">
-          <Reveal className="lg:col-span-6">
-            <h2 id="team-title" className="font-display text-head font-bold text-ink">
-              {t("team.heading")}
-            </h2>
-          </Reveal>
-          <Reveal order={1} className="lg:col-span-5 lg:col-start-8">
-            <p className="text-lead text-ink">{t("team.subtitle")}</p>
-          </Reveal>
-        </div>
+        <SectionHeading
+          id="team-title"
+          title={t("team.title")}
+          highlight={t("team.highlight")}
+          subtitle={t("team.subtitle")}
+        />
 
-        {/* Coordenação */}
-        <div className="mt-[clamp(3.5rem,7vw,6rem)]">
-          <Reveal>
-            <GroupHeading
-              title={t("team.coordination")}
-              count={t("team.countCoordinators", { count: coordinators.length })}
-            />
-          </Reveal>
-          <ul className="mt-10 grid grid-cols-1 gap-x-16 gap-y-12 lg:grid-cols-2">
-            {coordinators.map((person, i) => (
-              <Reveal as="li" key={person.name} order={i + 1} className="group flex items-start gap-6 sm:gap-8">
-                <Portrait person={person} className="h-24 w-24 sm:h-36 sm:w-36" />
-                <div className="min-w-0 pt-1">
-                  <h4 className="font-display text-lead font-bold leading-snug text-ink">{person.name}</h4>
-                  <p className="mt-1.5 font-semibold text-brand">{person.role}</p>
-                  <p className="mt-1 text-body text-ink">{person.area}</p>
-                  <div className="mt-3 flex items-center gap-1">
-                    <EmailLine email={person.email} />
-                    <LinkedinLink person={person} />
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </ul>
-        </div>
+        <Reveal order={2} className="mt-12 flex justify-center">
+          <Tabs
+            id="team"
+            label={t("team.tabsLabel")}
+            value={tab}
+            onChange={setTab}
+            items={[
+              { key: "current", label: <>{t("team.tabs.current")} <span className="opacity-70">· {coordinators.length + students.length}</span></> },
+              { key: "alumni", label: <>{t("team.tabs.alumni")} <span className="opacity-70">· {alumni.length}</span></> },
+            ]}
+          />
+        </Reveal>
 
-        {/* Pesquisadores e bolsistas */}
-        <div className="mt-[clamp(4rem,8vw,7rem)]">
-          <Reveal>
-            <GroupHeading
-              title={t("team.researchers")}
-              count={t("team.countMembers", { count: students.length })}
-            />
-          </Reveal>
-          <ul className="mt-10 grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
-            {students.map((person, i) => (
-              <Reveal as="li" key={person.name} order={i % 3} className="group flex items-start gap-5">
-                <Portrait person={person} className="h-[4.5rem] w-[4.5rem] sm:h-20 sm:w-20" />
-                <div className="min-w-0">
-                  <h4 className="font-sans text-body font-semibold leading-snug text-ink">{person.name}</h4>
-                  <p className="mt-0.5 text-small font-semibold text-brand">
-                    {person.role}
-                    {person.sponsor && <span className="font-normal text-ink-soft"> · {person.sponsor}</span>}
-                  </p>
-                  <p className="mt-1 text-small text-ink">{person.area}</p>
-                  <div className="mt-1 flex items-center gap-0.5">
-                    <EmailLine email={person.email} />
-                    <LinkedinLink person={person} />
+        <div id="team-panel" role="tabpanel" aria-labelledby={`team-tab-${tab}`} className="mt-14">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={tab}
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.4, ease: EASE }}
+            >
+              {tab === 0 ? (
+                <>
+                  {/* Coordenação */}
+                  <GroupHeading
+                    title={t("team.coordination")}
+                    count={t("team.countCoordinators", { count: coordinators.length })}
+                  />
+                  <ul className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
+                    {coordinators.map((person) => (
+                      <li key={person.name} className="card card-interactive group flex items-start gap-6 p-6 sm:gap-8 sm:p-7">
+                        <Portrait person={person} className="h-24 w-24 sm:h-32 sm:w-32" />
+                        <div className="min-w-0 pt-1">
+                          <h4 className="font-display text-lead font-bold leading-snug text-ink">{person.name}</h4>
+                          <p className="mt-1.5 font-semibold text-brand">{person.role}</p>
+                          <p className="mt-1 text-body text-ink">{person.area}</p>
+                          <div className="mt-3 flex items-center gap-1">
+                            <EmailLine email={person.email} />
+                            <LinkedinLink person={person} />
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Pesquisadores e bolsistas */}
+                  <div className="mt-16">
+                    <GroupHeading
+                      title={t("team.researchers")}
+                      count={t("team.countMembers", { count: students.length })}
+                    />
+                    <ul className="mt-8 grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
+                      {students.map((person, i) => (
+                        <motion.li
+                          key={person.name}
+                          initial={{ opacity: 0, y: 14 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.45, ease: EASE, delay: 0.05 + (i % 6) * 0.04 }}
+                        >
+                          <MemberCard person={person} />
+                        </motion.li>
+                      ))}
+                    </ul>
                   </div>
-                </div>
-              </Reveal>
-            ))}
-          </ul>
+                </>
+              ) : (
+                <>
+                  <GroupHeading
+                    title={t("team.alumniTitle")}
+                    count={t("team.countMembers", { count: alumni.length })}
+                  />
+                  <p className="mt-3 max-w-2xl text-body text-ink-soft">{t("team.alumniNote")}</p>
+                  <ul className="mt-8 grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
+                    {alumni.map((person) => (
+                      <li key={person.name}>
+                        <MemberCard person={person} badge={t("team.alumniBadge")} />
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>

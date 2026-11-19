@@ -7,6 +7,8 @@ export interface SceneContext {
   root: Group;
   renderer: WebGLRenderer;
   reduced: boolean;
+  /** Avisa o React de algo que aconteceu na cena (ex.: a bacia em destaque mudou) */
+  emit: (type: string, value: number) => void;
 }
 
 export interface SceneHandle {

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Clock, Mail, MapPin, Phone, type LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import Reveal from "./Reveal";
+import SectionHeading from "./SectionHeading";
 
 interface ContactItem {
   title: string;
@@ -43,10 +44,10 @@ const LabStatusLine: React.FC = () => {
   }, []);
 
   return (
-    <p className="mt-3 flex items-start gap-2.5 font-semibold text-on-field">
+    <p className="mt-2 flex items-start gap-2.5 text-small font-semibold text-ink">
       <span
         aria-hidden
-        className={`mt-[0.55em] h-2.5 w-2.5 shrink-0 rounded-full ${status.open ? "pulse-ring bg-logo-glow text-logo-glow" : "bg-on-field-soft/60"}`}
+        className={`mt-[0.45em] h-2.5 w-2.5 shrink-0 rounded-full ${status.open ? "pulse-ring bg-logo-bright text-logo-bright" : "bg-ink-soft/50"}`}
       />
       {status.open
         ? t("contact.status.open")
@@ -55,86 +56,88 @@ const LabStatusLine: React.FC = () => {
   );
 };
 
+const MAP_SRC =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.999682634279!2d-47.3418561!3d-0.6310413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a8991aa9bcb021%3A0x9d2277db2e684e09!2sUniversidade%20Federal%20do%20Par%C3%A1%20-%20Campus%20Salin%C3%B3polis!5e0!3m2!1spt-BR!2sbr!4v1713200000000!5m2!1spt-BR!2sbr";
+const MAP_LINK = "https://maps.app.goo.gl/juruUVibaRdvjP5K9";
+
+const ICONS: LucideIcon[] = [Mail, Phone, MapPin, Clock];
+
 const Contact: React.FC = () => {
   const { t } = useTranslation();
-  const [email, phone, address, hours] = t("contact.contactInfo", { returnObjects: true }) as ContactItem[];
-  const telHref = `tel:+${phone.content.replace(/\D/g, "")}`;
+  const info = t("contact.contactInfo", { returnObjects: true }) as ContactItem[];
+  const [email, phone] = info;
+  const hrefs = [`mailto:${email.content}`, `tel:+${phone.content.replace(/\D/g, "")}`, MAP_LINK, undefined];
 
   return (
-    <section id="contact" aria-labelledby="contact-title" className="on-field section bg-field text-on-field">
-      <div className="page grid grid-cols-1 gap-y-14 lg:grid-cols-12 lg:gap-x-8">
-        <div className="lg:col-span-5">
-          <Reveal>
-            <h2 id="contact-title" className="font-display text-head font-bold text-on-field">
-              {t("contact.heading")}
-            </h2>
-          </Reveal>
-          <Reveal order={1}>
-            <p className="mt-6 max-w-[30rem] text-lead text-on-field">{t("contact.subtitle")}</p>
-          </Reveal>
+    <section id="contact" aria-labelledby="contact-title" className="section bg-surface">
+      <div className="page">
+        <SectionHeading id="contact-title" highlight={t("contact.title")} subtitle={t("contact.subtitle")} />
 
-          <dl className="mt-12 space-y-8">
-            <Reveal order={2}>
-              <dt className="text-small text-on-field-soft">{email.title}</dt>
-              <dd className="mt-1">
-                <a
-                  href={`mailto:${email.content}`}
-                  className="link-line is-static break-all font-display text-lead font-bold text-on-field hover:text-logo-glow"
-                >
-                  {email.content}
-                </a>
-              </dd>
-            </Reveal>
-            <Reveal order={3}>
-              <dt className="text-small text-on-field-soft">{phone.title}</dt>
-              <dd className="mt-1">
-                <a
-                  href={telHref}
-                  className="link-line font-display text-lead font-bold text-on-field hover:text-logo-glow"
-                >
-                  {phone.content}
-                </a>
-              </dd>
-            </Reveal>
-            <Reveal order={4} className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-[1.3fr_1fr]">
-              <div>
-                <dt className="text-small text-on-field-soft">{address.title}</dt>
-                <dd className="mt-1 whitespace-pre-line text-body text-on-field">{address.content}</dd>
-              </div>
-              <div>
-                <dt className="text-small text-on-field-soft">{hours.title}</dt>
-                <dd className="mt-1 whitespace-pre-line text-body text-on-field">
-                  {hours.content}
-                  <LabStatusLine />
-                </dd>
-              </div>
-            </Reveal>
-          </dl>
+        <div className="mx-auto mt-14 grid max-w-5xl gap-5 sm:grid-cols-2">
+          {info.map((item, i) => {
+            const Icon = ICONS[i];
+            const href = hrefs[i];
+            const body = (
+              <>
+                <span className="icon-tile">
+                  <Icon size={22} />
+                </span>
+                <span className="min-w-0">
+                  <span className="block font-display text-body font-bold text-ink">{item.title}</span>
+                  <span className={`mt-1 block whitespace-pre-line text-small leading-relaxed text-ink-soft ${i < 2 ? "break-all text-body font-semibold text-ink" : ""}`}>
+                    {item.content}
+                  </span>
+                  {i === 3 && <LabStatusLine />}
+                </span>
+              </>
+            );
+            return (
+              <Reveal key={item.title} order={i % 2}>
+                {href ? (
+                  <a
+                    href={href}
+                    target={i === 2 ? "_blank" : undefined}
+                    rel={i === 2 ? "noopener noreferrer" : undefined}
+                    className="card card-interactive flex h-full items-start gap-5 p-6"
+                  >
+                    {body}
+                  </a>
+                ) : (
+                  <div className="card flex h-full items-start gap-5 p-6">{body}</div>
+                )}
+              </Reveal>
+            );
+          })}
         </div>
 
-        <Reveal order={2} className="flex flex-col lg:col-span-6 lg:col-start-7">
-          <div className="arc relative min-h-[22rem] flex-1 bg-field-deep">
-            <iframe
-              title={t("contact.mapTitle")}
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.999682634279!2d-47.3418561!3d-0.6310413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a8991aa9bcb021%3A0x9d2277db2e684e09!2sUniversidade%20Federal%20do%20Par%C3%A1%20-%20Campus%20Salin%C3%B3polis!5e0!3m2!1spt-BR!2sbr!4v1713200000000!5m2!1spt-BR!2sbr"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-              className="absolute inset-0 h-full w-full border-0"
-            />
+        <Reveal order={2} className="mx-auto mt-5 max-w-5xl">
+          <div className="card overflow-hidden p-2.5">
+            <div className="relative h-80 overflow-hidden rounded-[0.95rem] bg-surface-2">
+              <iframe
+                title={t("contact.mapTitle")}
+                src={MAP_SRC}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full border-0"
+              />
+            </div>
+            <div className="flex flex-wrap items-center justify-between gap-3 px-3 pb-1.5 pt-3.5">
+              <span>
+                <span className="block font-display font-bold text-ink">{t("contact.mapTitle")}</span>
+                <span className="text-small text-ink-soft">{t("contact.mapSubtitle")}</span>
+              </span>
+              <a
+                href={MAP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 font-semibold text-ink transition-colors hover:text-logo-deep dark:hover:text-logo-bright"
+              >
+                <span className="link-line">{t("contact.mapLink")}</span>
+                <ArrowUpRight size={18} className="transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:translate-x-1" />
+              </a>
+            </div>
           </div>
-          <a
-            href="https://maps.app.goo.gl/juruUVibaRdvjP5K9"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group mt-5 inline-flex items-center gap-2 self-start font-semibold text-on-field transition-colors hover:text-logo-glow"
-          >
-            {t("contact.mapLink")}
-            <ArrowUpRight
-              size={18}
-              className="transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:translate-x-1"
-            />
-          </a>
         </Reveal>
       </div>
     </section>

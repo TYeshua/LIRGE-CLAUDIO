@@ -24,6 +24,8 @@ interface SceneCanvasProps {
   onReady?: (handle: SceneHandle) => void;
   /** Chamado quando o visitante clica (sem arrastar) na cena */
   onPick?: (info: PickInfo | null) => void;
+  /** Eventos emitidos pela própria cena */
+  onEmit?: (type: string, value: number) => void;
   className?: string;
 }
 
@@ -151,7 +153,14 @@ const SceneCanvas: React.FC<SceneCanvasProps> = (props) => {
         rim.position.set(5, 3, -7);
         scene.add(sun, rim);
 
-        handle = mod.default({ scene, camera, root, renderer, reduced });
+        handle = mod.default({
+          scene,
+          camera,
+          root,
+          renderer,
+          reduced,
+          emit: (type, value) => propsRef.current.onEmit?.(type, value),
+        });
 
         const tmp = new THREE.Vector3();
         project = (id) => {

@@ -18,7 +18,7 @@
   "hero": {
     "subtitle": "Laboratório de Pesquisa Integrada em Geoenergia",
     "university": "Universidade Federal do Pará",
-    "cta": "Conheça o laboratório",
+    "cta": "Conheça o LIRGE",
     "imageAlt": "Equipe do LIRGE reunida em frente ao laboratório no Campus de Salinópolis",
     "title": "Pesquisa integrada em geoenergia",
     "lead": "O LIRGE é o laboratório de pesquisa, desenvolvimento e inovação da Universidade Federal do Pará dedicado à captura de carbono, a reservatórios e à modelagem geológica.",
@@ -28,7 +28,8 @@
       "areas": "áreas de pesquisa",
       "partners": "instituições parceiras"
     },
-    "caption": "A equipe do LIRGE em frente ao laboratório, no Campus de Salinópolis."
+    "caption": "Equipe LIRGE · Campus Salinópolis",
+    "scroll": "Ir para Sobre o LIRGE"
   },
   "news": {
     "title": "Últimas",
@@ -166,8 +167,37 @@
     "cta": "Conheça a equipe",
     "pillarsTitle": "Objetivo, missão e visão",
     "globe": {
-      "label": "Globo 3D interativo com a localização de Salinópolis, no Pará, na costa amazônica. Arraste ou use as setas para girar.",
-      "site": "Salinópolis, PA"
+      "label": "Globo 3D que aproxima da Margem Equatorial brasileira, mostrando a linha do Equador, as bacias da Foz do Amazonas, Pará-Maranhão, Barreirinhas, Ceará e Potiguar, e Salinópolis, onde fica o LIRGE. Arraste ou use as setas para girar.",
+      "site": "Salinópolis · LIRGE",
+      "margin": "Margem Equatorial",
+      "equator": "Linha do Equador",
+      "legendTitle": "Bacias da Margem Equatorial",
+      "viewLabel": "Vista do globo",
+      "viewGlobe": "Globo",
+      "viewMargin": "Margem Equatorial",
+      "hint": "Arraste para girar · passe o mouse sobre as bacias",
+      "basins": {
+        "foz": {
+          "name": "Foz do Amazonas",
+          "desc": "Na foz do rio Amazonas, em frente ao Amapá e ao Pará: uma das novas fronteiras exploratórias em águas profundas."
+        },
+        "para": {
+          "name": "Pará-Maranhão",
+          "desc": "Em frente ao litoral paraense e maranhense — a bacia mais próxima de Salinópolis, onde fica o LIRGE."
+        },
+        "barreirinhas": {
+          "name": "Barreirinhas",
+          "desc": "No litoral do Maranhão, entre a baía de São Marcos e o delta do Parnaíba."
+        },
+        "ceara": {
+          "name": "Ceará",
+          "desc": "Ao longo do litoral cearense, com campos em águas rasas e áreas em águas profundas."
+        },
+        "potiguar": {
+          "name": "Potiguar",
+          "desc": "Entre o Ceará e o Rio Grande do Norte, com produção em terra e no mar há décadas."
+        }
+      }
     }
   },
   "research": {
@@ -197,7 +227,16 @@
         "hint": "Passe o mouse por um fluxo de dados para destacá-lo",
         "hintTouch": "Toque num fluxo de dados para destacá-lo"
       }
-    }
+    },
+    "short": [
+      "Captura de carbono",
+      "Exploração e produção",
+      "Modelagem geológica",
+      "Machine learning"
+    ],
+    "tabsLabel": "Áreas de pesquisa",
+    "prev": "Área anterior",
+    "next": "Próxima área"
   },
   "researchList": {
     "1": {
@@ -268,14 +307,6 @@
         "email": "Igorbarreto@ufpa.br",
         "image": "images/web/igor.webp",
         "linkedin": "https://www.linkedin.com/in/igor-barreto-phd-405485104"
-      },
-      {
-        "name": "João Rafael Barroso Sampaio da Silveira",
-        "role": "Doutorando",
-        "area": "Inteligência Artificial Aplicada à Geociências",
-        "email": "joao.silveira@ig.ufpa.br",
-        "image": "images/web/joao.webp",
-        "linkedin": "https://www.linkedin.com/in/joao-rafael-sampaio-da-silveira/"
       },
       {
         "name": "Jessica Nascimento Pereira",
@@ -379,7 +410,27 @@
     "countMembers": "{{count}} integrantes",
     "copy": "Copiar e-mail",
     "copied": "E-mail copiado",
-    "linkedin": "LinkedIn de {{name}}"
+    "linkedin": "LinkedIn de {{name}}",
+    "tabsLabel": "Integrantes do LIRGE",
+    "tabs": {
+      "current": "Equipe atual",
+      "alumni": "Egressos"
+    },
+    "alumniTitle": "Egressos do LIRGE",
+    "alumniNote": "Pesquisadores que fizeram parte do laboratório e seguiram para novas etapas da carreira.",
+    "alumniBadge": "Egresso",
+    "alumni": [
+      {
+        "name": "João Rafael Barroso Sampaio da Silveira",
+        "role": "Doutorando",
+        "area": "Inteligência Artificial Aplicada à Geociências",
+        "email": "joao.silveira@ig.ufpa.br",
+        "image": "images/web/joao.webp",
+        "linkedin": "https://www.linkedin.com/in/joao-rafael-sampaio-da-silveira/"
+      }
+    ],
+    "countMembers_one": "{{count}} integrante",
+    "countMembers_other": "{{count}} integrantes"
   },
   "projects": {
     "title": "Projetos",

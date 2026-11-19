@@ -1,7 +1,8 @@
 import React from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Building2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import Reveal from "./Reveal";
+import SectionHeading from "./SectionHeading";
 
 interface LinkItem {
   title: string;
@@ -20,19 +21,15 @@ const InstitutionalLinks: React.FC = () => {
 
   return (
     <section id="institutional-links" aria-labelledby="links-title" className="section">
-      <div className="page grid grid-cols-1 gap-y-12 lg:grid-cols-12 lg:gap-x-8">
-        <div className="lg:col-span-4">
-          <Reveal>
-            <h2 id="links-title" className="font-display text-head font-bold text-ink">
-              {t("institutionalLinks.heading")}
-            </h2>
-          </Reveal>
-          <Reveal order={1}>
-            <p className="mt-6 max-w-[24rem] text-lead text-ink">{t("institutionalLinks.subtitle")}</p>
-          </Reveal>
-        </div>
+      <div className="page">
+        <SectionHeading
+          id="links-title"
+          title={t("institutionalLinks.title")}
+          highlight={t("institutionalLinks.highlight")}
+          subtitle={t("institutionalLinks.subtitle")}
+        />
 
-        <ul className="grid grid-cols-1 gap-x-10 gap-y-2 sm:grid-cols-2 lg:col-span-8">
+        <ul className="mx-auto mt-14 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2">
           {links.map((link, i) => {
             const [short, long] = splitTitle(link.title);
             return (
@@ -41,18 +38,19 @@ const InstitutionalLinks: React.FC = () => {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="row-hover group -mx-4 flex items-start justify-between gap-4 px-4 py-4"
+                  className="card card-interactive group flex h-full items-center gap-4 p-5"
                 >
-                  <span className="min-w-0">
-                    <span className="block font-display text-lead font-bold text-ink transition-[color,transform] duration-300 ease-out group-hover:translate-x-1.5 group-hover:text-logo-deep dark:group-hover:text-logo-bright">
-                      {short}
-                    </span>
-                    {long && <span className="mt-1 block text-small text-ink-soft">{long}</span>}
+                  <span className="icon-tile h-11 w-11">
+                    <Building2 size={20} />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-display font-bold text-ink">{short}</span>
+                    {long && <span className="mt-0.5 block text-small leading-snug text-ink-soft">{long}</span>}
                   </span>
                   <ArrowUpRight
-                    size={20}
+                    size={18}
                     aria-hidden
-                    className="mt-1 shrink-0 text-ink-soft transition-[transform,color] duration-500 ease-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:rotate-[8deg] group-hover:text-logo-bright"
+                    className="shrink-0 text-ink-soft transition-[transform,color] duration-500 ease-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-logo-bright"
                   />
                 </a>
               </Reveal>

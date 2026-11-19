@@ -48,7 +48,7 @@ function App() {
 
         <main>
           <Hero onNavigate={scrollToSection} />
-          <About onNavigate={scrollToSection} />
+          <About />
           <Research />
           <Team />
           <Partnerships onNavigate={scrollToSection} />

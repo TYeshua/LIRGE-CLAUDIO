@@ -25,6 +25,7 @@
     --on-field-soft: 172 199 203;
     --on-field-accent: 108 200 224;
     --tile: 255 255 255;
+    --card: 255 255 255;
 
     --mark-crescent: 31 135 174;
     --mark-bands: 14 94 114;
@@ -64,6 +65,7 @@
     --on-field-soft: 165 194 199;
     --on-field-accent: 108 200 224;
     --tile: 226 234 235;
+    --card: 12 34 40;
 
     --mark-crescent: 40 150 190;
     --mark-bands: 22 112 133;
@@ -331,6 +333,132 @@
     transform: scale(1.04);
   }
 
+  /*
+   * ——— Padrão original, refinado ———
+   * card: superfície com borda fina nas cores da logo
+   * card-interactive: sobe e acende ao passar o mouse
+   * icon-tile: pastilha de ícone que gira levemente junto com o card
+   */
+  .card {
+    position: relative;
+    border-radius: 1.25rem;
+    background: rgb(var(--card));
+    border: 1px solid rgb(var(--logo-bright) / 0.16);
+    transition: transform 0.5s var(--ease-out), border-color 0.4s var(--ease-out), box-shadow 0.5s var(--ease-out);
+  }
+  .card-interactive:hover,
+  .card-interactive:focus-visible {
+    transform: translateY(-4px);
+    border-color: rgb(var(--logo-bright) / 0.55);
+    box-shadow: 0 22px 44px -28px rgb(var(--logo-deep) / 0.6);
+  }
+  .card-interactive:active {
+    transform: translateY(-1px);
+  }
+
+  .icon-tile {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.9rem;
+    background: rgb(var(--logo-deep));
+    color: #ffffff;
+    transition: transform 0.5s var(--ease-out), background-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
+  }
+  .dark .icon-tile {
+    background: rgb(var(--logo-bright) / 0.16);
+    color: rgb(var(--logo-glow));
+  }
+  .card-interactive:hover .icon-tile,
+  .card-interactive:focus-visible .icon-tile {
+    transform: rotate(-8deg) scale(1.06);
+    background: rgb(var(--logo-bright));
+    color: #ffffff;
+  }
+
+  /* faixa de logos em rolagem contínua; pausa ao passar o mouse */
+  .marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee var(--marquee-duration, 70s) linear infinite;
+  }
+  .marquee-track.is-reverse {
+    animation-direction: reverse;
+  }
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
+
+  .logo-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    width: 11.5rem;
+    height: 6.5rem;
+    margin-right: 1rem;
+    padding: 0.9rem 1.1rem;
+    border-radius: 1rem;
+    background: rgb(var(--tile));
+    border: 1px solid rgb(var(--logo-bright) / 0.12);
+    transition: transform 0.5s var(--ease-out), border-color 0.4s var(--ease-out), box-shadow 0.5s var(--ease-out);
+  }
+  .logo-chip img {
+    max-height: 62%;
+    max-width: 82%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    filter: grayscale(1);
+    opacity: 0.72;
+    transition: filter 0.45s var(--ease-out), opacity 0.45s var(--ease-out), transform 0.6s var(--ease-out);
+  }
+  .logo-chip:hover {
+    transform: translateY(-3px);
+    border-color: rgb(var(--logo-bright) / 0.55);
+    box-shadow: 0 16px 32px -24px rgb(var(--logo-deep) / 0.6);
+  }
+  .logo-chip:hover img {
+    filter: none;
+    opacity: 1;
+    transform: scale(1.06);
+  }
+
+  /* herói: brilho suave nas cores da logo e anéis que lembram o globo */
+  .hero-glow {
+    position: absolute;
+    inset: -20%;
+    background:
+      radial-gradient(38% 42% at 74% 38%, rgb(var(--logo-bright) / 0.2), transparent 70%),
+      radial-gradient(32% 36% at 18% 78%, rgb(var(--sand) / 0.12), transparent 70%);
+    animation: drift 18s var(--ease-in-out, ease-in-out) infinite alternate;
+  }
+  .hero-ring {
+    position: absolute;
+    border-radius: 999px;
+    border: 1.5px solid rgb(var(--logo-bright) / 0.22);
+  }
+  .hero-ring::after {
+    content: "";
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    width: 9px;
+    height: 9px;
+    margin-left: -4.5px;
+    border-radius: 999px;
+    background: rgb(var(--logo-bright) / 0.7);
+  }
+
   /* O arco do globo como detalhe recorrente nas imagens */
   .arc {
     border-top-right-radius: var(--arc);
@@ -398,6 +526,27 @@
   }
 }
 
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes drift {
+  to {
+    transform: translate3d(3%, -2%, 0) scale(1.05);
+  }
+}
+
+@keyframes progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 @keyframes pop {
   0% {
     transform: scale(0.3) rotate(-30deg);
@@ -434,6 +583,16 @@
   .ripple-wave {
     animation: none;
     display: none;
+  }
+  .hero-glow,
+  .marquee-track {
+    animation: none !important;
+  }
+  .marquee-track {
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 1rem;
   }
 
   html {

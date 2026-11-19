@@ -1,97 +1,157 @@
-import React, { lazy, Suspense } from "react";
-import { ArrowRight } from "lucide-react";
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useInView } from "framer-motion";
+import { Eye, Rocket, Target, type LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import Reveal from "./Reveal";
+import SectionHeading from "./SectionHeading";
+import Tabs from "./Tabs";
+import { BASIN_COLORS, BASIN_IDS } from "./visuals/basins";
 
 const GlobeVisual = lazy(() => import("./visuals/GlobeVisual"));
 
 type FeatureKey = "objective" | "mission" | "vision";
-const featureKeys: FeatureKey[] = ["objective", "mission", "vision"];
+const FEATURES: { key: FeatureKey; icon: LucideIcon }[] = [
+  { key: "objective", icon: Target },
+  { key: "mission", icon: Rocket },
+  { key: "vision", icon: Eye },
+];
 
-interface AboutBlock {
-  title: string;
-  text: string;
-}
+const EASE = [0.22, 1, 0.36, 1] as const;
 
-interface AboutProps {
-  onNavigate: (section: string) => void;
-}
-
-const About: React.FC<AboutProps> = ({ onNavigate }) => {
+const About: React.FC = () => {
   const { t } = useTranslation();
-  const blocks = t("about.blocks", { returnObjects: true }) as AboutBlock[];
+  const paragraphs = t("about.paragraphs", { returnObjects: true }) as string[];
+  const globeRef = useRef<HTMLDivElement>(null);
+  const globeInView = useInView(globeRef, { once: true, amount: 0.45 });
+  const [view, setView] = useState(1); // 0 = globo inteiro, 1 = Margem Equatorial
+  const [legendHover, setLegendHover] = useState(-1);
+  const [active, setActive] = useState(-1);
+  const [zoomed, setZoomed] = useState(false);
+
+  // ao entrar na tela, o globo voa do planeta inteiro até a Margem Equatorial
+  useEffect(() => {
+    if (!globeInView) return;
+    const id = window.setTimeout(() => setZoomed(view === 1), view === 1 ? 900 : 0);
+    return () => window.clearTimeout(id);
+  }, [globeInView, view]);
+
+  const shown = legendHover >= 0 ? legendHover : active;
 
   return (
-    <section id="about" aria-labelledby="about-title" className="section">
+    <section id="about" aria-labelledby="about-title" className="section bg-surface">
       <div className="page">
-        <div className="on-field relative grid overflow-hidden bg-field px-[clamp(1.5rem,4.5vw,4rem)] pt-[clamp(2.5rem,5vw,4.5rem)] text-on-field grid-cols-1 lg:grid-cols-12 lg:gap-x-8">
-          <div className="lg:col-span-6 lg:col-start-1 lg:row-start-1">
-            <Reveal>
-              <h2 id="about-title" className="font-display text-head font-bold text-on-field">
-                {t("about.heading")}
-              </h2>
-            </Reveal>
-          </div>
+        <SectionHeading id="about-title" title={t("about.title")} highlight={t("about.highlight")} />
 
-          <div className="mt-10 space-y-10 lg:col-span-5 lg:col-start-8 lg:row-span-2 lg:row-start-1 lg:mt-2 lg:pb-16">
-            {blocks.map((block, i) => (
-              <Reveal key={block.title} order={i + 1}>
-                <h3 className="font-display text-lead font-semibold text-on-field">{block.title}</h3>
-                <p className="mt-3 text-body text-on-field">{block.text}</p>
+        <div className="mt-16 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div>
+            {paragraphs.map((text, i) => (
+              <Reveal key={i} order={i}>
+                <p className={`text-body text-ink ${i ? "mt-5" : ""}`}>{text}</p>
               </Reveal>
             ))}
-            <Reveal order={3}>
-              <button
-                type="button"
-                onClick={() => onNavigate("team")}
-                className="btn-fill group inline-flex items-center gap-2.5 rounded-full bg-sand px-7 py-3.5 font-semibold text-[#1b1307]"
-              >
-                {t("about.cta")}
-                <ArrowRight size={18} className="transition-transform duration-500 ease-out group-hover:translate-x-1.5" />
-              </button>
+
+            {/* legenda das bacias, ligada ao globo */}
+            <Reveal order={2} className="mt-10">
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <h3 className="font-display text-lead font-bold text-ink">{t("about.globe.legendTitle")}</h3>
+                <Tabs
+                  id="globe-view"
+                  label={t("about.globe.viewLabel")}
+                  value={view}
+                  onChange={setView}
+                  items={[
+                    { key: "globe", label: t("about.globe.viewGlobe") },
+                    { key: "margin", label: t("about.globe.viewMargin") },
+                  ]}
+                />
+              </div>
+              <ul className="mt-5 space-y-1" onMouseLeave={() => setLegendHover(-1)}>
+                {BASIN_IDS.map((id, i) => {
+                  const on = shown === i && zoomed;
+                  return (
+                    <li key={id}>
+                      <button
+                        type="button"
+                        onMouseEnter={() => setLegendHover(i)}
+                        onFocus={() => setLegendHover(i)}
+                        onBlur={() => setLegendHover(-1)}
+                        onClick={() => setView(1)}
+                        aria-pressed={on}
+                        className={`w-full rounded-xl px-4 py-2.5 text-left transition-colors duration-300 ${
+                          on ? "bg-card" : "hover:bg-card/60"
+                        }`}
+                      >
+                        <span className="flex items-center gap-3">
+                          <span
+                            aria-hidden
+                            className="h-3 w-3 shrink-0 rounded-full transition-transform duration-300"
+                            style={{ background: BASIN_COLORS[i], transform: on ? "scale(1.25)" : "scale(1)" }}
+                          />
+                          <span className={`font-semibold transition-colors ${on ? "text-ink" : "text-ink-soft"}`}>
+                            {t(`about.globe.basins.${id}.name`)}
+                          </span>
+                        </span>
+                        <AnimatePresence initial={false}>
+                          {on && (
+                            <motion.span
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.35, ease: EASE }}
+                              className="block overflow-hidden pl-6 text-small text-ink-soft"
+                            >
+                              <span className="block pt-1">{t(`about.globe.basins.${id}.desc`)}</span>
+                            </motion.span>
+                          )}
+                        </AnimatePresence>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
             </Reveal>
           </div>
 
-          {/* Globo 3D com Salinópolis, cortado pela base do painel */}
-          <Reveal
-            order={2}
-            className="mx-auto mt-14 w-[86%] max-w-[34rem] lg:col-span-6 lg:col-start-1 lg:row-start-2 lg:mx-0 lg:mt-16 lg:w-[88%] lg:self-end"
-          >
-            <div className="relative -mb-[22%] aspect-square overflow-hidden rounded-full bg-field-deep">
-              <Suspense fallback={null}>
-                <GlobeVisual
-                  fallback={
-                    <img
-                      src={`${import.meta.env.BASE_URL}images/web/sobrefoto.webp`}
-                      alt={t("about.imageAlt")}
-                      width={1000}
-                      height={661}
-                      loading="lazy"
-                      className="h-full w-full object-cover"
-                    />
-                  }
-                />
-              </Suspense>
+          {/* globo: do planeta inteiro até a Margem Equatorial */}
+          <Reveal order={1}>
+            <div ref={globeRef} className="card overflow-hidden p-2.5">
+              <div className="relative aspect-square overflow-hidden rounded-[0.95rem] bg-field-deep">
+                <Suspense fallback={null}>
+                  <GlobeVisual
+                    zoomed={zoomed}
+                    highlight={legendHover}
+                    onBasin={setActive}
+                    fallback={
+                      <img
+                        src={`${import.meta.env.BASE_URL}images/web/sobrefoto.webp`}
+                        alt={t("about.imageAlt")}
+                        loading="lazy"
+                        className="h-full w-full object-cover"
+                      />
+                    }
+                  />
+                </Suspense>
+                <p className="pointer-events-none absolute inset-x-0 bottom-0 px-5 pb-4 text-center text-small text-on-field-soft">
+                  {t("about.globe.hint")}
+                </p>
+              </div>
             </div>
           </Reveal>
         </div>
 
-        {/* Objetivo, missão e visão */}
-        <div className="mt-[clamp(4rem,8vw,7rem)] grid grid-cols-1 gap-y-10 lg:grid-cols-12 lg:gap-x-8">
-          <Reveal className="lg:col-span-4">
-            <h3 className="max-w-[14ch] font-display text-lead font-bold text-ink">{t("about.pillarsTitle")}</h3>
-          </Reveal>
-          <dl className="space-y-12 lg:col-span-8">
-            {featureKeys.map((key, i) => (
-              <Reveal key={key} order={i + 1} className="grid gap-3 sm:grid-cols-[11rem_1fr] sm:gap-8">
-                <dt className="flex items-baseline gap-3 font-display text-lead font-bold text-ink">
-                  <span aria-hidden className="h-2.5 w-2.5 shrink-0 translate-y-[-0.15em] rounded-full bg-sand" />
-                  {t(`about.features.${key}.title`)}
-                </dt>
-                <dd className="text-body text-ink">{t(`about.features.${key}.description`)}</dd>
-              </Reveal>
-            ))}
-          </dl>
+        {/* objetivo, missão e visão */}
+        <div className="mt-20 grid gap-6 md:grid-cols-3">
+          {FEATURES.map(({ key, icon: Icon }, i) => (
+            <Reveal key={key} order={i}>
+              <article className="card card-interactive h-full p-7">
+                <span className="icon-tile">
+                  <Icon size={22} />
+                </span>
+                <h3 className="mt-5 font-display text-lead font-bold text-ink">{t(`about.features.${key}.title`)}</h3>
+                <p className="mt-3 text-body text-ink-soft">{t(`about.features.${key}.description`)}</p>
+              </article>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

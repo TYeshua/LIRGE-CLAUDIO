@@ -61,6 +61,7 @@ const Header: React.FC<HeaderProps> = ({ activeSection, onNavigate }) => {
   const progress = useSpring(scrollYProgress, { stiffness: 220, damping: 32, restDelta: 0.001 });
 
   const menuItems = [
+    { id: "home", label: t("menu.home") },
     { id: "about", label: t("menu.about") },
     { id: "research", label: t("menu.research") },
     { id: "team", label: t("menu.team") },

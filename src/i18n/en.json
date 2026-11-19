@@ -18,7 +18,7 @@
   "hero": {
     "subtitle": "Integrated Research Laboratory in Geoenergy",
     "university": "Federal University of Pará",
-    "cta": "Discover the lab",
+    "cta": "Discover LIRGE",
     "imageAlt": "LIRGE team gathered in front of the laboratory at the Salinópolis Campus",
     "title": "Integrated geoenergy research",
     "lead": "LIRGE is the research, development and innovation laboratory of the Federal University of Pará devoted to carbon capture, reservoirs and geological modelling.",
@@ -28,7 +28,8 @@
       "areas": "research areas",
       "partners": "partner institutions"
     },
-    "caption": "The LIRGE team in front of the laboratory, Salinópolis Campus."
+    "caption": "LIRGE team · Salinópolis Campus",
+    "scroll": "Go to About LIRGE"
   },
   "news": {
     "title": "Latest",
@@ -166,8 +167,37 @@
     "cta": "Meet the team",
     "pillarsTitle": "Objective, mission and vision",
     "globe": {
-      "label": "Interactive 3D globe showing Salinópolis, Pará, on the Amazon coast. Drag or use the arrow keys to rotate.",
-      "site": "Salinópolis, PA"
+      "label": "3D globe that zooms into Brazil's Equatorial Margin, showing the Equator and the Foz do Amazonas, Pará-Maranhão, Barreirinhas, Ceará and Potiguar basins, and Salinópolis, home of LIRGE. Drag or use the arrow keys to rotate.",
+      "site": "Salinópolis · LIRGE",
+      "margin": "Equatorial Margin",
+      "equator": "Equator",
+      "legendTitle": "Equatorial Margin basins",
+      "viewLabel": "Globe view",
+      "viewGlobe": "Globe",
+      "viewMargin": "Equatorial Margin",
+      "hint": "Drag to rotate · hover over the basins",
+      "basins": {
+        "foz": {
+          "name": "Foz do Amazonas",
+          "desc": "At the mouth of the Amazon, off Amapá and Pará: one of the new deep-water exploration frontiers."
+        },
+        "para": {
+          "name": "Pará-Maranhão",
+          "desc": "Off the coasts of Pará and Maranhão — the basin closest to Salinópolis, home of LIRGE."
+        },
+        "barreirinhas": {
+          "name": "Barreirinhas",
+          "desc": "Off Maranhão, between São Marcos Bay and the Parnaíba delta."
+        },
+        "ceara": {
+          "name": "Ceará",
+          "desc": "Along the Ceará coast, with shallow-water fields and deep-water areas."
+        },
+        "potiguar": {
+          "name": "Potiguar",
+          "desc": "Between Ceará and Rio Grande do Norte, producing onshore and offshore for decades."
+        }
+      }
     }
   },
   "research": {
@@ -197,7 +227,16 @@
         "hint": "Hover over a data stream to highlight it",
         "hintTouch": "Tap a data stream to highlight it"
       }
-    }
+    },
+    "short": [
+      "Carbon capture",
+      "Exploration & production",
+      "Geological modelling",
+      "Machine learning"
+    ],
+    "tabsLabel": "Research areas",
+    "prev": "Previous area",
+    "next": "Next area"
   },
   "researchList": {
     "1": {
@@ -268,14 +307,6 @@
         "email": "Igorbarreto@ufpa.br",
         "image": "images/web/igor.webp",
         "linkedin": "https://www.linkedin.com/in/igor-barreto-phd-405485104"
-      },
-      {
-        "name": "João Rafael Barroso Sampaio da Silveira",
-        "role": "PhD Student",
-        "area": "Artificial Intelligence Applied to Geosciences",
-        "email": "joao.silveira@ig.ufpa.br",
-        "image": "images/web/joao.webp",
-        "linkedin": "https://www.linkedin.com/in/joao-rafael-sampaio-da-silveira/"
       },
       {
         "name": "Jessica Nascimento Pereira",
@@ -379,7 +410,27 @@
     "countMembers": "{{count}} members",
     "copy": "Copy e-mail",
     "copied": "E-mail copied",
-    "linkedin": "{{name}} on LinkedIn"
+    "linkedin": "{{name}} on LinkedIn",
+    "tabsLabel": "LIRGE members",
+    "tabs": {
+      "current": "Current team",
+      "alumni": "Alumni"
+    },
+    "alumniTitle": "LIRGE alumni",
+    "alumniNote": "Researchers who were part of the lab and moved on to new stages of their careers.",
+    "alumniBadge": "Alumnus",
+    "alumni": [
+      {
+        "name": "João Rafael Barroso Sampaio da Silveira",
+        "role": "PhD Student",
+        "area": "Artificial Intelligence Applied to Geosciences",
+        "email": "joao.silveira@ig.ufpa.br",
+        "image": "images/web/joao.webp",
+        "linkedin": "https://www.linkedin.com/in/joao-rafael-sampaio-da-silveira/"
+      }
+    ],
+    "countMembers_one": "{{count}} member",
+    "countMembers_other": "{{count}} members"
   },
   "projects": {
     "title": "Projects",
